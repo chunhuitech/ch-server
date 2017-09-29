@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>www.cunhuitech.cn</groupId>
+    <artifactId>ch-server-build</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+
+    <profiles>
+        <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>ch-parent</module>
+                <module>ch-lib</module>
+                <module>ch-cores</module>
+                <module>ch-apis</module>
+                <!--<module>ch-tasks</module>-->
+            </modules>
+        </profile>
+        <profile>
+            <id>api</id>
+            <modules>
+                <module>ch-parent</module>
+                <module>ch-lib</module>
+                <module>ch-cores</module>
+                <module>ch-apis</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>task</id>
+            <modules>
+                <module>ch-parent</module>
+                <module>ch-lib</module>
+                <module>ch-cores</module>
+                <!--<module>ch-tasks</module>-->
+            </modules>
+        </profile>
+    </profiles>
+    <modules>
+        <module>ch-task-parent</module>
+    </modules>
+</project>

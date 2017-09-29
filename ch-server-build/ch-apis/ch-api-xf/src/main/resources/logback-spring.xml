@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/apiXf.log}"/>
+    <property name="DEFAULT_PATTERN" value="${FILE_LOG_PATTERN:-%d [%t] %p %logger - %m%n}"/>
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <Target>System.out</Target>
+        <encoder>
+            <pattern>${DEFAULT_PATTERN}</pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="LogFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${LOG_FILE}</File>
+        <Append>true</Append>
+        <encoder>
+            <pattern>${DEFAULT_PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_FILE}.%d{yyyy-MM-dd}</fileNamePattern>
+            <maxHistory>20</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <springProfile name="dev">
+        <logger name="cn.chunhuitech.www" level="DEBUG"/>
+        <logger name="org.springframework" level="INFO"/>
+        <root level="DEBUG">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="LogFile"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="prep">
+        <logger name="cn.chunhuitech.www" level="DEBUG"/>
+        <logger name="org.springframework" level="INFO"/>
+        <root level="DEBUG">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="LogFile"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="prod">
+        <logger name="cn.chunhuitech.www" level="INFO"/>
+        <logger name="org.springframework" level="ERROR"/>
+        <root level="INFO">
+            <appender-ref ref="LogFile"/>
+        </root>
+    </springProfile>
+
+</configuration>
