@@ -3,7 +3,7 @@ package cn.chunhuitech.www.api.xf.service.impl;
 import cn.chunhuitech.www.api.common.model.ErrorCode;
 import cn.chunhuitech.www.api.common.model.Result;
 import cn.chunhuitech.www.api.common.util.ValidUtils;
-import cn.chunhuitech.www.api.xf.model.XfSchoolModelResult;
+import cn.chunhuitech.www.api.xf.model.XfSchoolModelSearch;
 import cn.chunhuitech.www.core.xf.dao.XfSchoolDao;
 import cn.chunhuitech.www.core.xf.model.cus.XfSchoolPara;
 import cn.chunhuitech.www.api.xf.service.XfSchoolService;
@@ -26,8 +26,8 @@ public class XfSchoolServiceImpl implements XfSchoolService {
     private XfSchoolDao xfSchoolDao;
 
     @Override
-    public Result<XfSchoolModelResult> getList(XfSchoolPara xfSchoolPara) {
-        Result<XfSchoolModelResult> retResult = new Result<>();
+    public Result<XfSchoolModelSearch> getList(XfSchoolPara xfSchoolPara) {
+        Result<XfSchoolModelSearch> retResult = new Result<>();
         try {
             ValidUtils.validNotNull(xfSchoolPara);
         } catch (Exception ex) {
@@ -37,7 +37,7 @@ public class XfSchoolServiceImpl implements XfSchoolService {
             return retResult;
         }
 
-        XfSchoolModelResult xfSchoolModelResult = new XfSchoolModelResult();
+        XfSchoolModelSearch xfSchoolModelResult = new XfSchoolModelSearch();
         long count = xfSchoolDao.getListCount(xfSchoolPara);
         xfSchoolModelResult.setTotal(count);
         List<XfSchool> xfSchoolList = xfSchoolDao.getList(xfSchoolPara);

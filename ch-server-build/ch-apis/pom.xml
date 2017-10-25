@@ -15,6 +15,7 @@
     <modules>
         <module>ch-api-common</module>
         <module>ch-api-xf</module>
+        <module>ch-api-admin</module>
     </modules>
 
     <dependencies>

@@ -4,7 +4,7 @@ import cn.chunhuitech.www.core.xf.model.pojo.XfSchool;
 
 import java.util.List;
 
-public class XfSchoolModelResult {
+public class XfSchoolModelSearch {
     private long total = 0;
     List<XfSchool> dataList;
 

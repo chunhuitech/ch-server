@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.chunhuitech.www.core.admin.mysql.mapper.cus.AdminRoleCusMapper">
+    <sql id="selectItem_fragment">
+        FROM admin_role r, admin_system s  where r.system_id = s.id
+        <if test="systemId != null and systemId != 0">
+            and r.system_id = #{systemId}
+        </if>
+        <if test="name != null and name != ''">
+            and r.name = #{name}
+        </if>
+    </sql>
+
+    <select id="getListSql" parameterType="java.util.Map" resultType="cn.chunhuitech.www.core.admin.model.cus.AdminRoleCus">
+        SELECT r.id as id, r.name as name, s.name as systemName, r.des as des
+        <include refid="selectItem_fragment"/>
+        order by r.id desc
+        limit #{pageStart}, #{pageSize}
+    </select>
+
+    <select id="getListCountSql" parameterType="map" resultType="java.lang.Long">
+        SELECT count(1)
+        <include refid="selectItem_fragment"/>
+    </select>
+
+</mapper>

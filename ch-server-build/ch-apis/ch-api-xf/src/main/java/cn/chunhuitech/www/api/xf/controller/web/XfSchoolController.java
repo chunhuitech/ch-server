@@ -2,7 +2,7 @@ package cn.chunhuitech.www.api.xf.controller.web;
 
 import cn.chunhuitech.www.api.common.constant.ConstantApi;
 import cn.chunhuitech.www.api.common.model.Result;
-import cn.chunhuitech.www.api.xf.model.XfSchoolModelResult;
+import cn.chunhuitech.www.api.xf.model.XfSchoolModelSearch;
 import cn.chunhuitech.www.api.xf.service.XfSchoolService;
 import cn.chunhuitech.www.core.xf.model.cus.XfSchoolPara;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class XfSchoolController {
 
 
     @RequestMapping(value = "/search", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
-    public Result<XfSchoolModelResult> search(@RequestBody XfSchoolPara xfSchoolPara) throws Exception{
+    public Result<XfSchoolModelSearch> search(@RequestBody XfSchoolPara xfSchoolPara) throws Exception{
         return xfSchoolService.getList(xfSchoolPara);
     }
 }
