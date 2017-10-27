@@ -1,6 +1,7 @@
 package cn.chunhuitech.www.api.admin.controller.web;
 
 import cn.chunhuitech.www.api.admin.model.AdminUserInfoBo;
+import cn.chunhuitech.www.api.admin.model.AdminUserLoginParaBo;
 import cn.chunhuitech.www.core.admin.model.cus.AdminUserRoleModel;
 import cn.chunhuitech.www.api.admin.model.AdminUserLoginBo;
 import cn.chunhuitech.www.api.admin.service.AdminUserService;
@@ -19,17 +20,23 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping(value = "/web/user")
 public class AdminUserController {
 
-
     @Autowired
     private AdminUserService adminUserService;
 
-
-    @RequestMapping(value = "/login", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
-    public Result<AdminUserLoginBo> login(@RequestParam(value = "username") String userName,
+//    @CrossOrigin
+    @RequestMapping(value = "/login2", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
+    public Result<AdminUserLoginBo> login2(@RequestParam(value = "username") String userName,
                                           @RequestParam(value = "password") String passWord,
                                           HttpServletRequest request, HttpServletResponse response) throws Exception{
         return adminUserService.login(userName, passWord);
     }
+//    @CrossOrigin
+    @RequestMapping(value = "/login", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
+    public Result<AdminUserLoginBo> login(@RequestBody AdminUserLoginParaBo adminUserLoginParaBo) throws Exception{
+        return adminUserService.login(adminUserLoginParaBo.getUsername(), adminUserLoginParaBo.getPassword());
+    }
+
+
 
     @RequestMapping(value = "/loginout", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
     public Result<String> loginout() throws Exception{
