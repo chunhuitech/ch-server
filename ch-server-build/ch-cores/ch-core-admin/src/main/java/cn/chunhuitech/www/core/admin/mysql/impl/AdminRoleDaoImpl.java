@@ -1,7 +1,7 @@
 package cn.chunhuitech.www.core.admin.mysql.impl;
 
 import cn.chunhuitech.www.core.admin.dao.AdminRoleDao;
-import cn.chunhuitech.www.core.admin.model.cus.AdminRoleCus;
+import cn.chunhuitech.www.core.admin.model.cus.AdminRoleSearchModel;
 import cn.chunhuitech.www.core.admin.model.cus.AdminRolePara;
 import cn.chunhuitech.www.core.admin.model.pojo.AdminRole;
 import cn.chunhuitech.www.core.admin.mysql.mapper.cus.AdminRoleCusMapper;
@@ -22,17 +22,17 @@ public class AdminRoleDaoImpl implements AdminRoleDao{
     @Autowired
     private AdminRoleMapper adminRoleMapper;
     @Autowired
-    private AdminRoleCusMapper redeemCodeCusMapper;
+    private AdminRoleCusMapper adminRoleCusMapper;
 
 
     @Override
-    public List<AdminRoleCus> getList(AdminRolePara adminRolePara) {
+    public List<AdminRoleSearchModel> getList(AdminRolePara adminRolePara) {
         Map<String, Object> param = new HashMap<>();
         param.put("name", adminRolePara.getName());
         param.put("systemId", adminRolePara.getSystemId());
         param.put("pageStart", adminRolePara.getPageStart());
         param.put("pageSize", adminRolePara.getPageSize());
-        return redeemCodeCusMapper.getListSql(param);
+        return adminRoleCusMapper.getListSql(param);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class AdminRoleDaoImpl implements AdminRoleDao{
         Map<String, Object> param = new HashMap<>();
         param.put("name", adminRolePara.getName());
         param.put("systemId", adminRolePara.getSystemId());
-        return redeemCodeCusMapper.getListCountSql(param);
+        return adminRoleCusMapper.getListCountSql(param);
     }
 
     @Override

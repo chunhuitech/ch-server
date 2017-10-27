@@ -10,9 +10,9 @@
         </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://182.254.218.31:3306/ch_admin?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8"
+                        connectionURL="jdbc:mysql://192.168.12.12:3306/ch_admin?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8"
                         userId="root"
-                        password="firemail.wang"/>
+                        password="ffffffff"/>
 
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
@@ -36,9 +36,9 @@
         <table tableName="admin_user" schema="ch_admin">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
-        <table tableName="admin_role" schema="ch_admin">
-            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-        </table>
+        <!--<table tableName="admin_role" schema="ch_admin">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
         <!--<table tableName="admin_user_role" schema="ch_admin">-->
             <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
         <!--</table>-->
@@ -48,9 +48,9 @@
         <!--<table tableName="admin_role_menu" schema="ch_admin">-->
             <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
         <!--</table>-->
-        <table tableName="admin_system" schema="ch_admin">
-            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-        </table>
+        <!--<table tableName="admin_system" schema="ch_admin">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
         <!--<table tableName="admin_user_system" schema="ch_admin">-->
             <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
         <!--</table>-->

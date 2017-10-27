@@ -26,12 +26,12 @@ public interface AdminMenuMapper {
         "insert into admin_menu (system_id, name, ",
         "index_path, route, ",
         "icon, res_url, seq, ",
-        "status, modify_time, ",
+        "des, status, modify_time, ",
         "create_time)",
         "values (#{systemId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, ",
         "#{indexPath,jdbcType=VARCHAR}, #{route,jdbcType=VARCHAR}, ",
         "#{icon,jdbcType=VARCHAR}, #{resUrl,jdbcType=VARCHAR}, #{seq,jdbcType=INTEGER}, ",
-        "#{status,jdbcType=TINYINT}, #{modifyTime,jdbcType=BIGINT}, ",
+        "#{des,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{modifyTime,jdbcType=BIGINT}, ",
         "#{createTime,jdbcType=BIGINT})"
     })
     @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
@@ -43,7 +43,7 @@ public interface AdminMenuMapper {
 
     @Select({
         "select",
-        "id, system_id, name, index_path, route, icon, res_url, seq, status, modify_time, ",
+        "id, system_id, name, index_path, route, icon, res_url, seq, des, status, modify_time, ",
         "create_time",
         "from admin_menu",
         "where id = #{id,jdbcType=INTEGER}"
@@ -66,6 +66,7 @@ public interface AdminMenuMapper {
           "icon = #{icon,jdbcType=VARCHAR},",
           "res_url = #{resUrl,jdbcType=VARCHAR},",
           "seq = #{seq,jdbcType=INTEGER},",
+          "des = #{des,jdbcType=VARCHAR},",
           "status = #{status,jdbcType=TINYINT},",
           "modify_time = #{modifyTime,jdbcType=BIGINT},",
           "create_time = #{createTime,jdbcType=BIGINT}",

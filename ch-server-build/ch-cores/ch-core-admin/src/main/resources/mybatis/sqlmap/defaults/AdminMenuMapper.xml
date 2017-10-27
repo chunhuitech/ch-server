@@ -10,6 +10,7 @@
     <result column="icon" jdbcType="VARCHAR" property="icon" />
     <result column="res_url" jdbcType="VARCHAR" property="resUrl" />
     <result column="seq" jdbcType="INTEGER" property="seq" />
+    <result column="des" jdbcType="VARCHAR" property="des" />
     <result column="status" jdbcType="TINYINT" property="status" />
     <result column="modify_time" jdbcType="BIGINT" property="modifyTime" />
     <result column="create_time" jdbcType="BIGINT" property="createTime" />
@@ -73,7 +74,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, system_id, name, index_path, route, icon, res_url, seq, status, modify_time, 
+    id, system_id, name, index_path, route, icon, res_url, seq, des, status, modify_time, 
     create_time
   </sql>
   <select id="selectByExample" parameterType="cn.chunhuitech.www.core.admin.model.pojo.AdminMenuExample" resultMap="BaseResultMap">
@@ -123,6 +124,9 @@
       <if test="seq != null">
         seq,
       </if>
+      <if test="des != null">
+        des,
+      </if>
       <if test="status != null">
         status,
       </if>
@@ -154,6 +158,9 @@
       </if>
       <if test="seq != null">
         #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="des != null">
+        #{des,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         #{status,jdbcType=TINYINT},
@@ -199,6 +206,9 @@
       <if test="record.seq != null">
         seq = #{record.seq,jdbcType=INTEGER},
       </if>
+      <if test="record.des != null">
+        des = #{record.des,jdbcType=VARCHAR},
+      </if>
       <if test="record.status != null">
         status = #{record.status,jdbcType=TINYINT},
       </if>
@@ -223,6 +233,7 @@
       icon = #{record.icon,jdbcType=VARCHAR},
       res_url = #{record.resUrl,jdbcType=VARCHAR},
       seq = #{record.seq,jdbcType=INTEGER},
+      des = #{record.des,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=TINYINT},
       modify_time = #{record.modifyTime,jdbcType=BIGINT},
       create_time = #{record.createTime,jdbcType=BIGINT}
@@ -253,6 +264,9 @@
       </if>
       <if test="seq != null">
         seq = #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="des != null">
+        des = #{des,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=TINYINT},

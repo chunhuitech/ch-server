@@ -1,12 +1,12 @@
 package cn.chunhuitech.www.api.admin.model;
 
-import cn.chunhuitech.www.core.admin.model.cus.AdminRoleCus;
+import cn.chunhuitech.www.core.admin.model.pojo.AdminSystem;
 
 import java.util.List;
 
-public class AdminRoleModelSearch {
+public class AdminSystemSearchBo {
     private long total = 0;
-    List<AdminRoleCus> dataList;
+    List<AdminSystem> dataList;
 
     public long getTotal() {
         return total;
@@ -16,11 +16,11 @@ public class AdminRoleModelSearch {
         this.total = total;
     }
 
-    public List<AdminRoleCus> getDataList() {
+    public List<AdminSystem> getDataList() {
         return dataList;
     }
 
-    public void setDataList(List<AdminRoleCus> dataList) {
+    public void setDataList(List<AdminSystem> dataList) {
         this.dataList = dataList;
     }
 }

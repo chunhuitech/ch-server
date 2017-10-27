@@ -8,13 +8,15 @@ CREATE TABLE `admin_user` (
   `password` varchar(50) NOT NULL,
   `token` varchar(50) NOT NULL,
   `nickname` varchar(50) NOT NULL,
+  `avatar` varchar(300) NOT NULL DEFAULT '',
   `email` varchar(50) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '0',
+  `status` tinyint(4) NOT NULL DEFAULT '0',
   `des` varchar(200) DEFAULT ' ',
   `modify_time` bigint(20) NOT NULL,
   `create_time` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `idx_name` (`username`)
+  UNIQUE KEY `idx_name` (`username`),
+  UNIQUE KEY `idx_token` (`token`)
 );
 
 CREATE TABLE `admin_role` (
@@ -42,6 +44,7 @@ CREATE TABLE `admin_menu` (
   `icon` varchar(128) DEFAULT NULL COMMENT '图标',
   `res_url` varchar(128) DEFAULT NULL COMMENT '链接',
   `seq` int(11) NOT NULL COMMENT '顺序',
+  `des` varchar(200) DEFAULT ' ',
   `status` tinyint(4) NOT NULL COMMENT '状态',
   `modify_time` bigint(20) NOT NULL,
   `create_time` bigint(20) NOT NULL,

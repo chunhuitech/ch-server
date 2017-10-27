@@ -3,7 +3,7 @@ package cn.chunhuitech.www.core.admin.model.cus;
 /**
  * Created by hechengjin on 17-10-24.
  */
-public class AdminRoleCus {
+public class AdminRoleSearchModel {
     private Integer id;
 
     private String systemName;

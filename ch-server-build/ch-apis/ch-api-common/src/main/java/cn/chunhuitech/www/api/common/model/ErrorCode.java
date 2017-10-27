@@ -36,4 +36,11 @@ public final class ErrorCode {
     //唯一键重复
     public static final ErrorMessage DUPLICATE_KEY_EXCEPTION = addErrorMsg(900007, "唯一键重复. ", HttpStatus.SC_BAD_REQUEST);
 
+    //illegal empty
+    public static final ErrorMessage ILLEGAL_EMPTY = addErrorMsg(900008, "The parameter is empty. ", HttpStatus.SC_BAD_REQUEST);
+
+    public static final ErrorMessage USER_NOT_EXIST = addErrorMsg(900009, "user does not exist. ", HttpStatus.SC_BAD_REQUEST);
+
+    public static final ErrorMessage USER_PASSWORD_ERROR = addErrorMsg(900010, "user password error. ", HttpStatus.SC_BAD_REQUEST);
+
 }

@@ -1,9 +1,14 @@
-package cn.chunhuitech.www.core.admin.model.pojo;
+package cn.chunhuitech.www.core.admin.model.cus;
 
-public class AdminMenu {
+/**
+ * Created by hechengjin on 17-10-24.
+ */
+public class AdminMenuSearchModel {
     private Integer id;
 
     private Integer systemId;
+
+    private String systemName;
 
     private String name;
 
@@ -25,6 +30,7 @@ public class AdminMenu {
 
     private Long createTime;
 
+
     public Integer getId() {
         return id;
     }
@@ -41,12 +47,20 @@ public class AdminMenu {
         this.systemId = systemId;
     }
 
+    public String getSystemName() {
+        return systemName;
+    }
+
+    public void setSystemName(String systemName) {
+        this.systemName = systemName;
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
 
     public String getIndexPath() {
@@ -54,7 +68,7 @@ public class AdminMenu {
     }
 
     public void setIndexPath(String indexPath) {
-        this.indexPath = indexPath == null ? null : indexPath.trim();
+        this.indexPath = indexPath;
     }
 
     public String getRoute() {
@@ -62,7 +76,7 @@ public class AdminMenu {
     }
 
     public void setRoute(String route) {
-        this.route = route == null ? null : route.trim();
+        this.route = route;
     }
 
     public String getIcon() {
@@ -70,7 +84,7 @@ public class AdminMenu {
     }
 
     public void setIcon(String icon) {
-        this.icon = icon == null ? null : icon.trim();
+        this.icon = icon;
     }
 
     public String getResUrl() {
@@ -78,7 +92,7 @@ public class AdminMenu {
     }
 
     public void setResUrl(String resUrl) {
-        this.resUrl = resUrl == null ? null : resUrl.trim();
+        this.resUrl = resUrl;
     }
 
     public Integer getSeq() {
@@ -94,7 +108,7 @@ public class AdminMenu {
     }
 
     public void setDes(String des) {
-        this.des = des == null ? null : des.trim();
+        this.des = des;
     }
 
     public Byte getStatus() {

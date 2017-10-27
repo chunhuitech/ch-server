@@ -11,9 +11,11 @@ public class AdminUser {
 
     private String nickname;
 
+    private String avatar;
+
     private String email;
 
-    private Integer status;
+    private Byte status;
 
     private String des;
 
@@ -61,6 +63,14 @@ public class AdminUser {
         this.nickname = nickname == null ? null : nickname.trim();
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar == null ? null : avatar.trim();
+    }
+
     public String getEmail() {
         return email;
     }
@@ -69,11 +79,11 @@ public class AdminUser {
         this.email = email == null ? null : email.trim();
     }
 
-    public Integer getStatus() {
+    public Byte getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(Byte status) {
         this.status = status;
     }
 

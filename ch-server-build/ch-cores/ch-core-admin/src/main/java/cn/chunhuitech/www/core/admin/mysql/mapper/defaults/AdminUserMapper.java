@@ -25,12 +25,14 @@ public interface AdminUserMapper {
     @Insert({
         "insert into admin_user (username, password, ",
         "token, nickname, ",
-        "email, status, des, ",
-        "modify_time, create_time)",
+        "avatar, email, status, ",
+        "des, modify_time, ",
+        "create_time)",
         "values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, ",
         "#{token,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, ",
-        "#{email,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{des,jdbcType=VARCHAR}, ",
-        "#{modifyTime,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT})"
+        "#{avatar,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, ",
+        "#{des,jdbcType=VARCHAR}, #{modifyTime,jdbcType=BIGINT}, ",
+        "#{createTime,jdbcType=BIGINT})"
     })
     @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insert(AdminUser record);
@@ -41,7 +43,8 @@ public interface AdminUserMapper {
 
     @Select({
         "select",
-        "id, username, password, token, nickname, email, status, des, modify_time, create_time",
+        "id, username, password, token, nickname, avatar, email, status, des, modify_time, ",
+        "create_time",
         "from admin_user",
         "where id = #{id,jdbcType=INTEGER}"
     })
@@ -60,8 +63,9 @@ public interface AdminUserMapper {
           "password = #{password,jdbcType=VARCHAR},",
           "token = #{token,jdbcType=VARCHAR},",
           "nickname = #{nickname,jdbcType=VARCHAR},",
+          "avatar = #{avatar,jdbcType=VARCHAR},",
           "email = #{email,jdbcType=VARCHAR},",
-          "status = #{status,jdbcType=INTEGER},",
+          "status = #{status,jdbcType=TINYINT},",
           "des = #{des,jdbcType=VARCHAR},",
           "modify_time = #{modifyTime,jdbcType=BIGINT},",
           "create_time = #{createTime,jdbcType=BIGINT}",

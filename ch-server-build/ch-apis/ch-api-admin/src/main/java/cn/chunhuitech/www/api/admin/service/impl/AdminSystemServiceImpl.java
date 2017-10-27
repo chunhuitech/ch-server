@@ -1,15 +1,14 @@
 package cn.chunhuitech.www.api.admin.service.impl;
 
-import cn.chunhuitech.www.api.admin.model.AdminRoleSearchBo;
-import cn.chunhuitech.www.api.admin.service.AdminRoleService;
+import cn.chunhuitech.www.api.admin.model.AdminSystemSearchBo;
+import cn.chunhuitech.www.api.admin.service.AdminSystemService;
 import cn.chunhuitech.www.api.common.model.ErrorCode;
 import cn.chunhuitech.www.api.common.model.ErrorMessage;
 import cn.chunhuitech.www.api.common.model.Result;
 import cn.chunhuitech.www.api.common.util.ValidUtils;
-import cn.chunhuitech.www.core.admin.dao.AdminRoleDao;
-import cn.chunhuitech.www.core.admin.model.cus.AdminRoleSearchModel;
-import cn.chunhuitech.www.core.admin.model.cus.AdminRolePara;
-import cn.chunhuitech.www.core.admin.model.pojo.AdminRole;
+import cn.chunhuitech.www.core.admin.dao.AdminSystemDao;
+import cn.chunhuitech.www.core.admin.model.cus.AdminSystemPara;
+import cn.chunhuitech.www.core.admin.model.pojo.AdminSystem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,17 +20,17 @@ import java.util.List;
  * Created by hechengjin on 17-9-29.
  */
 @Service
-public class AdminRoleServiceImpl implements AdminRoleService {
+public class AdminSystemServiceImpl implements AdminSystemService {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    private AdminRoleDao adminRoleDao;
+    private AdminSystemDao adminSystemDao;
 
     @Override
-    public Result<AdminRoleSearchBo> getList(AdminRolePara adminRolePara) {
-        Result<AdminRoleSearchBo> retResult = new Result<>();
+    public Result<AdminSystemSearchBo> getList(AdminSystemPara adminSystemPara) {
+        Result<AdminSystemSearchBo> retResult = new Result<>();
         try {
-            ValidUtils.validNotNull(adminRolePara);
+            ValidUtils.validNotNull(adminSystemPara);
         } catch (Exception ex) {
             retResult.setCode(ErrorCode.ILLEGAL_ARGUMENT.getCode());
             retResult.setMsg(ex.getMessage());
@@ -39,10 +38,10 @@ public class AdminRoleServiceImpl implements AdminRoleService {
             return retResult;
         }
 
-        AdminRoleSearchBo modelResult = new AdminRoleSearchBo();
-        long count = adminRoleDao.getListCount(adminRolePara);
+        AdminSystemSearchBo modelResult = new AdminSystemSearchBo();
+        long count = adminSystemDao.getListCount(adminSystemPara);
         modelResult.setTotal(count);
-        List<AdminRoleSearchModel> modelList = adminRoleDao.getList(adminRolePara);
+        List<AdminSystem> modelList = adminSystemDao.getList(adminSystemPara);
         modelResult.setDataList(modelList);
         retResult.setCode(ErrorCode.SUCCESS.getCode());
         retResult.setMsg(ErrorCode.SUCCESS.getResult());
@@ -51,14 +50,14 @@ public class AdminRoleServiceImpl implements AdminRoleService {
     }
 
     @Override
-    public ErrorMessage add(AdminRole adminRole) {
+    public ErrorMessage add(AdminSystem adminSystem) {
         try {
-            ValidUtils.validNotNullEx(adminRole, "systemId,name");
+            ValidUtils.validNotNullEx(adminSystem, "name");
         } catch (Exception ex) {
             ErrorCode.ILLEGAL_ARGUMENT.setResult(ex.getMessage());
             return ErrorCode.ILLEGAL_ARGUMENT;
         }
-        int operRes = adminRoleDao.insert(adminRole);
+        int operRes = adminSystemDao.insert(adminSystem);
         if(operRes > 0){
             return ErrorCode.SUCCESS;
         }
@@ -68,14 +67,14 @@ public class AdminRoleServiceImpl implements AdminRoleService {
     }
 
     @Override
-    public ErrorMessage mod(AdminRole adminRole) {
+    public ErrorMessage mod(AdminSystem adminSystem) {
         try {
-            ValidUtils.validNotNullEx(adminRole, "id,systemId,name");
+            ValidUtils.validNotNullEx(adminSystem, "id,name");
         } catch (Exception ex) {
             ErrorCode.ILLEGAL_ARGUMENT.setResult(ex.getMessage());
             return ErrorCode.ILLEGAL_ARGUMENT;
         }
-        int operRes = adminRoleDao.update(adminRole);
+        int operRes = adminSystemDao.update(adminSystem);
         if(operRes > 0){
             return ErrorCode.SUCCESS;
         }
@@ -85,14 +84,14 @@ public class AdminRoleServiceImpl implements AdminRoleService {
     }
 
     @Override
-    public ErrorMessage del(AdminRolePara adminRolePara) {
+    public ErrorMessage del(AdminSystemPara adminSystemPara) {
         try{
-            ValidUtils.validNotNullEx(adminRolePara, "id");
+            ValidUtils.validNotNullEx(adminSystemPara, "id");
         } catch (Exception ex){
             ErrorCode.ILLEGAL_ARGUMENT.setResult(ex.getMessage());
             return ErrorCode.ILLEGAL_ARGUMENT;
         }
-        int operRes = adminRoleDao.delete(adminRolePara.getId());
+        int operRes = adminSystemDao.delete(adminSystemPara.getId());
         if(operRes > 0){
             return ErrorCode.SUCCESS;
         }
@@ -100,4 +99,5 @@ public class AdminRoleServiceImpl implements AdminRoleService {
             return ErrorCode.DB_ERROR;
         }
     }
+
 }
