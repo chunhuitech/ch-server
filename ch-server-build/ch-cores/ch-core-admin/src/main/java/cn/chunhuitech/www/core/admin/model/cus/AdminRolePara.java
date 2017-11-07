@@ -11,9 +11,9 @@ public class AdminRolePara {
     private Integer systemId;
 
     @NotNull
-    private Integer pageStart;
+    private Integer page;
     @NotNull
-    private Integer pageSize;
+    private Integer limit;
 
     public Integer getId() {
         return id;
@@ -39,19 +39,19 @@ public class AdminRolePara {
         this.systemId = systemId;
     }
 
-    public Integer getPageStart() {
-        return pageStart;
+    public Integer getPage() {
+        return page;
     }
 
-    public void setPageStart(Integer pageStart) {
-        this.pageStart = pageStart;
+    public void setPage(Integer page) {
+        this.page = page;
     }
 
-    public Integer getPageSize() {
-        return pageSize;
+    public Integer getLimit() {
+        return limit;
     }
 
-    public void setPageSize(Integer pageSize) {
-        this.pageSize = pageSize;
+    public void setLimit(Integer limit) {
+        this.limit = limit;
     }
 }

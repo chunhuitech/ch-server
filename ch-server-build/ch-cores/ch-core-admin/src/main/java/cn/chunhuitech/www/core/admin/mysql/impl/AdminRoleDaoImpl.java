@@ -30,8 +30,8 @@ public class AdminRoleDaoImpl implements AdminRoleDao{
         Map<String, Object> param = new HashMap<>();
         param.put("name", adminRolePara.getName());
         param.put("systemId", adminRolePara.getSystemId());
-        param.put("pageStart", adminRolePara.getPageStart());
-        param.put("pageSize", adminRolePara.getPageSize());
+        param.put("pageStart", (adminRolePara.getPage() - 1) * adminRolePara.getLimit());
+        param.put("pageSize", adminRolePara.getLimit());
         return adminRoleCusMapper.getListSql(param);
     }
 
