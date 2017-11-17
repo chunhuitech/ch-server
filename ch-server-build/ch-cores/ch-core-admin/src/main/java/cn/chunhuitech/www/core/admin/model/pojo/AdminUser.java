@@ -15,6 +15,10 @@ public class AdminUser {
 
     private String email;
 
+    private String qq;
+
+    private String weixin;
+
     private Byte status;
 
     private String des;
@@ -77,6 +81,22 @@ public class AdminUser {
 
     public void setEmail(String email) {
         this.email = email == null ? null : email.trim();
+    }
+
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq == null ? null : qq.trim();
+    }
+
+    public String getWeixin() {
+        return weixin;
+    }
+
+    public void setWeixin(String weixin) {
+        this.weixin = weixin == null ? null : weixin.trim();
     }
 
     public Byte getStatus() {

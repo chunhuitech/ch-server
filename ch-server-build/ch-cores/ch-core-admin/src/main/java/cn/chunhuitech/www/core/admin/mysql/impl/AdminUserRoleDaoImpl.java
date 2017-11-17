@@ -38,4 +38,19 @@ public class AdminUserRoleDaoImpl implements AdminUserRoleDao {
         param.put("userId", userId);
         return adminUserRoleCusMapper.getListSql(param);
     }
+
+    @Override
+    public int insert(AdminUserRole adminUserRole) {
+        return adminUserRoleMapper.insertSelective(adminUserRole);
+    }
+
+    @Override
+    public int deleteByUserId(Integer userId) {
+        AdminUserRoleExample example = new AdminUserRoleExample();
+        AdminUserRoleExample.Criteria criteria = example.createCriteria();
+        if (userId != null && userId !=0){
+            criteria.andUserIdEqualTo(userId);
+        }
+        return adminUserRoleMapper.deleteByExample(example);
+    }
 }

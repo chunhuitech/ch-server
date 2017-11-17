@@ -12,9 +12,9 @@ public class AdminUserPara {
     @NotNull
     private byte status;
     @NotNull
-    private Integer pageStart;
+    private Integer page;
     @NotNull
-    private Integer pageSize;
+    private Integer limit;
 
     public Integer getId() {
         return id;
@@ -40,19 +40,19 @@ public class AdminUserPara {
         this.status = status;
     }
 
-    public Integer getPageStart() {
-        return pageStart;
+    public Integer getPage() {
+        return page;
     }
 
-    public void setPageStart(Integer pageStart) {
-        this.pageStart = pageStart;
+    public void setPage(Integer page) {
+        this.page = page;
     }
 
-    public Integer getPageSize() {
-        return pageSize;
+    public Integer getLimit() {
+        return limit;
     }
 
-    public void setPageSize(Integer pageSize) {
-        this.pageSize = pageSize;
+    public void setLimit(Integer limit) {
+        this.limit = limit;
     }
 }

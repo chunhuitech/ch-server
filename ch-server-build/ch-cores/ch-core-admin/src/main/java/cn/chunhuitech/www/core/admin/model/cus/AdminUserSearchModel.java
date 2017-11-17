@@ -1,5 +1,8 @@
 package cn.chunhuitech.www.core.admin.model.cus;
 
+
+import java.util.List;
+
 /**
  * Created by hechengjin on 17-10-24.
  */
@@ -10,13 +13,24 @@ public class AdminUserSearchModel {
 
     private String nickname;
 
+    private String avatar;
+
     private String email;
 
-    private String des;
+    private String qq;
+
+    private String weixin;
 
     private Long modifyTime;
 
     private Long createTime;
+
+    private Byte status;
+
+    private String des;
+
+    private List<AdminUserRoleModel> roles;
+    private List<Integer> roleIds;
 
     public Integer getId() {
         return id;
@@ -50,12 +64,20 @@ public class AdminUserSearchModel {
         this.email = email;
     }
 
-    public String getDes() {
-        return des;
+    public String getQq() {
+        return qq;
     }
 
-    public void setDes(String des) {
-        this.des = des;
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
+
+    public String getWeixin() {
+        return weixin;
+    }
+
+    public void setWeixin(String weixin) {
+        this.weixin = weixin;
     }
 
     public Long getModifyTime() {
@@ -72,5 +94,45 @@ public class AdminUserSearchModel {
 
     public void setCreateTime(Long createTime) {
         this.createTime = createTime;
+    }
+
+    public List<AdminUserRoleModel> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<AdminUserRoleModel> roles) {
+        this.roles = roles;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public Byte getStatus() {
+        return status;
+    }
+
+    public void setStatus(Byte status) {
+        this.status = status;
+    }
+
+    public String getDes() {
+        return des;
+    }
+
+    public void setDes(String des) {
+        this.des = des;
+    }
+
+    public List<Integer> getRoleIds() {
+        return roleIds;
+    }
+
+    public void setRoleIds(List<Integer> roleIds) {
+        this.roleIds = roleIds;
     }
 }

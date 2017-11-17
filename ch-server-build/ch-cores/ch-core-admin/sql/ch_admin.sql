@@ -10,14 +10,20 @@ CREATE TABLE `admin_user` (
   `nickname` varchar(50) NOT NULL,
   `avatar` varchar(300) NOT NULL DEFAULT '',
   `email` varchar(50) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT '0',
-  `des` varchar(200) DEFAULT ' ',
+  `qq` varchar(45) NOT NULL DEFAULT '',
+  `weixin` varchar(45) NOT NULL DEFAULT '',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0 正常　１ 删除  2 禁止登录',
+  `des` varchar(200) NOT NULL DEFAULT ' ',
   `modify_time` bigint(20) NOT NULL,
   `create_time` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_name` (`username`),
   UNIQUE KEY `idx_token` (`token`)
-);
+)
+
+SET SQL_SAFE_UPDATES = 0;
+update user set password=MD5(password);
+SET SQL_SAFE_UPDATES = 1;
 
 CREATE TABLE `admin_role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

@@ -1,6 +1,8 @@
 package cn.chunhuitech.www.api.admin.test;
 
+import cn.chunhuitech.www.api.admin.constant.Constant;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.joda.time.DateTime;
 import org.junit.Test;
 
 import java.text.ParseException;
@@ -30,5 +32,28 @@ public class AppTest {
         sdf.setTimeZone(TimeZone.getTimeZone("GMT")); // 设置时区为GMT
         String dateStr = sdf.format(cd.getTime());
         System.out.println(dateStr);
+
+        DateTime dt = new DateTime();
+        String dts = dt.toString(Constant.DATETIME_FORMAT);
+        System.out.println(dts);
+    }
+
+    @Test
+    public void testSplitTest(){
+        String ads = "1,2";
+        String[] adArray = ads.split(",");
+        System.out.println(adArray.length); // 2
+
+        ads = "1,2,";
+        adArray = ads.split(",");
+        System.out.println(adArray.length); // 2
+
+        ads = "1";
+        adArray = ads.split(",");
+        System.out.println(adArray.length); // 1
+
+        ads = "1,";
+        adArray = ads.split(",");
+        System.out.println(adArray.length); // 1
     }
 }

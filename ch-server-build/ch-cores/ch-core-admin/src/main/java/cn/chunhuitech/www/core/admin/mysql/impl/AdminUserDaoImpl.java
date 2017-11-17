@@ -37,7 +37,7 @@ public class AdminUserDaoImpl implements AdminUserDao {
     @Override
     public List<AdminUser> getList(AdminUserPara aminUserPara) {
         AdminUserExample example = getListExample(aminUserPara);
-        example.setOrderByClause(" id desc limit " + aminUserPara.getPageStart() + ", " + aminUserPara.getPageSize());
+        example.setOrderByClause(" id desc limit " + (aminUserPara.getPage() - 1) * aminUserPara.getLimit() + ", " + aminUserPara.getLimit());
         return adminUserMapper.selectByExample(example);
     }
 

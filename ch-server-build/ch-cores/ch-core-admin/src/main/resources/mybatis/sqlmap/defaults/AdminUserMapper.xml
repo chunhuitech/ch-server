@@ -9,6 +9,8 @@
     <result column="nickname" jdbcType="VARCHAR" property="nickname" />
     <result column="avatar" jdbcType="VARCHAR" property="avatar" />
     <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="qq" jdbcType="VARCHAR" property="qq" />
+    <result column="weixin" jdbcType="VARCHAR" property="weixin" />
     <result column="status" jdbcType="TINYINT" property="status" />
     <result column="des" jdbcType="VARCHAR" property="des" />
     <result column="modify_time" jdbcType="BIGINT" property="modifyTime" />
@@ -73,8 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, username, password, token, nickname, avatar, email, status, des, modify_time, 
-    create_time
+    id, username, password, token, nickname, avatar, email, qq, weixin, status, des, 
+    modify_time, create_time
   </sql>
   <select id="selectByExample" parameterType="cn.chunhuitech.www.core.admin.model.pojo.AdminUserExample" resultMap="BaseResultMap">
     select
@@ -120,6 +122,12 @@
       <if test="email != null">
         email,
       </if>
+      <if test="qq != null">
+        qq,
+      </if>
+      <if test="weixin != null">
+        weixin,
+      </if>
       <if test="status != null">
         status,
       </if>
@@ -151,6 +159,12 @@
       </if>
       <if test="email != null">
         #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="weixin != null">
+        #{weixin,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         #{status,jdbcType=TINYINT},
@@ -196,6 +210,12 @@
       <if test="record.email != null">
         email = #{record.email,jdbcType=VARCHAR},
       </if>
+      <if test="record.qq != null">
+        qq = #{record.qq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.weixin != null">
+        weixin = #{record.weixin,jdbcType=VARCHAR},
+      </if>
       <if test="record.status != null">
         status = #{record.status,jdbcType=TINYINT},
       </if>
@@ -222,6 +242,8 @@
       nickname = #{record.nickname,jdbcType=VARCHAR},
       avatar = #{record.avatar,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
+      qq = #{record.qq,jdbcType=VARCHAR},
+      weixin = #{record.weixin,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=TINYINT},
       des = #{record.des,jdbcType=VARCHAR},
       modify_time = #{record.modifyTime,jdbcType=BIGINT},
@@ -250,6 +272,12 @@
       </if>
       <if test="email != null">
         email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="weixin != null">
+        weixin = #{weixin,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=TINYINT},

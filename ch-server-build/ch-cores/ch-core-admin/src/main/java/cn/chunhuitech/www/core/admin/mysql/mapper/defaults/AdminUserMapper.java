@@ -25,12 +25,14 @@ public interface AdminUserMapper {
     @Insert({
         "insert into admin_user (username, password, ",
         "token, nickname, ",
-        "avatar, email, status, ",
+        "avatar, email, qq, ",
+        "weixin, status, ",
         "des, modify_time, ",
         "create_time)",
         "values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, ",
         "#{token,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, ",
-        "#{avatar,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, ",
+        "#{avatar,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, ",
+        "#{weixin,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, ",
         "#{des,jdbcType=VARCHAR}, #{modifyTime,jdbcType=BIGINT}, ",
         "#{createTime,jdbcType=BIGINT})"
     })
@@ -43,8 +45,8 @@ public interface AdminUserMapper {
 
     @Select({
         "select",
-        "id, username, password, token, nickname, avatar, email, status, des, modify_time, ",
-        "create_time",
+        "id, username, password, token, nickname, avatar, email, qq, weixin, status, ",
+        "des, modify_time, create_time",
         "from admin_user",
         "where id = #{id,jdbcType=INTEGER}"
     })
@@ -65,6 +67,8 @@ public interface AdminUserMapper {
           "nickname = #{nickname,jdbcType=VARCHAR},",
           "avatar = #{avatar,jdbcType=VARCHAR},",
           "email = #{email,jdbcType=VARCHAR},",
+          "qq = #{qq,jdbcType=VARCHAR},",
+          "weixin = #{weixin,jdbcType=VARCHAR},",
           "status = #{status,jdbcType=TINYINT},",
           "des = #{des,jdbcType=VARCHAR},",
           "modify_time = #{modifyTime,jdbcType=BIGINT},",
