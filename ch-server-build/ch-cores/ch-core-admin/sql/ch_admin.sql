@@ -79,3 +79,61 @@ CREATE TABLE `admin_user_system` (
 );
 
 
+CREATE TABLE `comm_classification` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cn_name` varchar(100) NOT NULL,
+  `en_name` varchar(50) NOT NULL COMMENT '本地文件存放路径 ',
+  `parent_id` int(11) NOT NULL,
+  `sort_num` int(11) NOT NULL DEFAULT '0',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0 正常　１ 删除 ',
+  `des` varchar(200) NOT NULL DEFAULT ' ',
+  `modify_time` bigint(20) NOT NULL,
+  `create_time` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_name` (`cn_name`),
+  UNIQUE KEY `idx_token` (`en_name`)
+)
+INSERT INTO `ch_admin`.`comm_classification`
+(`cn_name`,`en_name`,`parent_id`,`status`,`des`,`modify_time`,`create_time`)
+VALUES('春晖学府','chunhui',0,0,'chunhuitech.cn',UNIX_TIMESTAMP(now(3))*1000,UNIX_TIMESTAMP(now(3))*1000);
+
+INSERT INTO `ch_admin`.`comm_classification`
+(`cn_name`,`en_name`,`parent_id`,`status`,`des`,`modify_time`,`create_time`)
+VALUES('幼教','preschool',1,0,'Preschool education',UNIX_TIMESTAMP(now(3))*1000,UNIX_TIMESTAMP(now(3))*1000);
+
+INSERT INTO `ch_admin`.`comm_classification`
+(`cn_name`,`en_name`,`parent_id`,`status`,`des`,`modify_time`,`create_time`)
+VALUES('汉语拼音','pinyin',2,0,'普通话中共有39个韵母,23个声母,16个整体认读音节',UNIX_TIMESTAMP(now(3))*1000,UNIX_TIMESTAMP(now(3))*1000);
+
+INSERT INTO `ch_admin`.`comm_classification`
+(`cn_name`,`en_name`,`parent_id`,`status`,`des`,`modify_time`,`create_time`)
+VALUES('汉字','hanzi',2,0,'2500个汉字',UNIX_TIMESTAMP(now(3))*1000,UNIX_TIMESTAMP(now(3))*1000);
+
+
+INSERT INTO `ch_admin`.`comm_classification`
+(`cn_name`,`en_name`,`parent_id`,`status`,`des`,`modify_time`,`create_time`)
+VALUES('26个英文字母','letters',2,0,'26个英文字母发音、笔画',UNIX_TIMESTAMP(now(3))*1000,UNIX_TIMESTAMP(now(3))*1000);
+
+CREATE TABLE `comm_record` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `class_id` int(11) NOT NULL,
+  `sort_num` int(11) NOT NULL DEFAULT '0',
+  `title` varchar(100) NOT NULL,
+  `label` varchar(50) NOT NULL,
+  `relative_path` varchar(256) NOT NULL DEFAULT '',
+  `file_size` int(11) NOT NULL,
+  `file_type` varchar(50) NOT NULL COMMENT '都保存为大写如 SWF 等 ',
+  `content_html` varchar(4096) NOT NULL DEFAULT '',
+  `content_plain` varchar(2048) NOT NULL DEFAULT '',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0 正常　１ 删除 ',
+  `modify_time` bigint(20) NOT NULL,
+  `create_time` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_title` (`title`)
+)
+
+INSERT INTO `ch_admin`.`comm_record`
+(`class_id`,`title`,`label`,`relative_path`,`file_size`,`file_type`,`content_html`,`content_plain`,
+`status`,`modify_time`,`create_time`)
+VALUES(5,'a','A','/preschool/letters/a.swf',45000,'SWF','','',0,UNIX_TIMESTAMP(now(3))*1000,UNIX_TIMESTAMP(now(3))*1000);
+

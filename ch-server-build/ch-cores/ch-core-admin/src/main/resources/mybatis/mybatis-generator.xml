@@ -33,9 +33,9 @@
         </javaClientGenerator>
 
         <!--要动态生成的表-->
-        <table tableName="admin_user" schema="ch_admin">
-            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-        </table>
+        <!--<table tableName="admin_user" schema="ch_admin">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
         <!--<table tableName="admin_role" schema="ch_admin">-->
             <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
         <!--</table>-->
@@ -54,5 +54,13 @@
         <!--<table tableName="admin_user_system" schema="ch_admin">-->
             <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
         <!--</table>-->
+
+        <table tableName="comm_record" schema="ch_admin">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+
+        <table tableName="comm_classification" schema="ch_admin">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
     </context>
 </generatorConfiguration>
