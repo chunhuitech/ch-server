@@ -13,4 +13,5 @@ import java.util.List;
  */
 public interface CommClassificationDao {
     List<CommClassification> fetchClass(CommClassificationPara commClassificationPara);
+    Long getLastModifyTime();
 }

@@ -6,6 +6,7 @@ import java.util.List;
 
 public class CommClassificationBo {
     List<CommClassification> dataList;
+    long lastModTime;
 
     public List<CommClassification> getDataList() {
         return dataList;
@@ -13,5 +14,13 @@ public class CommClassificationBo {
 
     public void setDataList(List<CommClassification> dataList) {
         this.dataList = dataList;
+    }
+
+    public long getLastModTime() {
+        return lastModTime;
+    }
+
+    public void setLastModTime(long lastModTime) {
+        this.lastModTime = lastModTime;
     }
 }

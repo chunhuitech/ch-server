@@ -4,7 +4,9 @@ import cn.chunhuitech.www.api.admin.model.CommClassificationBo;
 import cn.chunhuitech.www.api.admin.model.CommRecordBo;
 import cn.chunhuitech.www.api.admin.service.CommClassificationService;
 import cn.chunhuitech.www.api.admin.service.CommRecordService;
+import cn.chunhuitech.www.api.common.model.ErrorCode;
 import cn.chunhuitech.www.api.common.model.Result;
+import cn.chunhuitech.www.api.common.util.ValidUtils;
 import cn.chunhuitech.www.core.admin.dao.CommClassificationDao;
 import cn.chunhuitech.www.core.admin.dao.CommRecordDao;
 import cn.chunhuitech.www.core.admin.model.cus.CommClassificationPara;
@@ -30,14 +32,23 @@ public class CommRecordServiceImpl implements CommRecordService {
 
     @Override
     public Result<CommRecordBo> fetchRecord(CommRecordPara commRecordPara) {
-//        try {
-//            ValidUtils.validNotNull(commRecordPara);
-//        } catch (Exception ex) {
-//            return new Result<>(ErrorCode.ILLEGAL_ARGUMENT.getCode(), ex.getMessage(), null);
-//        }
+        try {
+            ValidUtils.validNotNullEx(commRecordPara, "syncTime");
+        } catch (Exception ex) {
+            return new Result<>(ErrorCode.ILLEGAL_ARGUMENT.getCode(), ex.getMessage(), null);
+        }
+        long lastModifyTime = commRecordDao.getLastModifyTime();
+        if (commRecordPara.getSyncTime() >= lastModifyTime) {
+            return new Result<>(ErrorCode.SUCCESS.getCode(), ErrorCode.SUCCESS.getResult(), null);
+        }
         CommRecordBo modelResult = new CommRecordBo();
         List<CommRecord> modelList = commRecordDao.fetchRecord(commRecordPara);
         modelResult.setDataList(modelList);
+        long maxTime = 0;
+        for (CommRecord commRecord : modelList) {
+            maxTime = maxTime >= commRecord.getModifyTime() ? maxTime : commRecord.getModifyTime();
+        }
+        modelResult.setLastModTime(maxTime);
         return new Result<>(modelResult);
     }
 

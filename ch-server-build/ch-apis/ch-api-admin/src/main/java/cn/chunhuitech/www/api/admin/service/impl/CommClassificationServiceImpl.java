@@ -34,14 +34,23 @@ public class CommClassificationServiceImpl implements CommClassificationService 
 
     @Override
     public Result<CommClassificationBo> fetchClass(CommClassificationPara commClassificationPara) {
-//        try {
-//            ValidUtils.validNotNull(commClassificationPara);
-//        } catch (Exception ex) {
-//            return new Result<>(ErrorCode.ILLEGAL_ARGUMENT.getCode(), ex.getMessage(), null);
-//        }
+        try {
+            ValidUtils.validNotNullEx(commClassificationPara, "syncTime");
+        } catch (Exception ex) {
+            return new Result<>(ErrorCode.ILLEGAL_ARGUMENT.getCode(), ex.getMessage(), null);
+        }
+        long lastModifyTime = commClassificationDao.getLastModifyTime();
+        if (commClassificationPara.getSyncTime() >= lastModifyTime) {
+            return new Result<>(ErrorCode.SUCCESS.getCode(), ErrorCode.SUCCESS.getResult(), null);
+        }
         CommClassificationBo modelResult = new CommClassificationBo();
         List<CommClassification> modelList = commClassificationDao.fetchClass(commClassificationPara);
         modelResult.setDataList(modelList);
+        long maxTime = 0;
+        for (CommClassification commClassification : modelList) {
+            maxTime = maxTime >= commClassification.getModifyTime() ? maxTime : commClassification.getModifyTime();
+        }
+        modelResult.setLastModTime(maxTime);
         return new Result<>(modelResult);
     }
 
