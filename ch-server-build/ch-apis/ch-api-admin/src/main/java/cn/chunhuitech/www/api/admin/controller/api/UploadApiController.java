@@ -1,5 +1,7 @@
 package cn.chunhuitech.www.api.admin.controller.api;
 
+import cn.chunhuitech.www.api.admin.model.AdminUserLoginBo;
+import cn.chunhuitech.www.api.admin.model.AdminUserLoginParaBo;
 import cn.chunhuitech.www.api.admin.model.CommRecordBo;
 import cn.chunhuitech.www.api.common.constant.ConstantApi;
 import cn.chunhuitech.www.api.common.model.Result;
@@ -32,6 +34,26 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/api/upload")
 public class UploadApiController {
+    @RequestMapping(value = "/upForm", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
+    public void uploadPatch2(@RequestParam(value = "username") String userName,
+                                           @RequestParam(value = "password") String passWord,
+                                           @RequestParam("aaaa") MultipartFile upFile,
+                                           HttpServletRequest request, HttpServletResponse response) throws Exception{
+        System.out.println(userName);
+        System.out.println(passWord);
+        String name = upFile.getName(); // aaaa
+        String fullName = upFile.getOriginalFilename();
+        String path = "dd";
+    }
+
+    @RequestMapping(value = "/upForm2", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
+    public void login(@RequestBody AdminUserLoginParaBo adminUserLoginParaBo) throws Exception{
+        System.out.println(adminUserLoginParaBo.getUsername());
+        System.out.println(adminUserLoginParaBo.getPassword());
+        String path = "dd";
+    }
+
+
 
     @RequestMapping(value = "/upFile", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_MULTIPART_FORM_DATA)
     public void uploadPatch(HttpServletRequest request, HttpServletResponse response, @RequestParam("aaaa") MultipartFile upFile) throws Exception{
