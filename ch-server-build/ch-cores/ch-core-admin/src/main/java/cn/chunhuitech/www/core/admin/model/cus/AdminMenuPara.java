@@ -9,6 +9,7 @@ public class AdminMenuPara {
     private Integer id;
     private String name;
     private Integer systemId;
+    private Integer parentId;
 
     @NotNull
     private Integer pageStart;
@@ -53,5 +54,13 @@ public class AdminMenuPara {
 
     public void setPageSize(Integer pageSize) {
         this.pageSize = pageSize;
+    }
+
+    public Integer getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 }

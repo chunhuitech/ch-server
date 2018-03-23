@@ -12,7 +12,7 @@ public class AdminMenuSearchModel {
 
     private String name;
 
-    private String indexPath;
+    private Integer parentId;
 
     private String route;
 
@@ -63,12 +63,12 @@ public class AdminMenuSearchModel {
         this.name = name;
     }
 
-    public String getIndexPath() {
-        return indexPath;
+    public Integer getParentId() {
+        return parentId;
     }
 
-    public void setIndexPath(String indexPath) {
-        this.indexPath = indexPath;
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 
     public String getRoute() {

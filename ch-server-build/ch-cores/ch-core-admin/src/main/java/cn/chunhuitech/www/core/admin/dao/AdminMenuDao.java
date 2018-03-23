@@ -17,4 +17,5 @@ public interface AdminMenuDao {
     AdminMenu getById(Integer id);
     int update(AdminMenu adminMenu);
     int delete(int id);
+//    List<AdminMenu> getListByRoleId(Integer roleId);
 }

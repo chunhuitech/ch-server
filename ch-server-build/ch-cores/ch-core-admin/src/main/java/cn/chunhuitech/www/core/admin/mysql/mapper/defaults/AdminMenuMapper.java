@@ -24,12 +24,12 @@ public interface AdminMenuMapper {
 
     @Insert({
         "insert into admin_menu (system_id, name, ",
-        "index_path, route, ",
+        "parent_id, path, ",
         "icon, res_url, seq, ",
         "des, status, modify_time, ",
         "create_time)",
         "values (#{systemId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, ",
-        "#{indexPath,jdbcType=VARCHAR}, #{route,jdbcType=VARCHAR}, ",
+        "#{parentId,jdbcType=INTEGER}, #{path,jdbcType=VARCHAR}, ",
         "#{icon,jdbcType=VARCHAR}, #{resUrl,jdbcType=VARCHAR}, #{seq,jdbcType=INTEGER}, ",
         "#{des,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{modifyTime,jdbcType=BIGINT}, ",
         "#{createTime,jdbcType=BIGINT})"
@@ -43,7 +43,7 @@ public interface AdminMenuMapper {
 
     @Select({
         "select",
-        "id, system_id, name, index_path, route, icon, res_url, seq, des, status, modify_time, ",
+        "id, system_id, name, parent_id, path, icon, res_url, seq, des, status, modify_time, ",
         "create_time",
         "from admin_menu",
         "where id = #{id,jdbcType=INTEGER}"
@@ -61,8 +61,8 @@ public interface AdminMenuMapper {
         "update admin_menu",
         "set system_id = #{systemId,jdbcType=INTEGER},",
           "name = #{name,jdbcType=VARCHAR},",
-          "index_path = #{indexPath,jdbcType=VARCHAR},",
-          "route = #{route,jdbcType=VARCHAR},",
+          "parent_id = #{parentId,jdbcType=INTEGER},",
+          "path = #{path,jdbcType=VARCHAR},",
           "icon = #{icon,jdbcType=VARCHAR},",
           "res_url = #{resUrl,jdbcType=VARCHAR},",
           "seq = #{seq,jdbcType=INTEGER},",

@@ -1,8 +1,10 @@
 package cn.chunhuitech.www.api.admin.service;
 
+import cn.chunhuitech.www.api.admin.model.AdminRightInfoBo;
 import cn.chunhuitech.www.api.admin.model.AdminUserInfoBo;
 import cn.chunhuitech.www.api.admin.model.AdminUserSearchBo;
 import cn.chunhuitech.www.api.common.model.ErrorMessage;
+import cn.chunhuitech.www.core.admin.model.cus.AdminUserInfoModel;
 import cn.chunhuitech.www.core.admin.model.cus.AdminUserPara;
 import cn.chunhuitech.www.core.admin.model.cus.AdminUserRoleModel;
 import cn.chunhuitech.www.api.admin.model.AdminUserLoginBo;
@@ -18,6 +20,8 @@ public interface AdminUserService {
     Result<AdminUserLoginBo> login(String userName, String passWord);
     Result<String> loginout();
     Result<AdminUserInfoBo> info(String token);
+    Result<AdminUserInfoModel>  getBaseInfo(String token);
+    Result<AdminRightInfoBo> rightInfo(String token);
 
     Result<AdminUserSearchBo> getList(AdminUserPara adminUserPara);
     ErrorMessage add(AdminUserSearchModel adminUserSearchModel);
@@ -26,4 +30,5 @@ public interface AdminUserService {
 
     Result<AdminUserSearchModel>  getModel(AdminUserPara adminUserPara);
     Result<Boolean> exist(AdminUserPara adminUserPara);
+    ErrorMessage reset(AdminUserPara adminUserPara);
 }

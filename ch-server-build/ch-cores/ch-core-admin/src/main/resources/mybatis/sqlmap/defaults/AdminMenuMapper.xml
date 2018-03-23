@@ -5,8 +5,8 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="system_id" jdbcType="INTEGER" property="systemId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="index_path" jdbcType="VARCHAR" property="indexPath" />
-    <result column="route" jdbcType="VARCHAR" property="route" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
     <result column="icon" jdbcType="VARCHAR" property="icon" />
     <result column="res_url" jdbcType="VARCHAR" property="resUrl" />
     <result column="seq" jdbcType="INTEGER" property="seq" />
@@ -74,7 +74,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, system_id, name, index_path, route, icon, res_url, seq, des, status, modify_time, 
+    id, system_id, name, parent_id, path, icon, res_url, seq, des, status, modify_time, 
     create_time
   </sql>
   <select id="selectByExample" parameterType="cn.chunhuitech.www.core.admin.model.pojo.AdminMenuExample" resultMap="BaseResultMap">
@@ -109,11 +109,11 @@
       <if test="name != null">
         name,
       </if>
-      <if test="indexPath != null">
-        index_path,
+      <if test="parentId != null">
+        parent_id,
       </if>
-      <if test="route != null">
-        route,
+      <if test="path != null">
+        path,
       </if>
       <if test="icon != null">
         icon,
@@ -144,11 +144,11 @@
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="indexPath != null">
-        #{indexPath,jdbcType=VARCHAR},
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
       </if>
-      <if test="route != null">
-        #{route,jdbcType=VARCHAR},
+      <if test="path != null">
+        #{path,jdbcType=VARCHAR},
       </if>
       <if test="icon != null">
         #{icon,jdbcType=VARCHAR},
@@ -191,11 +191,11 @@
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.indexPath != null">
-        index_path = #{record.indexPath,jdbcType=VARCHAR},
+      <if test="record.parentId != null">
+        parent_id = #{record.parentId,jdbcType=INTEGER},
       </if>
-      <if test="record.route != null">
-        route = #{record.route,jdbcType=VARCHAR},
+      <if test="record.path != null">
+        path = #{record.path,jdbcType=VARCHAR},
       </if>
       <if test="record.icon != null">
         icon = #{record.icon,jdbcType=VARCHAR},
@@ -228,8 +228,8 @@
     set id = #{record.id,jdbcType=INTEGER},
       system_id = #{record.systemId,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
-      index_path = #{record.indexPath,jdbcType=VARCHAR},
-      route = #{record.route,jdbcType=VARCHAR},
+      parent_id = #{record.parentId,jdbcType=INTEGER},
+      path = #{record.path,jdbcType=VARCHAR},
       icon = #{record.icon,jdbcType=VARCHAR},
       res_url = #{record.resUrl,jdbcType=VARCHAR},
       seq = #{record.seq,jdbcType=INTEGER},
@@ -250,11 +250,11 @@
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="indexPath != null">
-        index_path = #{indexPath,jdbcType=VARCHAR},
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=INTEGER},
       </if>
-      <if test="route != null">
-        route = #{route,jdbcType=VARCHAR},
+      <if test="path != null">
+        path = #{path,jdbcType=VARCHAR},
       </if>
       <if test="icon != null">
         icon = #{icon,jdbcType=VARCHAR},

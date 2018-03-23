@@ -1,10 +1,12 @@
 package cn.chunhuitech.www.api.admin.controller.web;
 
+import cn.chunhuitech.www.api.admin.model.AdminRoleInfoBo;
 import cn.chunhuitech.www.api.admin.model.AdminRoleSearchBo;
 import cn.chunhuitech.www.api.admin.service.AdminRoleService;
 import cn.chunhuitech.www.api.common.constant.ConstantApi;
 import cn.chunhuitech.www.api.common.model.ErrorMessage;
 import cn.chunhuitech.www.api.common.model.Result;
+import cn.chunhuitech.www.core.admin.model.cus.AdminRoleModel;
 import cn.chunhuitech.www.core.admin.model.cus.AdminRolePara;
 import cn.chunhuitech.www.core.admin.model.pojo.AdminRole;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,17 +33,22 @@ public class AdminRoleController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
-    public ErrorMessage add(@RequestBody AdminRole adminRole) throws Exception{
-        return adminRoleService.add(adminRole);
+    public ErrorMessage add(@RequestBody AdminRoleModel adminRoleModel) throws Exception{
+        return adminRoleService.add(adminRoleModel);
     }
 
     @RequestMapping(value = "/mod", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
-    public ErrorMessage mod(@RequestBody AdminRole adminRole) throws Exception{
-        return adminRoleService.mod(adminRole);
+    public ErrorMessage mod(@RequestBody AdminRoleModel adminRoleModel) throws Exception{
+        return adminRoleService.mod(adminRoleModel);
     }
 
     @RequestMapping(value = "/del", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
     public ErrorMessage del(@RequestBody AdminRolePara adminRolePara) throws Exception{
         return adminRoleService.del(adminRolePara);
+    }
+
+    @RequestMapping(value = "/get", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
+    public Result<AdminRoleInfoBo> getRole(@RequestBody AdminRolePara adminRolePara) {
+        return adminRoleService.getRole(adminRolePara);
     }
 }

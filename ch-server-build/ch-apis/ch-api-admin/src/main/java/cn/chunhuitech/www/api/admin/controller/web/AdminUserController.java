@@ -1,12 +1,10 @@
 package cn.chunhuitech.www.api.admin.controller.web;
 
-import cn.chunhuitech.www.api.admin.model.AdminUserInfoBo;
-import cn.chunhuitech.www.api.admin.model.AdminUserLoginParaBo;
-import cn.chunhuitech.www.api.admin.model.AdminUserSearchBo;
+import cn.chunhuitech.www.api.admin.model.*;
 import cn.chunhuitech.www.api.common.model.ErrorMessage;
+import cn.chunhuitech.www.core.admin.model.cus.AdminUserInfoModel;
 import cn.chunhuitech.www.core.admin.model.cus.AdminUserPara;
 import cn.chunhuitech.www.core.admin.model.cus.AdminUserRoleModel;
-import cn.chunhuitech.www.api.admin.model.AdminUserLoginBo;
 import cn.chunhuitech.www.api.admin.service.AdminUserService;
 import cn.chunhuitech.www.api.common.constant.ConstantApi;
 import cn.chunhuitech.www.api.common.model.Result;
@@ -42,8 +40,6 @@ public class AdminUserController {
         return adminUserService.login(adminUserLoginParaBo.getUsername(), adminUserLoginParaBo.getPassword());
     }
 
-
-
     @RequestMapping(value = "/loginout", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
     public Result<String> loginout() throws Exception{
         return adminUserService.loginout();
@@ -52,6 +48,16 @@ public class AdminUserController {
     @RequestMapping(value = "/info", method = RequestMethod.GET, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
     public Result<AdminUserInfoBo> info(@RequestParam(value = "token") String token) throws Exception{
         return adminUserService.info(token);
+    }
+
+    @RequestMapping(value = "/baseInfo", method = RequestMethod.GET, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
+    public Result<AdminUserInfoModel> getBaseInfo(@RequestParam(value = "token") String token) throws Exception{
+        return adminUserService.getBaseInfo(token);
+    }
+
+    @RequestMapping(value = "/rightInfo", method = RequestMethod.GET, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
+    public Result<AdminRightInfoBo> rightInfo(@RequestParam(value = "token") String token) throws Exception{
+        return adminUserService.rightInfo(token);
     }
 
 
@@ -83,6 +89,13 @@ public class AdminUserController {
     @RequestMapping(value = "/get", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
     public Result<AdminUserSearchModel> get(@RequestBody AdminUserPara adminUserPara) throws Exception{
         return adminUserService.getModel(adminUserPara);
+    }
+
+
+
+    @RequestMapping(value = "/reset", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
+    public ErrorMessage reset(@RequestBody AdminUserPara adminUserPara) throws Exception{
+        return adminUserService.reset(adminUserPara);
     }
 
 }

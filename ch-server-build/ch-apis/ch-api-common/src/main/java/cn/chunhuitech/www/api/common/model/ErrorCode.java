@@ -19,7 +19,7 @@ public final class ErrorCode {
     public static final ErrorMessage ILLEGAL_ARGUMENT = addErrorMsg(900001, "Illegal Argument. ", HttpStatus.SC_BAD_REQUEST);
 
     //db error
-    public static final ErrorMessage DB_ERROR = addErrorMsg(900002, "DB Error. ", HttpStatus.SC_BAD_REQUEST);
+    public static final ErrorMessage DB_ERROR = addErrorMsg(900002, "DB Error.(Maybe field is null...) ", HttpStatus.SC_BAD_REQUEST);
 
     //argument type error
     public static final ErrorMessage ARGUMENT_TYPE_ERROR = addErrorMsg(900003, "argument type error. ", HttpStatus.SC_BAD_REQUEST);
@@ -42,5 +42,9 @@ public final class ErrorCode {
     public static final ErrorMessage USER_NOT_EXIST = addErrorMsg(900009, "user does not exist. ", HttpStatus.SC_BAD_REQUEST);
 
     public static final ErrorMessage USER_PASSWORD_ERROR = addErrorMsg(900010, "user password error. ", HttpStatus.SC_BAD_REQUEST);
+
+    //记录占用Record is occupied
+    public static final ErrorMessage DB_ERROR_OCCUPIED = addErrorMsg(900011, "Record is occupied", HttpStatus.SC_BAD_REQUEST);
+
 
 }

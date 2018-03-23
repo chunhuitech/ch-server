@@ -4,6 +4,7 @@ import cn.chunhuitech.www.core.admin.dao.AdminMenuDao;
 import cn.chunhuitech.www.core.admin.model.cus.AdminMenuPara;
 import cn.chunhuitech.www.core.admin.model.cus.AdminMenuSearchModel;
 import cn.chunhuitech.www.core.admin.model.pojo.AdminMenu;
+import cn.chunhuitech.www.core.admin.model.pojo.AdminMenuExample;
 import cn.chunhuitech.www.core.admin.mysql.mapper.cus.AdminMenuCusMapper;
 import cn.chunhuitech.www.core.admin.mysql.mapper.defaults.AdminMenuMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ public class AdminMenuDaoImpl implements AdminMenuDao {
         Map<String, Object> param = new HashMap<>();
         param.put("name", adminMenuPara.getName());
         param.put("systemId", adminMenuPara.getSystemId());
+        param.put("parentId", adminMenuPara.getParentId());
         param.put("pageStart", adminMenuPara.getPageStart());
         param.put("pageSize", adminMenuPara.getPageSize());
         return adminMenuCusMapper.getListSql(param);
@@ -62,4 +64,13 @@ public class AdminMenuDaoImpl implements AdminMenuDao {
     public int delete(int id) {
         return adminMenuMapper.deleteByPrimaryKey(id);
     }
+
+//    @Override
+//    public List<AdminMenu> getListByRoleId(Integer roleId) {
+//        AdminMenuExample example = new AdminMenuExample();
+//        AdminMenuExample.Criteria criteria = example.createCriteria();
+//        criteria(roleId);
+//        return adminRoleMenuMapper.selectByExample(example);
+//    }
+
 }

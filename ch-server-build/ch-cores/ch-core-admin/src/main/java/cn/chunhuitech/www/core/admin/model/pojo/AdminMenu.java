@@ -7,9 +7,9 @@ public class AdminMenu {
 
     private String name;
 
-    private String indexPath;
+    private Integer parentId;
 
-    private String route;
+    private String path;
 
     private String icon;
 
@@ -49,20 +49,20 @@ public class AdminMenu {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getIndexPath() {
-        return indexPath;
+    public Integer getParentId() {
+        return parentId;
     }
 
-    public void setIndexPath(String indexPath) {
-        this.indexPath = indexPath == null ? null : indexPath.trim();
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 
-    public String getRoute() {
-        return route;
+    public String getPath() {
+        return path;
     }
 
-    public void setRoute(String route) {
-        this.route = route == null ? null : route.trim();
+    public void setPath(String path) {
+        this.path = path == null ? null : path.trim();
     }
 
     public String getIcon() {

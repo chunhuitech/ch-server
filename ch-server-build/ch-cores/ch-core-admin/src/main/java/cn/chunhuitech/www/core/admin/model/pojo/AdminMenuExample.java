@@ -294,143 +294,133 @@ public class AdminMenuExample {
             return (Criteria) this;
         }
 
-        public Criteria andIndexPathIsNull() {
-            addCriterion("index_path is null");
+        public Criteria andParentIdIsNull() {
+            addCriterion("parent_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andIndexPathIsNotNull() {
-            addCriterion("index_path is not null");
+        public Criteria andParentIdIsNotNull() {
+            addCriterion("parent_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andIndexPathEqualTo(String value) {
-            addCriterion("index_path =", value, "indexPath");
+        public Criteria andParentIdEqualTo(Integer value) {
+            addCriterion("parent_id =", value, "parentId");
             return (Criteria) this;
         }
 
-        public Criteria andIndexPathNotEqualTo(String value) {
-            addCriterion("index_path <>", value, "indexPath");
+        public Criteria andParentIdNotEqualTo(Integer value) {
+            addCriterion("parent_id <>", value, "parentId");
             return (Criteria) this;
         }
 
-        public Criteria andIndexPathGreaterThan(String value) {
-            addCriterion("index_path >", value, "indexPath");
+        public Criteria andParentIdGreaterThan(Integer value) {
+            addCriterion("parent_id >", value, "parentId");
             return (Criteria) this;
         }
 
-        public Criteria andIndexPathGreaterThanOrEqualTo(String value) {
-            addCriterion("index_path >=", value, "indexPath");
+        public Criteria andParentIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("parent_id >=", value, "parentId");
             return (Criteria) this;
         }
 
-        public Criteria andIndexPathLessThan(String value) {
-            addCriterion("index_path <", value, "indexPath");
+        public Criteria andParentIdLessThan(Integer value) {
+            addCriterion("parent_id <", value, "parentId");
             return (Criteria) this;
         }
 
-        public Criteria andIndexPathLessThanOrEqualTo(String value) {
-            addCriterion("index_path <=", value, "indexPath");
+        public Criteria andParentIdLessThanOrEqualTo(Integer value) {
+            addCriterion("parent_id <=", value, "parentId");
             return (Criteria) this;
         }
 
-        public Criteria andIndexPathLike(String value) {
-            addCriterion("index_path like", value, "indexPath");
+        public Criteria andParentIdIn(List<Integer> values) {
+            addCriterion("parent_id in", values, "parentId");
             return (Criteria) this;
         }
 
-        public Criteria andIndexPathNotLike(String value) {
-            addCriterion("index_path not like", value, "indexPath");
+        public Criteria andParentIdNotIn(List<Integer> values) {
+            addCriterion("parent_id not in", values, "parentId");
             return (Criteria) this;
         }
 
-        public Criteria andIndexPathIn(List<String> values) {
-            addCriterion("index_path in", values, "indexPath");
+        public Criteria andParentIdBetween(Integer value1, Integer value2) {
+            addCriterion("parent_id between", value1, value2, "parentId");
             return (Criteria) this;
         }
 
-        public Criteria andIndexPathNotIn(List<String> values) {
-            addCriterion("index_path not in", values, "indexPath");
+        public Criteria andParentIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("parent_id not between", value1, value2, "parentId");
             return (Criteria) this;
         }
 
-        public Criteria andIndexPathBetween(String value1, String value2) {
-            addCriterion("index_path between", value1, value2, "indexPath");
+        public Criteria andPathIsNull() {
+            addCriterion("path is null");
             return (Criteria) this;
         }
 
-        public Criteria andIndexPathNotBetween(String value1, String value2) {
-            addCriterion("index_path not between", value1, value2, "indexPath");
+        public Criteria andPathIsNotNull() {
+            addCriterion("path is not null");
             return (Criteria) this;
         }
 
-        public Criteria andRouteIsNull() {
-            addCriterion("route is null");
+        public Criteria andPathEqualTo(String value) {
+            addCriterion("path =", value, "path");
             return (Criteria) this;
         }
 
-        public Criteria andRouteIsNotNull() {
-            addCriterion("route is not null");
+        public Criteria andPathNotEqualTo(String value) {
+            addCriterion("path <>", value, "path");
             return (Criteria) this;
         }
 
-        public Criteria andRouteEqualTo(String value) {
-            addCriterion("route =", value, "route");
+        public Criteria andPathGreaterThan(String value) {
+            addCriterion("path >", value, "path");
             return (Criteria) this;
         }
 
-        public Criteria andRouteNotEqualTo(String value) {
-            addCriterion("route <>", value, "route");
+        public Criteria andPathGreaterThanOrEqualTo(String value) {
+            addCriterion("path >=", value, "path");
             return (Criteria) this;
         }
 
-        public Criteria andRouteGreaterThan(String value) {
-            addCriterion("route >", value, "route");
+        public Criteria andPathLessThan(String value) {
+            addCriterion("path <", value, "path");
             return (Criteria) this;
         }
 
-        public Criteria andRouteGreaterThanOrEqualTo(String value) {
-            addCriterion("route >=", value, "route");
+        public Criteria andPathLessThanOrEqualTo(String value) {
+            addCriterion("path <=", value, "path");
             return (Criteria) this;
         }
 
-        public Criteria andRouteLessThan(String value) {
-            addCriterion("route <", value, "route");
+        public Criteria andPathLike(String value) {
+            addCriterion("path like", value, "path");
             return (Criteria) this;
         }
 
-        public Criteria andRouteLessThanOrEqualTo(String value) {
-            addCriterion("route <=", value, "route");
+        public Criteria andPathNotLike(String value) {
+            addCriterion("path not like", value, "path");
             return (Criteria) this;
         }
 
-        public Criteria andRouteLike(String value) {
-            addCriterion("route like", value, "route");
+        public Criteria andPathIn(List<String> values) {
+            addCriterion("path in", values, "path");
             return (Criteria) this;
         }
 
-        public Criteria andRouteNotLike(String value) {
-            addCriterion("route not like", value, "route");
+        public Criteria andPathNotIn(List<String> values) {
+            addCriterion("path not in", values, "path");
             return (Criteria) this;
         }
 
-        public Criteria andRouteIn(List<String> values) {
-            addCriterion("route in", values, "route");
+        public Criteria andPathBetween(String value1, String value2) {
+            addCriterion("path between", value1, value2, "path");
             return (Criteria) this;
         }
 
-        public Criteria andRouteNotIn(List<String> values) {
-            addCriterion("route not in", values, "route");
-            return (Criteria) this;
-        }
-
-        public Criteria andRouteBetween(String value1, String value2) {
-            addCriterion("route between", value1, value2, "route");
-            return (Criteria) this;
-        }
-
-        public Criteria andRouteNotBetween(String value1, String value2) {
-            addCriterion("route not between", value1, value2, "route");
+        public Criteria andPathNotBetween(String value1, String value2) {
+            addCriterion("path not between", value1, value2, "path");
             return (Criteria) this;
         }
 

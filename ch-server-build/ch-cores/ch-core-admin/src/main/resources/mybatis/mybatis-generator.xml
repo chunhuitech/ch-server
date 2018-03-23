@@ -55,11 +55,16 @@
             <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
         <!--</table>-->
 
-        <table tableName="comm_record" schema="ch_admin">
-            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-        </table>
+        <!--<table tableName="comm_record" schema="ch_admin">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
 
-        <table tableName="comm_classification" schema="ch_admin">
+        <!--<table tableName="comm_classification" schema="ch_admin">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
+
+        <!--虚构的表,可不注释-->
+        <table tableName="unreal_table" schema="unreal_database">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
     </context>
