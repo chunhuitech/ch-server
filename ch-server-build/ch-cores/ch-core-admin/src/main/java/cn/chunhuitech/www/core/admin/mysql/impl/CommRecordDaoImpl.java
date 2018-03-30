@@ -32,7 +32,7 @@ public class CommRecordDaoImpl implements CommRecordDao {
             criteria.andClassIdEqualTo(commRecordPara.getClassId());
         }
         criteria.andModifyTimeGreaterThan(commRecordPara.getSyncTime());
-        criteria.andStatusEqualTo(ConstantCore.STATUS_OK);
+//        criteria.andStatusEqualTo(ConstantCore.STATUS_OK);
         example.setOrderByClause(" sort_num desc ");
         return commRecordMapper.selectByExample(example);
     }

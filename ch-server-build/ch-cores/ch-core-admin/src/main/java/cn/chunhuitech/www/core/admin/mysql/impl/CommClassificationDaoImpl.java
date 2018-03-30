@@ -28,7 +28,7 @@ public class CommClassificationDaoImpl implements CommClassificationDao {
     public List<CommClassification> fetchClass(CommClassificationPara commClassificationPara) {
         CommClassificationExample example = new CommClassificationExample();
         CommClassificationExample.Criteria criteria = example.createCriteria();
-        criteria.andStatusEqualTo(ConstantCore.STATUS_OK);
+//        criteria.andStatusEqualTo(ConstantCore.STATUS_OK);
         criteria.andModifyTimeGreaterThan(commClassificationPara.getSyncTime());
         example.setOrderByClause(" sort_num desc ");
         return commClassificationMapper.selectByExample(example);
