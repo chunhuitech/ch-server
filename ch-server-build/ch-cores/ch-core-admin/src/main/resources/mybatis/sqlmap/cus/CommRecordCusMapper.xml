@@ -3,6 +3,6 @@
 <mapper namespace="cn.chunhuitech.www.core.admin.mysql.mapper.cus.CommRecordCusMapper">
 
     <select id="getLastModifyTimeSql" resultType="java.lang.Long">
-        SELECT max(modify_time) from comm_record where status=0
+        SELECT max(modify_time) from comm_record
     </select>
 </mapper>
