@@ -46,5 +46,7 @@ public final class ErrorCode {
     //记录占用Record is occupied
     public static final ErrorMessage DB_ERROR_OCCUPIED = addErrorMsg(900011, "Record is occupied", HttpStatus.SC_BAD_REQUEST);
 
+    public static final ErrorMessage WARN_TOO_MAX_COUNT = addErrorMsg(900012, "The number of records is too large", HttpStatus.SC_BAD_REQUEST);
+
 
 }

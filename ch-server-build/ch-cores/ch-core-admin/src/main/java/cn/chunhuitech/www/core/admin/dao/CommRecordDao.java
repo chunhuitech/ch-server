@@ -10,5 +10,7 @@ import java.util.List;
  */
 public interface CommRecordDao {
     List<CommRecord> fetchRecord(CommRecordPara commRecordPara);
+    Integer fetchRecordCount(CommRecordPara commRecordPara);
     Long getLastModifyTime();
+
 }

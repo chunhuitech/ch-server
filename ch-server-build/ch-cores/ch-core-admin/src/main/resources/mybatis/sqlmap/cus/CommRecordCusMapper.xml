@@ -5,4 +5,16 @@
     <select id="getLastModifyTimeSql" resultType="java.lang.Long">
         SELECT max(modify_time) from comm_record
     </select>
+
+    <select id="fetchRecordCountSql" parameterType="map" resultType="java.lang.Integer">
+        select count(1) as recordCount from comm_record
+        where 1=1
+        <if test="classId != null and classId != 0">
+            and class_id = #{classId}
+        </if>
+        <if test="syncTime != null ">
+            and modify_time > #{syncTime}
+        </if>
+    </select>
+
 </mapper>

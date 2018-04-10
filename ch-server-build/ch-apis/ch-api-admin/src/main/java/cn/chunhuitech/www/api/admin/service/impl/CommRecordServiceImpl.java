@@ -26,6 +26,7 @@ import java.util.List;
 @Service
 public class CommRecordServiceImpl implements CommRecordService {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final Integer MaxRecordCount = 800;
 
     @Autowired
     private CommRecordDao commRecordDao;
@@ -42,6 +43,10 @@ public class CommRecordServiceImpl implements CommRecordService {
             return new Result<>(ErrorCode.SUCCESS.getCode(), ErrorCode.SUCCESS.getResult(), null);
         }
         CommRecordBo modelResult = new CommRecordBo();
+        Integer recCounts = commRecordDao.fetchRecordCount(commRecordPara);
+        if (recCounts > MaxRecordCount){
+            return new Result<>(ErrorCode.WARN_TOO_MAX_COUNT.getCode(), ErrorCode.WARN_TOO_MAX_COUNT.getResult(), null);
+        }
         List<CommRecord> modelList = commRecordDao.fetchRecord(commRecordPara);
         modelResult.setDataList(modelList);
         long maxTime = 0;

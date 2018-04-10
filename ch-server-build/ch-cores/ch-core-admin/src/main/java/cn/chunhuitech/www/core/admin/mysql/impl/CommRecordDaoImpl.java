@@ -10,7 +10,9 @@ import cn.chunhuitech.www.core.common.constant.ConstantCore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by hechengjin on 17-10-24.
@@ -35,6 +37,14 @@ public class CommRecordDaoImpl implements CommRecordDao {
 //        criteria.andStatusEqualTo(ConstantCore.STATUS_OK);
         example.setOrderByClause(" sort_num desc ");
         return commRecordMapper.selectByExample(example);
+    }
+
+    @Override
+    public Integer fetchRecordCount(CommRecordPara commRecordPara) {
+        Map<String, Object> param = new HashMap<>();
+        param.put("classId", commRecordPara.getClassId());
+        param.put("syncTime", commRecordPara.getSyncTime());
+        return commRecordCusMapper.fetchRecordCountSql(param);
     }
 
     @Override
