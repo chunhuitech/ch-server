@@ -1,17 +1,12 @@
 package cn.chunhuitech.www.api.admin.service.impl;
 
-import cn.chunhuitech.www.api.admin.model.CommClassificationBo;
 import cn.chunhuitech.www.api.admin.model.CommRecordBo;
-import cn.chunhuitech.www.api.admin.service.CommClassificationService;
 import cn.chunhuitech.www.api.admin.service.CommRecordService;
 import cn.chunhuitech.www.api.common.model.ErrorCode;
 import cn.chunhuitech.www.api.common.model.Result;
 import cn.chunhuitech.www.api.common.util.ValidUtils;
-import cn.chunhuitech.www.core.admin.dao.CommClassificationDao;
 import cn.chunhuitech.www.core.admin.dao.CommRecordDao;
-import cn.chunhuitech.www.core.admin.model.cus.CommClassificationPara;
 import cn.chunhuitech.www.core.admin.model.cus.CommRecordPara;
-import cn.chunhuitech.www.core.admin.model.pojo.CommClassification;
 import cn.chunhuitech.www.core.admin.model.pojo.CommRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

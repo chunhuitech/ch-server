@@ -6,7 +6,6 @@ import cn.chunhuitech.www.core.admin.model.pojo.CommRecord;
 import cn.chunhuitech.www.core.admin.model.pojo.CommRecordExample;
 import cn.chunhuitech.www.core.admin.mysql.mapper.cus.CommRecordCusMapper;
 import cn.chunhuitech.www.core.admin.mysql.mapper.defaults.CommRecordMapper;
-import cn.chunhuitech.www.core.common.constant.ConstantCore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

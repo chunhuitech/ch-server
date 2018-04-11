@@ -33,6 +33,12 @@
         </javaClientGenerator>
 
         <!--要动态生成的表-->
+        <!--<table tableName="product_activity" schema="ch_admin">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
+        <!--<table tableName="product_info" schema="ch_admin">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
         <!--<table tableName="admin_user" schema="ch_admin">-->
             <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
         <!--</table>-->

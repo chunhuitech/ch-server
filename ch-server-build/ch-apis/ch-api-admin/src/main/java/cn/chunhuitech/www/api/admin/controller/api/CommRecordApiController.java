@@ -1,12 +1,9 @@
 package cn.chunhuitech.www.api.admin.controller.api;
 
-import cn.chunhuitech.www.api.admin.model.CommClassificationBo;
 import cn.chunhuitech.www.api.admin.model.CommRecordBo;
-import cn.chunhuitech.www.api.admin.service.CommClassificationService;
 import cn.chunhuitech.www.api.admin.service.CommRecordService;
 import cn.chunhuitech.www.api.common.constant.ConstantApi;
 import cn.chunhuitech.www.api.common.model.Result;
-import cn.chunhuitech.www.core.admin.model.cus.CommClassificationPara;
 import cn.chunhuitech.www.core.admin.model.cus.CommRecordPara;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
