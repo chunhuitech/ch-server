@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.chunhuitech.www.core.admin.mysql.mapper.cus.ProductActivityCusMapper">
+
+    <sql id="selectItem_fragment">
+        from product_activity
+        where 1=1
+        <if test="procName != null and procName != '' ">
+            and proc_name = #{procName}
+        </if>
+
+        <if test="startTime != null and startTime != 0">
+            <![CDATA[ and modify_time >= #{startTime} ]]>
+        </if>
+        <if test="endTime != null and endTime != 0">
+            <![CDATA[ and modify_time <= #{endTime} ]]>
+        </if>
+
+    </sql>
+
+    <select id="getListSql" parameterType="java.util.Map" resultType="cn.chunhuitech.www.core.admin.model.pojo.ProductActivity">
+        SELECT id as id,
+        user_id as userId,
+        client_flag as clientFlag,
+        proc_name as procName,
+        proc_version as procVersion,
+        proc_id as procId,
+        os,
+        event_name as eventName,
+        ip,
+        net_ip as netIp,
+        area,
+        modify_time as modifyTime,
+        create_time as createTime,
+        remarks,
+        status
+        <include refid="selectItem_fragment"/>
+        order by id desc
+        limit #{pageStart}, #{pageSize}
+    </select>
+
+    <select id="getListCountSql" parameterType="map" resultType="java.lang.Long">
+        SELECT count(1)
+        <include refid="selectItem_fragment"/>
+    </select>
+
+</mapper>

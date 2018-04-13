@@ -1,13 +1,17 @@
 package cn.chunhuitech.www.core.admin.mysql.impl;
 
 import cn.chunhuitech.www.core.admin.dao.ProductActivityDao;
+import cn.chunhuitech.www.core.admin.model.cus.ProductActivityPara;
 import cn.chunhuitech.www.core.admin.model.pojo.ProductActivity;
 import cn.chunhuitech.www.core.admin.model.pojo.ProductActivityExample;
+import cn.chunhuitech.www.core.admin.mysql.mapper.cus.ProductActivityCusMapper;
 import cn.chunhuitech.www.core.admin.mysql.mapper.defaults.ProductActivityMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -18,6 +22,9 @@ public class ProductActivityDaoImpl implements ProductActivityDao {
 
     @Autowired
     private ProductActivityMapper productActivityMapper;
+
+    @Autowired
+    private ProductActivityCusMapper productActivityCusMapper;
 
 
     @Override
@@ -44,5 +51,25 @@ public class ProductActivityDaoImpl implements ProductActivityDao {
             return null;
         }
         return paList.get(0).getId();
+    }
+
+    @Override
+    public List<ProductActivity> getList(ProductActivityPara productActivityPara) {
+        Map<String, Object> param = new HashMap<>();
+        param.put("procName", productActivityPara.getProcName());
+        param.put("startTime", productActivityPara.getStartTime());
+        param.put("endTime", productActivityPara.getEndTime());
+        param.put("pageStart", productActivityPara.getPageStart());
+        param.put("pageSize", productActivityPara.getPageSize());
+        return productActivityCusMapper.getListSql(param);
+    }
+
+    @Override
+    public long getListCount(ProductActivityPara productActivityPara) {
+        Map<String, Object> param = new HashMap<>();
+        param.put("procName", productActivityPara.getProcName());
+        param.put("startTime", productActivityPara.getStartTime());
+        param.put("endTime", productActivityPara.getEndTime());
+        return productActivityCusMapper.getListCountSql(param);
     }
 }
