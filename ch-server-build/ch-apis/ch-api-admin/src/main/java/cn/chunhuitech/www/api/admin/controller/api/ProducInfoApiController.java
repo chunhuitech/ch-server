@@ -1,5 +1,6 @@
 package cn.chunhuitech.www.api.admin.controller.api;
 
+import cn.chunhuitech.www.api.admin.model.ProductInfoBo;
 import cn.chunhuitech.www.api.admin.service.ProductActivityService;
 import cn.chunhuitech.www.api.admin.service.ProductInfoService;
 import cn.chunhuitech.www.api.common.constant.ConstantApi;
@@ -25,7 +26,7 @@ public class ProducInfoApiController {
 
 
     @RequestMapping(value = "/versioncheck", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
-    public Result<Integer> versionCheck(@RequestBody ProductInfo productInfo) throws Exception{
+    public Result<ProductInfoBo> versionCheck(@RequestBody ProductInfo productInfo) throws Exception{
         return productInfoService.versionCheck(productInfo);
     }
 

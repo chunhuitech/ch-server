@@ -1,5 +1,6 @@
 package cn.chunhuitech.www.api.admin.service.impl;
 
+import cn.chunhuitech.www.api.admin.model.ProductInfoBo;
 import cn.chunhuitech.www.api.admin.service.ProductInfoService;
 import cn.chunhuitech.www.api.common.model.ErrorCode;
 import cn.chunhuitech.www.api.common.model.Result;
@@ -23,13 +24,17 @@ public class ProductInfoServiceImpl implements ProductInfoService {
     private ProductInfoDao productInfoDao;
 
     @Override
-    public Result<Integer> versionCheck(ProductInfo productInfo) {
+    public Result<ProductInfoBo> versionCheck(ProductInfo productInfo) {
         try {
-            ValidUtils.validNotNullEx(productInfo, "name");
+            ValidUtils.validNotNullEx(productInfo, "name,technologyPlatform");
         } catch (Exception ex) {
             return new Result<>(ErrorCode.ILLEGAL_ARGUMENT.getCode(), ex.getMessage(), null);
         }
-        Integer numVersion = productInfoDao.getNumVersion(productInfo.getName());
-        return new Result<>(numVersion);
+        ProductInfo productInfo2 = productInfoDao.getNumVersion(productInfo.getName(), productInfo.getTechnologyPlatform());
+        ProductInfoBo productInfoBo = new ProductInfoBo();
+        productInfoBo.setDownAddress(productInfo2.getDownAddress());
+        productInfoBo.setVersion(productInfo2.getVersion());
+        productInfoBo.setVersionNum(productInfo2.getVersionNum());
+        return new Result<>(productInfoBo);
     }
 }
