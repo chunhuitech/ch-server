@@ -46,7 +46,7 @@
         remarks,
         status
         <include refid="selectItem_fragment"/>
-        order by id desc
+        order by modify_time desc
         limit #{pageStart}, #{pageSize}
     </select>
 
