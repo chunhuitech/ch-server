@@ -7,14 +7,18 @@ import cn.chunhuitech.www.core.common.annotation.NotNull;
  */
 public class ProductActivityPara {
     private Integer id;
-    private String procName;
+    private Long procId;
+    private String os;
+    private String eventName;
+    private String area;
     private Long startTime;
     private Long endTime;
 
+
     @NotNull
-    private Integer pageStart;
+    private Integer page;
     @NotNull
-    private Integer pageSize;
+    private Integer limit;
 
     public Integer getId() {
         return id;
@@ -24,12 +28,36 @@ public class ProductActivityPara {
         this.id = id;
     }
 
-    public String getProcName() {
-        return procName;
+    public Long getProcId() {
+        return procId;
     }
 
-    public void setProcName(String procName) {
-        this.procName = procName;
+    public void setProcId(Long procId) {
+        this.procId = procId;
+    }
+
+    public String getOs() {
+        return os;
+    }
+
+    public void setOs(String os) {
+        this.os = os;
+    }
+
+    public String getEventName() {
+        return eventName;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
     }
 
     public Long getStartTime() {
@@ -48,19 +76,20 @@ public class ProductActivityPara {
         this.endTime = endTime;
     }
 
-    public Integer getPageStart() {
-        return pageStart;
+
+    public Integer getPage() {
+        return page;
     }
 
-    public void setPageStart(Integer pageStart) {
-        this.pageStart = pageStart;
+    public void setPage(Integer page) {
+        this.page = page;
     }
 
-    public Integer getPageSize() {
-        return pageSize;
+    public Integer getLimit() {
+        return limit;
     }
 
-    public void setPageSize(Integer pageSize) {
-        this.pageSize = pageSize;
+    public void setLimit(Integer limit) {
+        this.limit = limit;
     }
 }

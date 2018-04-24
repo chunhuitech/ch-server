@@ -5,8 +5,19 @@
     <sql id="selectItem_fragment">
         from product_activity
         where 1=1
-        <if test="procName != null and procName != '' ">
-            and proc_name = #{procName}
+        <if test="procId != null and procId != 0">
+            and proc_id = #{procId}
+        </if>
+
+        <if test="os != null and os != ''">
+            and os like concat(concat('%',#{os}),'%')
+        </if>
+
+        <if test="eventName != null and eventName != ''">
+            and event_name = #{eventName}
+        </if>
+        <if test="area != null and area != ''">
+            and area like concat(concat('%',#{area}),'%')
         </if>
 
         <if test="startTime != null and startTime != 0">

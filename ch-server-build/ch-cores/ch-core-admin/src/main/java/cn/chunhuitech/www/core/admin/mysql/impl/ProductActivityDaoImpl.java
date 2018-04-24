@@ -56,18 +56,24 @@ public class ProductActivityDaoImpl implements ProductActivityDao {
     @Override
     public List<ProductActivity> getList(ProductActivityPara productActivityPara) {
         Map<String, Object> param = new HashMap<>();
-        param.put("procName", productActivityPara.getProcName());
+        param.put("procId", productActivityPara.getProcId());
+        param.put("os", productActivityPara.getOs());
+        param.put("eventName", productActivityPara.getEventName());
+        param.put("area", productActivityPara.getArea());
         param.put("startTime", productActivityPara.getStartTime());
         param.put("endTime", productActivityPara.getEndTime());
-        param.put("pageStart", productActivityPara.getPageStart());
-        param.put("pageSize", productActivityPara.getPageSize());
+        param.put("pageStart", productActivityPara.getPage() -1);
+        param.put("pageSize", productActivityPara.getLimit());
         return productActivityCusMapper.getListSql(param);
     }
 
     @Override
     public long getListCount(ProductActivityPara productActivityPara) {
         Map<String, Object> param = new HashMap<>();
-        param.put("procName", productActivityPara.getProcName());
+        param.put("procId", productActivityPara.getProcId());
+        param.put("os", productActivityPara.getOs());
+        param.put("eventName", productActivityPara.getEventName());
+        param.put("area", productActivityPara.getArea());
         param.put("startTime", productActivityPara.getStartTime());
         param.put("endTime", productActivityPara.getEndTime());
         return productActivityCusMapper.getListCountSql(param);
