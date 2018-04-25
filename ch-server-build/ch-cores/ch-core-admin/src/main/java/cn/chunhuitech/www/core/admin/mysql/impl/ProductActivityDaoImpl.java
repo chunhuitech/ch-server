@@ -38,6 +38,11 @@ public class ProductActivityDaoImpl implements ProductActivityDao {
     }
 
     @Override
+    public int updateByUp(ProductActivity productActivity) {
+        return productActivityCusMapper.updateByUpSql(productActivity);
+    }
+
+    @Override
     public Long existClient(ProductActivity productActivity) {
         ProductActivityExample example = new ProductActivityExample();
         ProductActivityExample.Criteria criteria = example.createCriteria();

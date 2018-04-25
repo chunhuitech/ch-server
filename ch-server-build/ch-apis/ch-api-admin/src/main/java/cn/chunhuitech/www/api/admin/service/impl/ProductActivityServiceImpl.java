@@ -42,7 +42,7 @@ public class ProductActivityServiceImpl implements ProductActivityService {
             productActivityDao.insert(productActivity);
         } else {
             productActivity.setId(Id);
-            productActivityDao.update(productActivity);
+            productActivityDao.updateByUp(productActivity);
         }
         return ErrorCode.SUCCESS;
     }

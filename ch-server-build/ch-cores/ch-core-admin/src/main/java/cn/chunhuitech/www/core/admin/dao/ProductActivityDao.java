@@ -13,6 +13,7 @@ public interface ProductActivityDao {
     int insert(ProductActivity productActivity);
     Long existClient(ProductActivity productActivity);
     int update(ProductActivity productActivity);
+    int updateByUp(ProductActivity productActivity);
 
     List<ProductActivity> getList(ProductActivityPara productActivityPara);
     long getListCount(ProductActivityPara productActivityPara);

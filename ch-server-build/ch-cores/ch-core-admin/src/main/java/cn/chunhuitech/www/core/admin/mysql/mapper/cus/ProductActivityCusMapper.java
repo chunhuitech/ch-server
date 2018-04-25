@@ -12,4 +12,5 @@ import java.util.Map;
 public interface ProductActivityCusMapper {
     List<ProductActivity> getListSql(Map<String, Object> param);
     long getListCountSql(Map<String, Object> param);
+    int updateByUpSql(ProductActivity record);
 }
