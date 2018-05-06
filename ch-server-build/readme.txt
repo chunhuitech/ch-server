@@ -7,3 +7,7 @@ mvn clean install
 
 日志文件查看：
 /tmp/logs/ch/api-xf/api-xf.log
+
+
+发布
+java -jar ch-api-admin.jar --spring.profiles.active=dev

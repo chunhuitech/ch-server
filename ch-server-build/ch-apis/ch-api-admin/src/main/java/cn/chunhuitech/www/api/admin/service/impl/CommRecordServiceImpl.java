@@ -1,11 +1,13 @@
 package cn.chunhuitech.www.api.admin.service.impl;
 
 import cn.chunhuitech.www.api.admin.model.CommRecordBo;
+import cn.chunhuitech.www.api.admin.model.CommRecordPagesBo;
 import cn.chunhuitech.www.api.admin.service.CommRecordService;
 import cn.chunhuitech.www.api.common.model.ErrorCode;
 import cn.chunhuitech.www.api.common.model.Result;
 import cn.chunhuitech.www.api.common.util.ValidUtils;
 import cn.chunhuitech.www.core.admin.dao.CommRecordDao;
+import cn.chunhuitech.www.core.admin.model.cus.CommRecordPageModel;
 import cn.chunhuitech.www.core.admin.model.cus.CommRecordPara;
 import cn.chunhuitech.www.core.admin.model.pojo.CommRecord;
 import org.slf4j.Logger;
@@ -52,4 +54,18 @@ public class CommRecordServiceImpl implements CommRecordService {
         return new Result<>(modelResult);
     }
 
+    @Override
+    public Result<CommRecordPagesBo> fetchPageInfo(CommRecordPara commRecordPara) {
+        try {
+            ValidUtils.validNotNullEx(commRecordPara, "classId,pages");
+        } catch (Exception ex) {
+            return new Result<>(ErrorCode.ILLEGAL_ARGUMENT.getCode(), ex.getMessage(), null);
+        }
+        CommRecordPagesBo modelResult = new CommRecordPagesBo();
+        Integer recCounts = commRecordDao.fetchRecordPageCount(commRecordPara);
+        modelResult.setTotalPage(recCounts);
+        List<CommRecordPageModel> modelList = commRecordDao.fetchRecordPage(commRecordPara);
+        modelResult.setDataList(modelList);
+        return new Result<>(modelResult);
+    }
 }

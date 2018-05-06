@@ -30,12 +30,22 @@ public class CommClassificationDaoImpl implements CommClassificationDao {
         CommClassificationExample.Criteria criteria = example.createCriteria();
 //        criteria.andStatusEqualTo(ConstantCore.STATUS_OK);
         criteria.andModifyTimeGreaterThan(commClassificationPara.getSyncTime());
-        example.setOrderByClause(" sort_num desc ");
+        example.setOrderByClause(" sort_num asc ");
         return commClassificationMapper.selectByExample(example);
     }
 
     @Override
     public Long getLastModifyTime() {
         return commClassificationCusMapper.getLastModifyTimeSql();
+    }
+
+    @Override
+    public List<CommClassification> fetchChildren(CommClassificationPara commClassificationPara) {
+        CommClassificationExample example = new CommClassificationExample();
+        CommClassificationExample.Criteria criteria = example.createCriteria();
+        criteria.andStatusEqualTo(ConstantCore.STATUS_OK);
+        criteria.andParentIdEqualTo(commClassificationPara.getParentId());
+        example.setOrderByClause(" sort_num asc ");
+        return commClassificationMapper.selectByExample(example);
     }
 }

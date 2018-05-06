@@ -6,15 +6,38 @@
         SELECT max(modify_time) from comm_record
     </select>
 
-    <select id="fetchRecordCountSql" parameterType="map" resultType="java.lang.Integer">
-        select count(1) as recordCount from comm_record
-        where 1=1
+    <sql id="selectItem_fragment">
         <if test="classId != null and classId != 0">
-            and class_id = #{classId}
+            and a.class_id = #{classId}
         </if>
         <if test="syncTime != null ">
-            and modify_time > #{syncTime}
+            and a.modify_time > #{syncTime}
         </if>
+        <if test="pages != null">
+            and a.sort_num in
+            <foreach item="item" index="index" collection="pages"
+                     open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </sql>
+
+    <select id="fetchRecordCountSql" parameterType="map" resultType="java.lang.Integer">
+        select count(1) as recordCount from comm_record a
+        where 1=1
+        <include refid="selectItem_fragment"/>
+    </select>
+
+    <select id="fetchRecordPageCountSql" parameterType="map" resultType="java.lang.Integer">
+        select max(sort_num) as pageCount from comm_record a
+        where 1=1
+        <include refid="selectItem_fragment"/>
+    </select>
+
+    <select id="fetchRecordPageSql" parameterType="map" resultType="cn.chunhuitech.www.core.admin.model.cus.CommRecordPageModel">
+        select a.sort_num as page, a.relative_path as imageUrl, b.resource_id as urlId, b.sort_num as sortIndex, b.left_position as l, b.top_position as t, b.width as w, b.height as h, b.begin_point as bg, b.end_point as ed, b.text as text from comm_record a, comm_point_read_block b
+        where a.id = b.record_id
+        <include refid="selectItem_fragment"/>
     </select>
 
 </mapper>

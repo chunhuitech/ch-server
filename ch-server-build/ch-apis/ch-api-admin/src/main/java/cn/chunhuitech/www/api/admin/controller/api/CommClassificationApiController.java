@@ -27,4 +27,9 @@ public class CommClassificationApiController {
         return commClassificationService.fetchClass(commClassificationPara);
     }
 
+    @RequestMapping(value = "/children", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
+    public Result<CommClassificationBo> fetchchildren(@RequestBody CommClassificationPara commClassificationPara) throws Exception{
+        return commClassificationService.fetchChildren(commClassificationPara);
+    }
+
 }

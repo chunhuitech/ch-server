@@ -5,6 +5,7 @@ package cn.chunhuitech.www.core.admin.model.cus;
  */
 public class CommClassificationPara {
     private Integer id;
+    private Integer parentId;
     private long syncTime;
 
     public Integer getId() {
@@ -13,6 +14,14 @@ public class CommClassificationPara {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 
     public long getSyncTime() {

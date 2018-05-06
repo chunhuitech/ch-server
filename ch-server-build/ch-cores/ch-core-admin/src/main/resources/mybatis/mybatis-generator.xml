@@ -33,6 +33,14 @@
         </javaClientGenerator>
 
         <!--要动态生成的表-->
+        <!--<table tableName="comm_point_read_block" schema="ch_admin">-->
+        <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
+
+        <!--<table tableName="comm_resource" schema="ch_admin">-->
+            <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+        <!--</table>-->
+
         <!--<table tableName="comm_config" schema="ch_admin">-->
         <!--<generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
         <!--</table>-->

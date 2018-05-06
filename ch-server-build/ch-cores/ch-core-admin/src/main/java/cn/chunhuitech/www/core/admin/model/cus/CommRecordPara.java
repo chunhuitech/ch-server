@@ -6,6 +6,7 @@ package cn.chunhuitech.www.core.admin.model.cus;
 public class CommRecordPara {
     private Integer classId;
     private long syncTime;
+    private String pages;
 
     public Integer getClassId() {
         return classId;
@@ -21,5 +22,13 @@ public class CommRecordPara {
 
     public void setSyncTime(long syncTime) {
         this.syncTime = syncTime;
+    }
+
+    public String getPages() {
+        return pages;
+    }
+
+    public void setPages(String pages) {
+        this.pages = pages;
     }
 }

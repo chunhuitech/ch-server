@@ -125,7 +125,7 @@ CREATE TABLE `comm_record` (
   `file_type` varchar(50) NOT NULL COMMENT '都保存为大写如 SWF 等 ',
   `content_html` varchar(4096) NOT NULL DEFAULT '',
   `content_plain` varchar(2048) NOT NULL DEFAULT '',
-  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0 正常　１ 删除 ',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0 正常　１ 删除 2 版权问题',
   `modify_time` bigint(20) NOT NULL,
   `create_time` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),

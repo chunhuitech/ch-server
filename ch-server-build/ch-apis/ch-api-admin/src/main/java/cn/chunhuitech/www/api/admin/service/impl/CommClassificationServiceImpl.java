@@ -1,19 +1,12 @@
 package cn.chunhuitech.www.api.admin.service.impl;
 
-import cn.chunhuitech.www.api.admin.model.AdminRoleSearchBo;
 import cn.chunhuitech.www.api.admin.model.CommClassificationBo;
-import cn.chunhuitech.www.api.admin.service.AdminRoleService;
 import cn.chunhuitech.www.api.admin.service.CommClassificationService;
 import cn.chunhuitech.www.api.common.model.ErrorCode;
-import cn.chunhuitech.www.api.common.model.ErrorMessage;
 import cn.chunhuitech.www.api.common.model.Result;
 import cn.chunhuitech.www.api.common.util.ValidUtils;
-import cn.chunhuitech.www.core.admin.dao.AdminRoleDao;
 import cn.chunhuitech.www.core.admin.dao.CommClassificationDao;
-import cn.chunhuitech.www.core.admin.model.cus.AdminRolePara;
-import cn.chunhuitech.www.core.admin.model.cus.AdminRoleSearchModel;
 import cn.chunhuitech.www.core.admin.model.cus.CommClassificationPara;
-import cn.chunhuitech.www.core.admin.model.pojo.AdminRole;
 import cn.chunhuitech.www.core.admin.model.pojo.CommClassification;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -54,4 +47,16 @@ public class CommClassificationServiceImpl implements CommClassificationService 
         return new Result<>(modelResult);
     }
 
+    @Override
+    public Result<CommClassificationBo> fetchChildren(CommClassificationPara commClassificationPara) {
+        try {
+            ValidUtils.validNotNullEx(commClassificationPara, "parentId");
+        } catch (Exception ex) {
+            return new Result<>(ErrorCode.ILLEGAL_ARGUMENT.getCode(), ex.getMessage(), null);
+        }
+        CommClassificationBo modelResult = new CommClassificationBo();
+        List<CommClassification> modelList = commClassificationDao.fetchChildren(commClassificationPara);
+        modelResult.setDataList(modelList);
+        return new Result<>(modelResult);
+    }
 }

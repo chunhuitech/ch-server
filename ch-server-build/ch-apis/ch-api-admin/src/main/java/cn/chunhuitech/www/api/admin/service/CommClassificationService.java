@@ -9,5 +9,6 @@ import cn.chunhuitech.www.core.admin.model.cus.CommClassificationPara;
  */
 public interface CommClassificationService {
     Result<CommClassificationBo> fetchClass(CommClassificationPara commClassificationPara);
+    Result<CommClassificationBo> fetchChildren(CommClassificationPara commClassificationPara);
 
 }

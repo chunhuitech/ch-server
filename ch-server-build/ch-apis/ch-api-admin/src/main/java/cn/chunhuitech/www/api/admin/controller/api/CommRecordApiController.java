@@ -1,6 +1,7 @@
 package cn.chunhuitech.www.api.admin.controller.api;
 
 import cn.chunhuitech.www.api.admin.model.CommRecordBo;
+import cn.chunhuitech.www.api.admin.model.CommRecordPagesBo;
 import cn.chunhuitech.www.api.admin.service.CommRecordService;
 import cn.chunhuitech.www.api.common.constant.ConstantApi;
 import cn.chunhuitech.www.api.common.model.Result;
@@ -25,6 +26,11 @@ public class CommRecordApiController {
     @RequestMapping(value = "/fetch", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
     public Result<CommRecordBo> fetchclass(@RequestBody CommRecordPara commRecordPara) throws Exception{
         return commRecordService.fetchRecord(commRecordPara);
+    }
+
+    @RequestMapping(value = "/fetchpageinfos", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
+    public Result<CommRecordPagesBo> fetchpageinfos(@RequestBody CommRecordPara commRecordPara) throws Exception{
+        return commRecordService.fetchPageInfo(commRecordPara);
     }
 
 }
