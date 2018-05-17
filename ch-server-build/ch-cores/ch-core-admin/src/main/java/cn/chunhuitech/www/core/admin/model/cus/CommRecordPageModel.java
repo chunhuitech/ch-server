@@ -1,27 +1,35 @@
 package cn.chunhuitech.www.core.admin.model.cus;
 
+import java.util.List;
+
 public class CommRecordPageModel {
-    private Integer page;
+    private  Integer id;
+    private Integer bookId; //classId
 
-    private String imageUrl;
+    private Integer page; //sort_num
 
-    private Integer urlId;
+    private String title;
 
-    private Integer sortIndex;
+    private String imageUrl; //relative_path
 
-    private Integer l;
+    private List<CommRecordPageBlockModel> blockList;
 
-    private Integer t;
 
-    private Integer w;
+    public Integer getId() {
+        return id;
+    }
 
-    private Integer h;
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-    private Integer bg;
+    public Integer getBookId() {
+        return bookId;
+    }
 
-    private Integer ed;
-
-    private String text;
+    public void setBookId(Integer bookId) {
+        this.bookId = bookId;
+    }
 
     public Integer getPage() {
         return page;
@@ -29,6 +37,14 @@ public class CommRecordPageModel {
 
     public void setPage(Integer page) {
         this.page = page;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getImageUrl() {
@@ -39,75 +55,11 @@ public class CommRecordPageModel {
         this.imageUrl = imageUrl;
     }
 
-    public Integer getUrlId() {
-        return urlId;
+    public List<CommRecordPageBlockModel> getBlockList() {
+        return blockList;
     }
 
-    public void setUrlId(Integer urlId) {
-        this.urlId = urlId;
-    }
-
-    public Integer getSortIndex() {
-        return sortIndex;
-    }
-
-    public void setSortIndex(Integer sortIndex) {
-        this.sortIndex = sortIndex;
-    }
-
-    public Integer getL() {
-        return l;
-    }
-
-    public void setL(Integer l) {
-        this.l = l;
-    }
-
-    public Integer getT() {
-        return t;
-    }
-
-    public void setT(Integer t) {
-        this.t = t;
-    }
-
-    public Integer getW() {
-        return w;
-    }
-
-    public void setW(Integer w) {
-        this.w = w;
-    }
-
-    public Integer getH() {
-        return h;
-    }
-
-    public void setH(Integer h) {
-        this.h = h;
-    }
-
-    public Integer getBg() {
-        return bg;
-    }
-
-    public void setBg(Integer bg) {
-        this.bg = bg;
-    }
-
-    public Integer getEd() {
-        return ed;
-    }
-
-    public void setEd(Integer ed) {
-        this.ed = ed;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
+    public void setBlockList(List<CommRecordPageBlockModel> blockList) {
+        this.blockList = blockList;
     }
 }

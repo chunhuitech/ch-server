@@ -27,14 +27,16 @@ public interface ProductActivityMapper {
         "proc_name, proc_version, ",
         "proc_id, os, event_name, ",
         "ip, net_ip, area, ",
-        "modify_time, create_time, ",
-        "remarks, status)",
+        "event_count, modify_time, ",
+        "create_time, remarks, ",
+        "status)",
         "values (#{userId,jdbcType=BIGINT}, #{clientFlag,jdbcType=VARCHAR}, ",
         "#{procName,jdbcType=VARCHAR}, #{procVersion,jdbcType=VARCHAR}, ",
         "#{procId,jdbcType=BIGINT}, #{os,jdbcType=VARCHAR}, #{eventName,jdbcType=VARCHAR}, ",
         "#{ip,jdbcType=VARCHAR}, #{netIp,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, ",
-        "#{modifyTime,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT}, ",
-        "#{remarks,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT})"
+        "#{eventCount,jdbcType=INTEGER}, #{modifyTime,jdbcType=BIGINT}, ",
+        "#{createTime,jdbcType=BIGINT}, #{remarks,jdbcType=VARCHAR}, ",
+        "#{status,jdbcType=TINYINT})"
     })
     @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Long.class)
     int insert(ProductActivity record);
@@ -46,7 +48,7 @@ public interface ProductActivityMapper {
     @Select({
         "select",
         "id, user_id, client_flag, proc_name, proc_version, proc_id, os, event_name, ",
-        "ip, net_ip, area, modify_time, create_time, remarks, status",
+        "ip, net_ip, area, event_count, modify_time, create_time, remarks, status",
         "from product_activity",
         "where id = #{id,jdbcType=BIGINT}"
     })
@@ -71,6 +73,7 @@ public interface ProductActivityMapper {
           "ip = #{ip,jdbcType=VARCHAR},",
           "net_ip = #{netIp,jdbcType=VARCHAR},",
           "area = #{area,jdbcType=VARCHAR},",
+          "event_count = #{eventCount,jdbcType=INTEGER},",
           "modify_time = #{modifyTime,jdbcType=BIGINT},",
           "create_time = #{createTime,jdbcType=BIGINT},",
           "remarks = #{remarks,jdbcType=VARCHAR},",

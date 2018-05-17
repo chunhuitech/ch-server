@@ -1,8 +1,9 @@
 package cn.chunhuitech.www.core.admin.mysql.impl;
 
 import cn.chunhuitech.www.core.admin.dao.CommRecordDao;
-import cn.chunhuitech.www.core.admin.model.cus.CommRecordPageModel;
+import cn.chunhuitech.www.core.admin.model.cus.CommRecordPageBlockModel;
 import cn.chunhuitech.www.core.admin.model.cus.CommRecordPara;
+import cn.chunhuitech.www.core.admin.model.cus.CommRecordSearchModel;
 import cn.chunhuitech.www.core.admin.model.pojo.CommRecord;
 import cn.chunhuitech.www.core.admin.model.pojo.CommRecordExample;
 import cn.chunhuitech.www.core.admin.mysql.mapper.cus.CommRecordCusMapper;
@@ -54,7 +55,7 @@ public class CommRecordDaoImpl implements CommRecordDao {
     }
 
     @Override
-    public List<CommRecordPageModel> fetchRecordPage(CommRecordPara commRecordPara) {
+    public List<CommRecordPageBlockModel> fetchRecordPage(CommRecordPara commRecordPara) {
         Map<String, Object> param = new HashMap<>();
         param.put("classId", commRecordPara.getClassId());
         List<String> pageList = Arrays.asList(commRecordPara.getPages().split(","));
@@ -67,5 +68,36 @@ public class CommRecordDaoImpl implements CommRecordDao {
         Map<String, Object> param = new HashMap<>();
         param.put("classId", commRecordPara.getClassId());
         return commRecordCusMapper.fetchRecordPageCountSql(param);
+    }
+
+    @Override
+    public List<CommRecordSearchModel> getList(CommRecordPara commRecordPara) {
+        Map<String, Object> param = new HashMap<>();
+        param.put("classId", commRecordPara.getClassId());
+        param.put("pageStart", commRecordPara.getPage() -1);
+        param.put("pageSize", commRecordPara.getLimit());
+        return commRecordCusMapper.getListSql(param);
+    }
+
+    @Override
+    public long getListCount(CommRecordPara commRecordPara) {
+        Map<String, Object> param = new HashMap<>();
+        param.put("classId", commRecordPara.getClassId());
+        return commRecordCusMapper.getListCountSql(param);
+    }
+
+    @Override
+    public int insert(CommRecord commRecord) {
+        return commRecordMapper.insert(commRecord);
+    }
+
+    @Override
+    public int update(CommRecord commRecord) {
+        return commRecordMapper.updateByPrimaryKeySelective(commRecord);
+    }
+
+    @Override
+    public int delete(int id) {
+        return commRecordMapper.deleteByPrimaryKey(id);
     }
 }

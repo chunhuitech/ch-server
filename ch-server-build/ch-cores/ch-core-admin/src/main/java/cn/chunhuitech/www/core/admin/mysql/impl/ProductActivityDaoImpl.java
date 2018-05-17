@@ -43,7 +43,7 @@ public class ProductActivityDaoImpl implements ProductActivityDao {
     }
 
     @Override
-    public Long existClient(ProductActivity productActivity) {
+    public ProductActivity existClient(ProductActivity productActivity) {
         ProductActivityExample example = new ProductActivityExample();
         ProductActivityExample.Criteria criteria = example.createCriteria();
         if (productActivity.getUserId() != null && productActivity.getUserId() != 0){
@@ -55,7 +55,7 @@ public class ProductActivityDaoImpl implements ProductActivityDao {
         if (paList == null || paList.size() <= 0) {
             return null;
         }
-        return paList.get(0).getId();
+        return paList.get(0);
     }
 
     @Override

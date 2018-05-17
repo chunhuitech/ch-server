@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface ProductActivityDao {
     int insert(ProductActivity productActivity);
-    Long existClient(ProductActivity productActivity);
+    ProductActivity existClient(ProductActivity productActivity);
     int update(ProductActivity productActivity);
     int updateByUp(ProductActivity productActivity);
 

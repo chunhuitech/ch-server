@@ -844,6 +844,66 @@ public class ProductActivityExample {
             return (Criteria) this;
         }
 
+        public Criteria andEventCountIsNull() {
+            addCriterion("event_count is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEventCountIsNotNull() {
+            addCriterion("event_count is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEventCountEqualTo(Integer value) {
+            addCriterion("event_count =", value, "eventCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andEventCountNotEqualTo(Integer value) {
+            addCriterion("event_count <>", value, "eventCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andEventCountGreaterThan(Integer value) {
+            addCriterion("event_count >", value, "eventCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andEventCountGreaterThanOrEqualTo(Integer value) {
+            addCriterion("event_count >=", value, "eventCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andEventCountLessThan(Integer value) {
+            addCriterion("event_count <", value, "eventCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andEventCountLessThanOrEqualTo(Integer value) {
+            addCriterion("event_count <=", value, "eventCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andEventCountIn(List<Integer> values) {
+            addCriterion("event_count in", values, "eventCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andEventCountNotIn(List<Integer> values) {
+            addCriterion("event_count not in", values, "eventCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andEventCountBetween(Integer value1, Integer value2) {
+            addCriterion("event_count between", value1, value2, "eventCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andEventCountNotBetween(Integer value1, Integer value2) {
+            addCriterion("event_count not between", value1, value2, "eventCount");
+            return (Criteria) this;
+        }
+
         public Criteria andModifyTimeIsNull() {
             addCriterion("modify_time is null");
             return (Criteria) this;

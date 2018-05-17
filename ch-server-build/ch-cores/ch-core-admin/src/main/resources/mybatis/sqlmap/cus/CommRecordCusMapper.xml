@@ -34,9 +34,23 @@
         <include refid="selectItem_fragment"/>
     </select>
 
-    <select id="fetchRecordPageSql" parameterType="map" resultType="cn.chunhuitech.www.core.admin.model.cus.CommRecordPageModel">
+    <select id="fetchRecordPageSql" parameterType="map" resultType="cn.chunhuitech.www.core.admin.model.cus.CommRecordPageBlockModel">
         select a.sort_num as page, a.relative_path as imageUrl, b.resource_id as urlId, b.sort_num as sortIndex, b.left_position as l, b.top_position as t, b.width as w, b.height as h, b.begin_point as bg, b.end_point as ed, b.text as text from comm_record a, comm_point_read_block b
         where a.id = b.record_id
+        <include refid="selectItem_fragment"/>
+    </select>
+
+    <select id="getListSql" parameterType="map" resultType="cn.chunhuitech.www.core.admin.model.cus.CommRecordSearchModel">
+        select a.id as id, b.cn_name as book, a.sort_num as page, a.title as title, a.relative_path as imageUrl, a.modify_time as modifyTime, a.create_time as createTime, a.status as status  from comm_record a, comm_classification b
+        where a.class_id = b.id
+        <include refid="selectItem_fragment"/>
+        limit #{pageStart}, #{pageSize}
+    </select>
+
+
+    <select id="getListCountSql" parameterType="map" resultType="java.lang.Long">
+        SELECT count(*) from comm_record a, comm_classification b
+        where a.class_id = b.id
         <include refid="selectItem_fragment"/>
     </select>
 

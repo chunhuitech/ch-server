@@ -13,6 +13,7 @@
     <result column="ip" jdbcType="VARCHAR" property="ip" />
     <result column="net_ip" jdbcType="VARCHAR" property="netIp" />
     <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="event_count" jdbcType="INTEGER" property="eventCount" />
     <result column="modify_time" jdbcType="BIGINT" property="modifyTime" />
     <result column="create_time" jdbcType="BIGINT" property="createTime" />
     <result column="remarks" jdbcType="VARCHAR" property="remarks" />
@@ -78,7 +79,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, user_id, client_flag, proc_name, proc_version, proc_id, os, event_name, ip, net_ip, 
-    area, modify_time, create_time, remarks, status
+    area, event_count, modify_time, create_time, remarks, status
   </sql>
   <select id="selectByExample" parameterType="cn.chunhuitech.www.core.admin.model.pojo.ProductActivityExample" resultMap="BaseResultMap">
     select
@@ -136,6 +137,9 @@
       <if test="area != null">
         area,
       </if>
+      <if test="eventCount != null">
+        event_count,
+      </if>
       <if test="modifyTime != null">
         modify_time,
       </if>
@@ -179,6 +183,9 @@
       </if>
       <if test="area != null">
         #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="eventCount != null">
+        #{eventCount,jdbcType=INTEGER},
       </if>
       <if test="modifyTime != null">
         #{modifyTime,jdbcType=BIGINT},
@@ -236,6 +243,9 @@
       <if test="record.area != null">
         area = #{record.area,jdbcType=VARCHAR},
       </if>
+      <if test="record.eventCount != null">
+        event_count = #{record.eventCount,jdbcType=INTEGER},
+      </if>
       <if test="record.modifyTime != null">
         modify_time = #{record.modifyTime,jdbcType=BIGINT},
       </if>
@@ -266,6 +276,7 @@
       ip = #{record.ip,jdbcType=VARCHAR},
       net_ip = #{record.netIp,jdbcType=VARCHAR},
       area = #{record.area,jdbcType=VARCHAR},
+      event_count = #{record.eventCount,jdbcType=INTEGER},
       modify_time = #{record.modifyTime,jdbcType=BIGINT},
       create_time = #{record.createTime,jdbcType=BIGINT},
       remarks = #{record.remarks,jdbcType=VARCHAR},
@@ -306,6 +317,9 @@
       </if>
       <if test="area != null">
         area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="eventCount != null">
+        event_count = #{eventCount,jdbcType=INTEGER},
       </if>
       <if test="modifyTime != null">
         modify_time = #{modifyTime,jdbcType=BIGINT},

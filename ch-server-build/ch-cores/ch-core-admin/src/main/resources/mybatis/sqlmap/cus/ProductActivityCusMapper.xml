@@ -38,6 +38,7 @@
         proc_id as procId,
         os,
         event_name as eventName,
+        event_count as eventCount,
         ip,
         net_ip as netIp,
         area,
@@ -75,6 +76,9 @@
             </if>
             <if test="eventName != null">
                 event_name = #{eventName,jdbcType=VARCHAR},
+            </if>
+            <if test="eventCount != null">
+                event_count = #{eventCount,jdbcType=BIGINT},
             </if>
             <if test="ip != null">
                 ip = #{ip,jdbcType=VARCHAR},

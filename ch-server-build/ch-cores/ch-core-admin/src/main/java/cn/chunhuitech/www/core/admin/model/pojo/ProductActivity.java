@@ -23,6 +23,8 @@ public class ProductActivity {
 
     private String area;
 
+    private Integer eventCount;
+
     private Long modifyTime;
 
     private Long createTime;
@@ -117,6 +119,14 @@ public class ProductActivity {
 
     public void setArea(String area) {
         this.area = area == null ? null : area.trim();
+    }
+
+    public Integer getEventCount() {
+        return eventCount;
+    }
+
+    public void setEventCount(Integer eventCount) {
+        this.eventCount = eventCount;
     }
 
     public Long getModifyTime() {

@@ -2,8 +2,12 @@ package cn.chunhuitech.www.api.admin.service;
 
 import cn.chunhuitech.www.api.admin.model.CommRecordBo;
 import cn.chunhuitech.www.api.admin.model.CommRecordPagesBo;
+import cn.chunhuitech.www.api.admin.model.CommRecordSearchBo;
+import cn.chunhuitech.www.api.common.model.ErrorMessage;
 import cn.chunhuitech.www.api.common.model.Result;
+import cn.chunhuitech.www.core.admin.model.cus.CommRecordPageModel;
 import cn.chunhuitech.www.core.admin.model.cus.CommRecordPara;
+import cn.chunhuitech.www.core.admin.model.pojo.CommRecord;
 
 /**
  * Created by hechengjin on 17-9-29.
@@ -11,4 +15,12 @@ import cn.chunhuitech.www.core.admin.model.cus.CommRecordPara;
 public interface CommRecordService {
     Result<CommRecordBo> fetchRecord(CommRecordPara commRecordPara);
     Result<CommRecordPagesBo> fetchPageInfo(CommRecordPara commRecordPara);
+
+    ErrorMessage addPage(CommRecordPageModel commRecordPageModel);
+    ErrorMessage modPage(CommRecordPageModel commRecordPageModel);
+
+    Result<CommRecordSearchBo> getList(CommRecordPara commRecordPara);
+    ErrorMessage add(CommRecord commRecord);
+    ErrorMessage mod(CommRecord commRecord);
+    ErrorMessage del(CommRecordPara commRecordPara);
 }

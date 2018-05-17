@@ -37,11 +37,13 @@ public class ProductActivityServiceImpl implements ProductActivityService {
             return ErrorCode.ILLEGAL_ARGUMENT;
         }
         productActivity.setStatus(ConstantApi.STATUS_OK);
-        Long Id = productActivityDao.existClient(productActivity);
-        if (Id == null){
+        ProductActivity product = productActivityDao.existClient(productActivity);
+        if (product == null){
+            productActivity.setEventCount(1);
             productActivityDao.insert(productActivity);
         } else {
-            productActivity.setId(Id);
+            productActivity.setId(product.getId());
+            productActivity.setEventCount(product.getEventCount() + 1);
             productActivityDao.updateByUp(productActivity);
         }
         return ErrorCode.SUCCESS;
