@@ -5,6 +5,7 @@ import cn.chunhuitech.www.api.admin.model.AdminUserLoginBo;
 import cn.chunhuitech.www.api.admin.service.AdminUserService;
 import cn.chunhuitech.www.api.common.constant.ConstantApi;
 import cn.chunhuitech.www.api.common.model.Result;
+import cn.chunhuitech.www.core.common.annotation.Skip;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,6 +24,7 @@ import java.util.List;
 @RequestMapping(value = "/web/test")
 public class TestController {
 
+    @Skip
     @RequestMapping(value = "/table/list", method = RequestMethod.GET, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
     public Result list() throws Exception{
         class ItemData {

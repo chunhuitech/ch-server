@@ -4,12 +4,10 @@ import cn.chunhuitech.www.api.admin.model.AdminRightInfoBo;
 import cn.chunhuitech.www.api.admin.model.AdminUserInfoBo;
 import cn.chunhuitech.www.api.admin.model.AdminUserSearchBo;
 import cn.chunhuitech.www.api.common.model.ErrorMessage;
-import cn.chunhuitech.www.core.admin.model.cus.AdminUserInfoModel;
-import cn.chunhuitech.www.core.admin.model.cus.AdminUserPara;
-import cn.chunhuitech.www.core.admin.model.cus.AdminUserRoleModel;
+import cn.chunhuitech.www.api.common.model.WXResult;
+import cn.chunhuitech.www.core.admin.model.cus.*;
 import cn.chunhuitech.www.api.admin.model.AdminUserLoginBo;
 import cn.chunhuitech.www.api.common.model.Result;
-import cn.chunhuitech.www.core.admin.model.cus.AdminUserSearchModel;
 import cn.chunhuitech.www.core.admin.model.pojo.AdminUser;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -31,4 +29,6 @@ public interface AdminUserService {
     Result<AdminUserSearchModel>  getModel(AdminUserPara adminUserPara);
     Result<Boolean> exist(AdminUserPara adminUserPara);
     ErrorMessage reset(AdminUserPara adminUserPara);
+
+    WXResult.Base wxLogin(WeiXinLoginParam weiXinLoginParam);
 }

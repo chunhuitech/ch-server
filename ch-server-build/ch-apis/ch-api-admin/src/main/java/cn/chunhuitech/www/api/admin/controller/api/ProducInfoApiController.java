@@ -8,6 +8,7 @@ import cn.chunhuitech.www.api.common.model.ErrorMessage;
 import cn.chunhuitech.www.api.common.model.Result;
 import cn.chunhuitech.www.core.admin.model.pojo.ProductActivity;
 import cn.chunhuitech.www.core.admin.model.pojo.ProductInfo;
+import cn.chunhuitech.www.core.common.annotation.Skip;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +25,7 @@ public class ProducInfoApiController {
     @Autowired
     private ProductInfoService productInfoService;
 
-
+    @Skip
     @RequestMapping(value = "/versioncheck", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
     public Result<ProductInfoBo> versionCheck(@RequestBody ProductInfo productInfo) throws Exception{
         return productInfoService.versionCheck(productInfo);

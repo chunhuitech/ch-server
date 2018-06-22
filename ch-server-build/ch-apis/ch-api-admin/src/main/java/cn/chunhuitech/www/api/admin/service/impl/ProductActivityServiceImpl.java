@@ -6,9 +6,12 @@ import cn.chunhuitech.www.api.common.constant.ConstantApi;
 import cn.chunhuitech.www.api.common.model.ErrorCode;
 import cn.chunhuitech.www.api.common.model.ErrorMessage;
 import cn.chunhuitech.www.api.common.model.Result;
+import cn.chunhuitech.www.api.common.model.WXResult;
 import cn.chunhuitech.www.api.common.util.ValidUtils;
+import cn.chunhuitech.www.core.admin.dao.AdminUserDao;
 import cn.chunhuitech.www.core.admin.dao.ProductActivityDao;
 import cn.chunhuitech.www.core.admin.model.cus.ProductActivityPara;
+import cn.chunhuitech.www.core.admin.model.pojo.AdminUser;
 import cn.chunhuitech.www.core.admin.model.pojo.ProductActivity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,25 +31,40 @@ public class ProductActivityServiceImpl implements ProductActivityService {
 
     @Autowired
     private ProductActivityDao productActivityDao;
+    @Autowired
+    private AdminUserDao adminUserDao;
 
     @Override
     public ErrorMessage report(ProductActivity productActivity) {
+        if (productActivity.getClientFlag() == null){
+            AdminUser adminUser =adminUserDao.getById(productActivity.getUserId().intValue());
+            productActivity.setClientFlag(adminUser.getOpenId());
+        }
         try {
             ValidUtils.validNotNullEx(productActivity, "clientFlag");
         } catch (Exception ex) {
             return ErrorCode.ILLEGAL_ARGUMENT;
         }
         productActivity.setStatus(ConstantApi.STATUS_OK);
+        long curTime = System.currentTimeMillis();
         ProductActivity product = productActivityDao.existClient(productActivity);
         if (product == null){
+            productActivity.setCreateTime(curTime);
+            productActivity.setModifyTime(curTime);
             productActivity.setEventCount(1);
             productActivityDao.insert(productActivity);
         } else {
             productActivity.setId(product.getId());
+            productActivity.setModifyTime(curTime);
             productActivity.setEventCount(product.getEventCount() + 1);
             productActivityDao.updateByUp(productActivity);
         }
         return ErrorCode.SUCCESS;
+    }
+
+    @Override
+    public WXResult.Base reportbyWx(ProductActivity productActivity) {
+        return new WXResult.Success<>(report(productActivity));
     }
 
     @Override

@@ -6,6 +6,7 @@ import cn.chunhuitech.www.api.admin.service.CommRecordService;
 import cn.chunhuitech.www.api.common.constant.ConstantApi;
 import cn.chunhuitech.www.api.common.model.Result;
 import cn.chunhuitech.www.core.admin.model.cus.CommRecordPara;
+import cn.chunhuitech.www.core.common.annotation.Skip;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,12 +23,13 @@ public class CommRecordApiController {
     @Autowired
     private CommRecordService commRecordService;
 
-
+    @Skip
     @RequestMapping(value = "/fetch", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
     public Result<CommRecordBo> fetchclass(@RequestBody CommRecordPara commRecordPara) throws Exception{
         return commRecordService.fetchRecord(commRecordPara);
     }
 
+    @Skip
     @RequestMapping(value = "/fetchpageinfos", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
     public Result<CommRecordPagesBo> fetchpageinfos(@RequestBody CommRecordPara commRecordPara) throws Exception{
         return commRecordService.fetchPageInfo(commRecordPara);

@@ -19,6 +19,26 @@ public class AdminUser {
 
     private String weixin;
 
+    private String unionId;
+
+    private String openId;
+
+    private String wxNickName;
+
+    private String wxHeadUrl;
+
+    private String phone;
+
+    private String city;
+
+    private String country;
+
+    private String province;
+
+    private String language;
+
+    private Byte gender;
+
     private Byte status;
 
     private String des;
@@ -97,6 +117,86 @@ public class AdminUser {
 
     public void setWeixin(String weixin) {
         this.weixin = weixin == null ? null : weixin.trim();
+    }
+
+    public String getUnionId() {
+        return unionId;
+    }
+
+    public void setUnionId(String unionId) {
+        this.unionId = unionId == null ? null : unionId.trim();
+    }
+
+    public String getOpenId() {
+        return openId;
+    }
+
+    public void setOpenId(String openId) {
+        this.openId = openId == null ? null : openId.trim();
+    }
+
+    public String getWxNickName() {
+        return wxNickName;
+    }
+
+    public void setWxNickName(String wxNickName) {
+        this.wxNickName = wxNickName == null ? null : wxNickName.trim();
+    }
+
+    public String getWxHeadUrl() {
+        return wxHeadUrl;
+    }
+
+    public void setWxHeadUrl(String wxHeadUrl) {
+        this.wxHeadUrl = wxHeadUrl == null ? null : wxHeadUrl.trim();
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone == null ? null : phone.trim();
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city == null ? null : city.trim();
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country == null ? null : country.trim();
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province == null ? null : province.trim();
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language == null ? null : language.trim();
+    }
+
+    public Byte getGender() {
+        return gender;
+    }
+
+    public void setGender(Byte gender) {
+        this.gender = gender;
     }
 
     public Byte getStatus() {

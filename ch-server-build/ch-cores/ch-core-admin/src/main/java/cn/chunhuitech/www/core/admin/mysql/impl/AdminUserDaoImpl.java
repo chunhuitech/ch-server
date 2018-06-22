@@ -48,6 +48,14 @@ public class AdminUserDaoImpl implements AdminUserDao {
     }
 
     @Override
+    public long getWxUserCount() {
+        AdminUserExample example = new AdminUserExample();
+        AdminUserExample.Criteria criteria = example.createCriteria();
+        criteria.andOpenIdIsNotNull();
+        return  adminUserMapper.countByExample(example);
+    }
+
+    @Override
     public int insert(AdminUser adminUser) {
         return adminUserMapper.insert(adminUser);
     }
@@ -80,6 +88,17 @@ public class AdminUserDaoImpl implements AdminUserDao {
     }
 
     @Override
+    public AdminUser getByOpenId(String OpenId) {
+        AdminUserExample example = new AdminUserExample();
+        example.createCriteria().andOpenIdEqualTo(OpenId);
+        List<AdminUser> modelList = adminUserMapper.selectByExample(example);
+        if (modelList != null && !modelList.isEmpty()) {
+            return modelList.get(0);
+        }
+        return null;
+    }
+
+    @Override
     public int update(AdminUser adminUser) {
         return adminUserMapper.updateByPrimaryKeySelective(adminUser);
     }
@@ -99,6 +118,14 @@ public class AdminUserDaoImpl implements AdminUserDao {
         if (id != null && id > 0) {
             criteria.andIdNotEqualTo(id);
         }
+        return adminUserMapper.countByExample(example)>0 ? true : false;
+    }
+
+    @Override
+    public boolean existByOpenId(String openId) {
+        AdminUserExample example = new AdminUserExample();
+        AdminUserExample.Criteria criteria = example.createCriteria();
+        criteria.andOpenIdEqualTo(openId);
         return adminUserMapper.countByExample(example)>0 ? true : false;
     }
 }

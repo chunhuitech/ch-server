@@ -6,6 +6,7 @@ import cn.chunhuitech.www.api.admin.model.CommRecordBo;
 import cn.chunhuitech.www.api.common.constant.ConstantApi;
 import cn.chunhuitech.www.api.common.model.Result;
 import cn.chunhuitech.www.core.admin.model.cus.CommRecordPara;
+import cn.chunhuitech.www.core.common.annotation.Skip;
 import com.alibaba.fastjson.JSON;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -34,6 +35,7 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/api/upload")
 public class UploadApiController {
+    @Skip
     @RequestMapping(value = "/upForm", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
     public void uploadPatch2(@RequestParam(value = "username") String userName,
                                            @RequestParam(value = "password") String passWord,
@@ -46,6 +48,7 @@ public class UploadApiController {
         String path = "dd";
     }
 
+    @Skip
     @RequestMapping(value = "/upForm2", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
     public void login(@RequestBody AdminUserLoginParaBo adminUserLoginParaBo) throws Exception{
         System.out.println(adminUserLoginParaBo.getUsername());
@@ -54,7 +57,7 @@ public class UploadApiController {
     }
 
 
-
+    @Skip
     @RequestMapping(value = "/upFile", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_MULTIPART_FORM_DATA)
     public void uploadPatch(HttpServletRequest request, HttpServletResponse response, @RequestParam("aaaa") MultipartFile upFile) throws Exception{
 
@@ -92,6 +95,7 @@ public class UploadApiController {
         printWriter.flush();
     }
 
+    @Skip
     @RequestMapping(value = "/uploadimg2", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_MULTIPART_FORM_DATA)
     public void uploadFile2(HttpServletRequest request, HttpServletResponse response) throws Exception {
         //////////////////////
@@ -177,7 +181,7 @@ public class UploadApiController {
         }
     }
 
-
+    @Skip
     @RequestMapping(value = "/uploadimg", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_MULTIPART_FORM_DATA)
     public void uploadFile(HttpServletRequest request, HttpServletResponse response) throws Exception{
         //获取文件需要上传到的路径

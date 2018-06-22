@@ -11,6 +11,16 @@
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="qq" jdbcType="VARCHAR" property="qq" />
     <result column="weixin" jdbcType="VARCHAR" property="weixin" />
+    <result column="union_id" jdbcType="VARCHAR" property="unionId" />
+    <result column="open_id" jdbcType="VARCHAR" property="openId" />
+    <result column="wx_nick_name" jdbcType="VARCHAR" property="wxNickName" />
+    <result column="wx_head_url" jdbcType="VARCHAR" property="wxHeadUrl" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="country" jdbcType="VARCHAR" property="country" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="language" jdbcType="VARCHAR" property="language" />
+    <result column="gender" jdbcType="TINYINT" property="gender" />
     <result column="status" jdbcType="TINYINT" property="status" />
     <result column="des" jdbcType="VARCHAR" property="des" />
     <result column="modify_time" jdbcType="BIGINT" property="modifyTime" />
@@ -75,8 +85,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, username, password, token, nickname, avatar, email, qq, weixin, status, des, 
-    modify_time, create_time
+    id, username, password, token, nickname, avatar, email, qq, weixin, union_id, open_id, 
+    wx_nick_name, wx_head_url, phone, city, country, province, language, gender, status, 
+    des, modify_time, create_time
   </sql>
   <select id="selectByExample" parameterType="cn.chunhuitech.www.core.admin.model.pojo.AdminUserExample" resultMap="BaseResultMap">
     select
@@ -128,6 +139,36 @@
       <if test="weixin != null">
         weixin,
       </if>
+      <if test="unionId != null">
+        union_id,
+      </if>
+      <if test="openId != null">
+        open_id,
+      </if>
+      <if test="wxNickName != null">
+        wx_nick_name,
+      </if>
+      <if test="wxHeadUrl != null">
+        wx_head_url,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="country != null">
+        country,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="language != null">
+        language,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
       <if test="status != null">
         status,
       </if>
@@ -165,6 +206,36 @@
       </if>
       <if test="weixin != null">
         #{weixin,jdbcType=VARCHAR},
+      </if>
+      <if test="unionId != null">
+        #{unionId,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null">
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="wxNickName != null">
+        #{wxNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="wxHeadUrl != null">
+        #{wxHeadUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null">
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="language != null">
+        #{language,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=TINYINT},
       </if>
       <if test="status != null">
         #{status,jdbcType=TINYINT},
@@ -216,6 +287,36 @@
       <if test="record.weixin != null">
         weixin = #{record.weixin,jdbcType=VARCHAR},
       </if>
+      <if test="record.unionId != null">
+        union_id = #{record.unionId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openId != null">
+        open_id = #{record.openId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxNickName != null">
+        wx_nick_name = #{record.wxNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxHeadUrl != null">
+        wx_head_url = #{record.wxHeadUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null">
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null">
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.country != null">
+        country = #{record.country,jdbcType=VARCHAR},
+      </if>
+      <if test="record.province != null">
+        province = #{record.province,jdbcType=VARCHAR},
+      </if>
+      <if test="record.language != null">
+        language = #{record.language,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gender != null">
+        gender = #{record.gender,jdbcType=TINYINT},
+      </if>
       <if test="record.status != null">
         status = #{record.status,jdbcType=TINYINT},
       </if>
@@ -244,6 +345,16 @@
       email = #{record.email,jdbcType=VARCHAR},
       qq = #{record.qq,jdbcType=VARCHAR},
       weixin = #{record.weixin,jdbcType=VARCHAR},
+      union_id = #{record.unionId,jdbcType=VARCHAR},
+      open_id = #{record.openId,jdbcType=VARCHAR},
+      wx_nick_name = #{record.wxNickName,jdbcType=VARCHAR},
+      wx_head_url = #{record.wxHeadUrl,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      country = #{record.country,jdbcType=VARCHAR},
+      province = #{record.province,jdbcType=VARCHAR},
+      language = #{record.language,jdbcType=VARCHAR},
+      gender = #{record.gender,jdbcType=TINYINT},
       status = #{record.status,jdbcType=TINYINT},
       des = #{record.des,jdbcType=VARCHAR},
       modify_time = #{record.modifyTime,jdbcType=BIGINT},
@@ -278,6 +389,36 @@
       </if>
       <if test="weixin != null">
         weixin = #{weixin,jdbcType=VARCHAR},
+      </if>
+      <if test="unionId != null">
+        union_id = #{unionId,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null">
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="wxNickName != null">
+        wx_nick_name = #{wxNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="wxHeadUrl != null">
+        wx_head_url = #{wxHeadUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null">
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="language != null">
+        language = #{language,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=TINYINT},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=TINYINT},

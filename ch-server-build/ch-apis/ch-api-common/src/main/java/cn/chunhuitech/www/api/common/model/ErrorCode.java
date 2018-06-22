@@ -43,10 +43,21 @@ public final class ErrorCode {
 
     public static final ErrorMessage USER_PASSWORD_ERROR = addErrorMsg(900010, "user password error. ", HttpStatus.SC_BAD_REQUEST);
 
-    //记录占用Record is occupied
+    /**
+     * 记录占用Record is occupied
+     */
     public static final ErrorMessage DB_ERROR_OCCUPIED = addErrorMsg(900011, "Record is occupied", HttpStatus.SC_BAD_REQUEST);
 
     public static final ErrorMessage WARN_TOO_MAX_COUNT = addErrorMsg(900012, "The number of records is too large", HttpStatus.SC_BAD_REQUEST);
 
+    public static final ErrorMessage EXCEPTION_REQUEST_SOURCE = addErrorMsg(900013, "request source error.", HttpStatus.SC_BAD_REQUEST);
+
+    public static final ErrorMessage EXCEPTION_PARAM_INVALID = addErrorMsg(900014, "request param error.", HttpStatus.SC_BAD_REQUEST);
+
+    public static final ErrorMessage EXCEPTION_SIGN_INVALID = addErrorMsg(900015, "request sign error.", HttpStatus.SC_BAD_REQUEST);
+
+    public static final ErrorMessage EXCEPTION_TOKEN_ERROR = addErrorMsg(900016, "token error.", HttpStatus.SC_BAD_REQUEST);
+
+    public static final ErrorMessage EXCEPTION_TOKEN_NOT_FIND = addErrorMsg(900017, "token not find error.", HttpStatus.SC_BAD_REQUEST);
 
 }

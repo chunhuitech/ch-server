@@ -5,6 +5,7 @@ import cn.chunhuitech.www.api.admin.service.CommResourceService;
 import cn.chunhuitech.www.api.common.constant.ConstantApi;
 import cn.chunhuitech.www.api.common.model.Result;
 import cn.chunhuitech.www.core.admin.model.cus.CommClassificationPara;
+import cn.chunhuitech.www.core.common.annotation.Skip;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,7 @@ public class CommResourceController {
     private CommResourceService commResourceService;
 
 
+    @Skip
     @RequestMapping(value = "/fetch", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
     public Result<CommResourceBo> fetchresource(@RequestBody CommClassificationPara commClassificationPara) throws Exception{
         return commResourceService.fetchResource(commClassificationPara);

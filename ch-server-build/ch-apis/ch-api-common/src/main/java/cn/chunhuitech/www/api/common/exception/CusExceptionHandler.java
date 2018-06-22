@@ -20,6 +20,43 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class CusExceptionHandler extends ResponseEntityExceptionHandler {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    @ExceptionHandler(RequestSourceException.class)
+    @ResponseBody
+    public ResponseEntity<Object> RequestSourceExceptionHandler(Exception ex) {
+        logger.error("request source error:", ex);
+        return excHandleResponse(ErrorCode.EXCEPTION_REQUEST_SOURCE, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(ParamInvalidException.class)
+    @ResponseBody
+    public ResponseEntity<Object> ParamInvalidExceptionHandler(Exception ex) {
+        logger.error("request param error:", ex);
+        return excHandleResponse(ErrorCode.EXCEPTION_PARAM_INVALID, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(TokenErrorException.class)
+    @ResponseBody
+    public ResponseEntity<Object> TokenErrorExceptionHandler(Exception ex) {
+        logger.error("token error:", ex);
+        return excHandleResponse(ErrorCode.EXCEPTION_TOKEN_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(TokenNotFindException.class)
+    @ResponseBody
+    public ResponseEntity<Object> TokenNotFindExceptionHandler(Exception ex) {
+        logger.error("token not find:", ex);
+        return excHandleResponse(ErrorCode.EXCEPTION_TOKEN_NOT_FIND, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+
+
+    @ExceptionHandler(SignException.class)
+    @ResponseBody
+    public ResponseEntity<Object> SignExceptionHandler(Exception ex) {
+        logger.error("request sign error:", ex);
+        return excHandleResponse(ErrorCode.EXCEPTION_SIGN_INVALID, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
     @ExceptionHandler(Exception.class)
     @ResponseBody
     public ResponseEntity<Object> handleExceptionHandler(Exception ex) {

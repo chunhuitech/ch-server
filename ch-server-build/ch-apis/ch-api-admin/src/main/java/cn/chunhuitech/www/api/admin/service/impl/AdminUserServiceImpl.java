@@ -2,20 +2,20 @@ package cn.chunhuitech.www.api.admin.service.impl;
 
 import cn.chunhuitech.www.api.admin.constant.Constant;
 import cn.chunhuitech.www.api.admin.model.*;
-import cn.chunhuitech.www.api.common.model.ErrorMessage;
-import cn.chunhuitech.www.api.common.util.ValidUtils;
+import cn.chunhuitech.www.api.common.constant.ConstantApi;
+import cn.chunhuitech.www.api.common.model.*;
+import cn.chunhuitech.www.api.common.util.*;
 import cn.chunhuitech.www.core.admin.dao.AdminMenuDao;
 import cn.chunhuitech.www.core.admin.dao.AdminRoleMenuDao;
 import cn.chunhuitech.www.core.admin.dao.AdminUserRoleDao;
-import cn.chunhuitech.www.core.admin.model.cus.AdminUserInfoModel;
-import cn.chunhuitech.www.core.admin.model.cus.AdminUserPara;
-import cn.chunhuitech.www.core.admin.model.cus.AdminUserRoleModel;
+import cn.chunhuitech.www.core.admin.model.cus.*;
 import cn.chunhuitech.www.api.admin.service.AdminUserService;
-import cn.chunhuitech.www.api.common.model.ErrorCode;
-import cn.chunhuitech.www.api.common.model.Result;
 import cn.chunhuitech.www.core.admin.dao.AdminUserDao;
-import cn.chunhuitech.www.core.admin.model.cus.AdminUserSearchModel;
 import cn.chunhuitech.www.core.admin.model.pojo.*;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
+import com.vdurmont.emoji.EmojiParser;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.util.TextUtils;
@@ -23,6 +23,7 @@ import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,6 +37,11 @@ import java.util.*;
 public class AdminUserServiceImpl implements AdminUserService {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    @Value("${miniprogram.appid}")
+    private String appId;
+    @Value("${miniprogram.secret}")
+    private String appSecret;
+
     @Autowired
     private AdminUserDao adminUserDao;
 
@@ -48,6 +54,109 @@ public class AdminUserServiceImpl implements AdminUserService {
     @Autowired
     private AdminUserRoleDao adminUserRoleDao;
     private static final String DEFPASSWORD = DigestUtils.md5Hex("chunhuitech.cn");
+    private static final String defaultUserNickName = "默认用户名";
+    private static final String defaultWebAvatar = "http://www.chunhuitech.cn:9528/avatar.gif";
+
+    @Override
+    public WXResult.Base wxLogin(WeiXinLoginParam weiXinLoginParam) {
+        /** 小程序端登录(wx.login)返回的用户登录凭证code（有效期五分钟）换取用户登录态信息，包括用户的唯一标识（openid）
+         及本次登录的 会话密钥（session_key）*/
+        WXSessionInfo sessionInfo = null;
+        try {
+            sessionInfo = WxHandleUtil.getWxAppSession(appId, appSecret, weiXinLoginParam.getCode());
+            if (sessionInfo == null) {
+                return WXErrorCode.LOGIN_PARAM_ERROR;
+            }
+            if (org.springframework.util.StringUtils.isEmpty(sessionInfo.getSessionKey())) {
+                return WXErrorCode.LOGIN_EXPIRE;
+            }
+        } catch (Exception ex) {
+            logger.error(ex.getMessage());
+        }
+
+        WXBizDataCrypt biz = new WXBizDataCrypt(appId, sessionInfo.getSessionKey());
+        String result = biz.decryptData(weiXinLoginParam.getEncryptedData(), weiXinLoginParam.getIv());
+//        JSONObject jsons = JSON.parseObject(result);
+        Map<String, String> wxInfo = JSONObject.parseObject(result, new TypeReference<Map<String, String>>(){});
+        if (!wxInfo.get("msg").equals("succeed")){
+            return WXErrorCode.ARGUMENT_INVALID;
+        }
+        WxUserInfo wxUser = JSON.parseObject(wxInfo.get("userInfo"), WxUserInfo.class);
+        if (wxUser == null) {
+            return WXErrorCode.ARGUMENT_INVALID;
+        }
+         // 用户昵称转码
+        if (!org.springframework.util.StringUtils.isEmpty(wxUser.getNickName())) {
+            String parsedNickName = EmojiParser.parseToAliases(wxUser.getNickName());
+            // 过滤掉emoji表情符, 利用emoji的编码范围，利用正则匹配过滤
+            parsedNickName = parsedNickName.replaceAll("[\\ud800\\udc00-\\udbff\\udfff\\ud800-\\udfff]", "");
+            if (org.springframework.util.StringUtils.isEmpty(parsedNickName)) {
+                parsedNickName = defaultUserNickName;
+            }
+            wxUser.setNickName(parsedNickName);
+        }
+
+        AdminUser adminUser = adminUserDao.getByOpenId(wxUser.getOpenId());
+        if (adminUser != null){ //修改
+            adminUser = genAdminUserInfo(adminUser, wxUser);
+            adminUserDao.update(adminUser);
+        } else {  //添加
+            adminUser = new AdminUser();
+            long wxUserIndex = adminUserDao.getWxUserCount() + 1L;
+            String userName = String.format("wx_user_%d", wxUserIndex);
+            adminUser.setUsername(userName);
+            adminUser.setPassword(DigestUtils.md5Hex(userName));
+            DateTime dt = new DateTime();
+            adminUser.setToken(DigestUtils.md5Hex(userName + dt.toString(Constant.DATETIME_FORMAT)));
+            adminUser.setNickname(wxUser.getNickName());
+            adminUser.setAvatar(defaultWebAvatar);
+            adminUser.setStatus(ConstantApi.STATUS_OK);
+            long nowTime = System.currentTimeMillis();
+            adminUser.setModifyTime(nowTime);
+            adminUser.setCreateTime(nowTime);
+            adminUser.setOpenId(wxUser.getOpenId());
+            adminUser = genAdminUserInfo(adminUser, wxUser);
+            adminUserDao.insert(adminUser);
+        }
+
+//        AdminUser adminUser = new AdminUser();
+//        adminUser.setId(112);
+//        adminUser.setUsername("test11");
+
+        WeiXinLoginResponse weiXinLoginResponse = new WeiXinLoginResponse();
+        weiXinLoginResponse.setUserId(adminUser.getId());
+        String token = genToken(adminUser);
+        weiXinLoginResponse.setToken(token);
+        return new WXResult.Success<>(weiXinLoginResponse);
+    }
+
+    private String genToken( AdminUser adminUser){
+        TokenInfoWrap tokenInfoWrap = new TokenInfoWrap();
+        tokenInfoWrap.setId(adminUser.getId());
+        tokenInfoWrap.setUsername(adminUser.getUsername());
+        String token = JWT.sign(tokenInfoWrap);
+        return token;
+    }
+
+    private TokenInfoWrap getTokenInfo(String token){
+        TokenInfoWrap tokenInfoWrap = JWT.unsign(token, TokenInfoWrap.class);
+        return tokenInfoWrap;
+    }
+
+
+    private AdminUser genAdminUserInfo(AdminUser adminUser, WxUserInfo wxUser){
+        if (!org.springframework.util.StringUtils.isEmpty(wxUser.getUnionId())){
+            adminUser.setUnionId(wxUser.getUnionId());
+        }
+        adminUser.setWxNickName(wxUser.getNickName());
+        adminUser.setWxHeadUrl(wxUser.getAvatarUrl());
+        adminUser.setGender((byte)wxUser.getGender());
+        adminUser.setLanguage(wxUser.getLanguage());
+        adminUser.setCity(wxUser.getCity());
+        adminUser.setProvince(wxUser.getProvince());
+        adminUser.setCountry(wxUser.getCountry());
+        return adminUser;
+    }
 
     @Override
     public Result<AdminUserLoginBo> login(String userName, String passWord) {

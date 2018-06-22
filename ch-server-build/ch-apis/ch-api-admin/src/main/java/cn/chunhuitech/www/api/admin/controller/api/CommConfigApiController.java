@@ -7,6 +7,7 @@ import cn.chunhuitech.www.api.common.constant.ConstantApi;
 import cn.chunhuitech.www.api.common.model.ErrorMessage;
 import cn.chunhuitech.www.api.common.model.Result;
 import cn.chunhuitech.www.core.admin.model.pojo.ProductActivity;
+import cn.chunhuitech.www.core.common.annotation.Skip;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +24,7 @@ public class CommConfigApiController {
     @Autowired
     private CommConfigService commConfigService;
 
-
+    @Skip
     @RequestMapping(value = "/recorddataver", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
     public Result<CommConfigBo> getRecordDataVersion() throws Exception{
         return commConfigService.getRecordDataVersion();

@@ -7,6 +7,7 @@ import cn.chunhuitech.www.api.common.model.ErrorMessage;
 import cn.chunhuitech.www.api.common.model.Result;
 import cn.chunhuitech.www.core.admin.model.cus.CommRecordPageModel;
 import cn.chunhuitech.www.core.admin.model.cus.CommRecordPara;
+import cn.chunhuitech.www.core.common.annotation.Skip;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,21 +26,25 @@ public class CommRecordPageController {
     private CommRecordService commRecordService;
 
 
+    @Skip
     @RequestMapping(value = "/search", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
     public Result<CommRecordSearchBo> search(@RequestBody CommRecordPara commRecordPara) throws Exception{
         return commRecordService.getList(commRecordPara);
     }
 
+    @Skip
     @RequestMapping(value = "/addPage", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
     public ErrorMessage addPage(@RequestBody CommRecordPageModel commRecordPageModel) throws Exception{
         return commRecordService.addPage(commRecordPageModel);
     }
 
+    @Skip
     @RequestMapping(value = "/modPage", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
     public ErrorMessage modPage(@RequestBody CommRecordPageModel commRecordPageModel) throws Exception{
         return commRecordService.modPage(commRecordPageModel);
     }
 
+    @Skip
     @RequestMapping(value = "/del", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
     public ErrorMessage del(@RequestBody CommRecordPara commRecordPara) throws Exception{
         return commRecordService.del(commRecordPara);
