@@ -8,7 +8,7 @@ public interface ConstantApi {
     public static final String MEDIA_TYPE_TEXT_PLAIN  = "text/plain;charset=UTF-8";
     public static final String MEDIA_TYPE_MULTIPART_FORM_DATA = "multipart/form-data";
 
-    public static final String PARAM_USER = "user";
+    public static final String PARAM_USER_TOKEN = "userToken";
     public static final String PARAM_SECURITY_PRODUCTID = "productId";
     public static final String PARAM_SECURITY_PRODUCVERSION = "productVersion";
     public static final String PARAM_SECURITY_UUID = "uuid";

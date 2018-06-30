@@ -6,10 +6,9 @@ import cn.chunhuitech.www.api.admin.model.CommRecordPagesBo;
 import cn.chunhuitech.www.api.admin.model.CommRecordSearchBo;
 import cn.chunhuitech.www.api.admin.service.CommRecordService;
 import cn.chunhuitech.www.api.common.constant.ConstantApi;
-import cn.chunhuitech.www.api.common.model.ErrorCode;
-import cn.chunhuitech.www.api.common.model.ErrorMessage;
-import cn.chunhuitech.www.api.common.model.Result;
+import cn.chunhuitech.www.api.common.model.*;
 import cn.chunhuitech.www.api.common.util.ValidUtils;
+import cn.chunhuitech.www.core.admin.dao.AdminUserDao;
 import cn.chunhuitech.www.core.admin.dao.CommPointReadBlockDao;
 import cn.chunhuitech.www.core.admin.dao.CommRecordDao;
 import cn.chunhuitech.www.core.admin.model.cus.CommRecordPageBlockModel;
@@ -36,6 +35,9 @@ public class CommRecordServiceImpl implements CommRecordService {
 
     @Autowired
     private CommRecordDao commRecordDao;
+
+    @Autowired
+    private AdminUserDao adminUserDao;
 
     @Autowired
     private CommPointReadBlockDao commPointReadBlockDao;
@@ -65,6 +67,7 @@ public class CommRecordServiceImpl implements CommRecordService {
         modelResult.setLastModTime(maxTime);
         return new Result<>(modelResult);
     }
+
 
     @Override
     public Result<CommRecordPagesBo> fetchPageInfo(CommRecordPara commRecordPara) {
@@ -103,6 +106,27 @@ public class CommRecordServiceImpl implements CommRecordService {
         retResult.setData(modelResult);
         return retResult;
     }
+
+    @Override
+    public WXResult.Base getPageList(CommRecordPara commRecordPara, TokenInfoWrap userToken) {
+        //验证登录用户
+        if(!adminUserDao.verifyUser(userToken.getId(), userToken.getUsername())){
+            return WXErrorCode.LOGIN_PARAM_TOKEN_ERROR;
+        }
+        try {
+            ValidUtils.validNotNullEx(commRecordPara, "classId,page,limit");
+        } catch (Exception ex) {
+            return new WXResult.Error(WXErrorCode.ARGUMENT_INVALID.getCode(), ex.getMessage());
+        }
+        Result<CommRecordSearchBo> retResult = new Result<>();
+        CommRecordSearchBo modelResult = new CommRecordSearchBo();
+        long count = commRecordDao.getListCount(commRecordPara);
+        modelResult.setTotal(count);
+        List<CommRecordSearchModel> modelList = commRecordDao.getList(commRecordPara);
+        modelResult.setDataList(modelList);
+        return new WXResult.Success<>(modelResult);
+    }
+
 
     private void addPageBlock(CommRecord commRecord, CommRecordPageModel commRecordPageModel){
         if(commRecordPageModel.getBlockList() != null){

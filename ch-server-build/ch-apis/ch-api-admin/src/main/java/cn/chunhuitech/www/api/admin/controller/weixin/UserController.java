@@ -27,7 +27,7 @@ public class UserController extends BaseController{
     private AdminUserService adminUserService;
 
     @WeiXinSign
-    @Skip
+//    @Skip
     @PostMapping("/login")
 //    @RequestMapping(value = "/login", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
     private WXResult.Base login(WeiXinLoginParam weiXinLoginParam) {

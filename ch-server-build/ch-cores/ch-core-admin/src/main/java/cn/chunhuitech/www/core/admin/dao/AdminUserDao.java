@@ -21,5 +21,6 @@ public interface AdminUserDao {
     int update(AdminUser adminUser);
     int delete(int id);
     boolean exist(Integer id, String userName);
+    boolean verifyUser(Integer id, String userName);
     boolean existByOpenId(String openId);
 }

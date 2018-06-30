@@ -7,10 +7,9 @@ import org.junit.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-import java.util.TimeZone;
+import java.util.*;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by hechengjin on 17-10-26.
@@ -55,5 +54,38 @@ public class AppTest {
         ads = "1,";
         adArray = ads.split(",");
         System.out.println(adArray.length); // 1
+    }
+
+    @Test
+    public void testListFZ(){
+        List<Integer> orgList = new ArrayList<>();
+        orgList.add(1);
+        orgList.add(2);
+        orgList.add(3);
+
+        orgList = dealData(orgList);
+        assertTrue("不是只有2一个值", orgList.get(0).equals(2));
+
+    }
+
+    private List<Integer> dealData(List<Integer> orgList){
+        List<Integer> tarList = new ArrayList<>();
+        for (Integer dat : orgList){
+            if (dat%2 == 0){
+                tarList.add(dat);
+            }
+        }
+        return tarList;
+    }
+
+    @Test
+    public void testJoin(){
+        List<String> cities = Arrays.asList("Milan",
+                "London",
+                "New York",
+                "San Francisco");
+        String citiesCommaSeparated = "(" + String.join(",", cities) + ")";
+        System.out.println(citiesCommaSeparated);
+
     }
 }

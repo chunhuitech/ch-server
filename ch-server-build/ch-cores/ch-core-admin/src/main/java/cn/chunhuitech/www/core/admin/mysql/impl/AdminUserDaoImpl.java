@@ -122,6 +122,17 @@ public class AdminUserDaoImpl implements AdminUserDao {
     }
 
     @Override
+    public boolean verifyUser(Integer id, String userName) {
+        AdminUserExample example = new AdminUserExample();
+        AdminUserExample.Criteria criteria = example.createCriteria();
+        criteria.andUsernameEqualTo(userName);
+        if (id != null && id > 0) {
+            criteria.andIdEqualTo(id);
+        }
+        return adminUserMapper.countByExample(example)>0 ? true : false;
+    }
+
+    @Override
     public boolean existByOpenId(String openId) {
         AdminUserExample example = new AdminUserExample();
         AdminUserExample.Criteria criteria = example.createCriteria();

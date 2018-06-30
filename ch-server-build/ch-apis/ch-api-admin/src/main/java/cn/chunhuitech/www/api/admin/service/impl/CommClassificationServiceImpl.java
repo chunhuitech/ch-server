@@ -2,9 +2,9 @@ package cn.chunhuitech.www.api.admin.service.impl;
 
 import cn.chunhuitech.www.api.admin.model.CommClassificationBo;
 import cn.chunhuitech.www.api.admin.service.CommClassificationService;
-import cn.chunhuitech.www.api.common.model.ErrorCode;
-import cn.chunhuitech.www.api.common.model.Result;
+import cn.chunhuitech.www.api.common.model.*;
 import cn.chunhuitech.www.api.common.util.ValidUtils;
+import cn.chunhuitech.www.core.admin.dao.AdminUserDao;
 import cn.chunhuitech.www.core.admin.dao.CommClassificationDao;
 import cn.chunhuitech.www.core.admin.model.cus.CommClassificationPara;
 import cn.chunhuitech.www.core.admin.model.pojo.CommClassification;
@@ -24,6 +24,9 @@ public class CommClassificationServiceImpl implements CommClassificationService 
 
     @Autowired
     private CommClassificationDao commClassificationDao;
+
+    @Autowired
+    private AdminUserDao adminUserDao;
 
     @Override
     public Result<CommClassificationBo> fetchClass(CommClassificationPara commClassificationPara) {
@@ -58,5 +61,22 @@ public class CommClassificationServiceImpl implements CommClassificationService 
         List<CommClassification> modelList = commClassificationDao.fetchChildren(commClassificationPara);
         modelResult.setDataList(modelList);
         return new Result<>(modelResult);
+    }
+
+    @Override
+    public WXResult.Base getChildren(CommClassificationPara commClassificationPara, TokenInfoWrap userToken) {
+        //验证登录用户
+        if(!adminUserDao.verifyUser(userToken.getId(), userToken.getUsername())){
+            return WXErrorCode.LOGIN_PARAM_TOKEN_ERROR;
+        }
+        try {
+            ValidUtils.validNotNullEx(commClassificationPara, "parentId");
+        } catch (Exception ex) {
+            return new WXResult.Error(WXErrorCode.ARGUMENT_INVALID.getCode(), ex.getMessage());
+        }
+        CommClassificationBo modelResult = new CommClassificationBo();
+        List<CommClassification> modelList = commClassificationDao.fetchChildren(commClassificationPara);
+        modelResult.setDataList(modelList);
+        return new WXResult.Success<>(modelResult);
     }
 }

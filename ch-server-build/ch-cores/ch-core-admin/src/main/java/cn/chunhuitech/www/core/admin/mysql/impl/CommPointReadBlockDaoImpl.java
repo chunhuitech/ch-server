@@ -2,6 +2,7 @@ package cn.chunhuitech.www.core.admin.mysql.impl;
 
 import cn.chunhuitech.www.core.admin.dao.CommPointReadBlockDao;
 import cn.chunhuitech.www.core.admin.dao.CommRecordDao;
+import cn.chunhuitech.www.core.admin.model.cus.CommPointReadBlockPara;
 import cn.chunhuitech.www.core.admin.model.cus.CommRecordPageBlockModel;
 import cn.chunhuitech.www.core.admin.model.cus.CommRecordPara;
 import cn.chunhuitech.www.core.admin.model.cus.CommRecordSearchModel;
@@ -12,6 +13,7 @@ import cn.chunhuitech.www.core.admin.model.pojo.CommRecordExample;
 import cn.chunhuitech.www.core.admin.mysql.mapper.cus.CommRecordCusMapper;
 import cn.chunhuitech.www.core.admin.mysql.mapper.defaults.CommPointReadBlockMapper;
 import cn.chunhuitech.www.core.admin.mysql.mapper.defaults.CommRecordMapper;
+import cn.chunhuitech.www.core.common.constant.ConstantCore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -49,5 +51,16 @@ public class CommPointReadBlockDaoImpl implements CommPointReadBlockDao {
         CommPointReadBlockExample example = new CommPointReadBlockExample();
         example.createCriteria().andRecordIdEqualTo(recordId);
         return commPointReadBlockMapper.deleteByExample(example);
+    }
+
+    @Override
+    public List<CommPointReadBlock> fetchPointBlock(CommPointReadBlockPara commPointReadBlockPara) {
+        CommPointReadBlockExample example = new CommPointReadBlockExample();
+        CommPointReadBlockExample.Criteria criteria = example.createCriteria();
+        if (commPointReadBlockPara.getPageId() != null){
+            criteria.andRecordIdEqualTo(commPointReadBlockPara.getPageId());
+        }
+        criteria.andStatusEqualTo(ConstantCore.STATUS_OK);
+        return commPointReadBlockMapper.selectByExample(example);
     }
 }

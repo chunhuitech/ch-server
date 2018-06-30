@@ -1,5 +1,6 @@
 package cn.chunhuitech.www.core.admin.dao;
 
+import cn.chunhuitech.www.core.admin.model.cus.CommPointReadBlockPara;
 import cn.chunhuitech.www.core.admin.model.cus.CommRecordPageBlockModel;
 import cn.chunhuitech.www.core.admin.model.cus.CommRecordPara;
 import cn.chunhuitech.www.core.admin.model.cus.CommRecordSearchModel;
@@ -18,4 +19,5 @@ public interface CommPointReadBlockDao {
     int delete(int id);
     int deleteByRecordId(Integer recordId);
 
+    List<CommPointReadBlock> fetchPointBlock(CommPointReadBlockPara commPointReadBlockPara);
 }

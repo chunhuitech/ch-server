@@ -5,6 +5,8 @@ import cn.chunhuitech.www.api.admin.model.CommRecordPagesBo;
 import cn.chunhuitech.www.api.admin.model.CommRecordSearchBo;
 import cn.chunhuitech.www.api.common.model.ErrorMessage;
 import cn.chunhuitech.www.api.common.model.Result;
+import cn.chunhuitech.www.api.common.model.TokenInfoWrap;
+import cn.chunhuitech.www.api.common.model.WXResult;
 import cn.chunhuitech.www.core.admin.model.cus.CommRecordPageModel;
 import cn.chunhuitech.www.core.admin.model.cus.CommRecordPara;
 import cn.chunhuitech.www.core.admin.model.pojo.CommRecord;
@@ -23,4 +25,6 @@ public interface CommRecordService {
     ErrorMessage add(CommRecord commRecord);
     ErrorMessage mod(CommRecord commRecord);
     ErrorMessage del(CommRecordPara commRecordPara);
+
+    WXResult.Base getPageList(CommRecordPara commRecordPara, TokenInfoWrap userToken);
 }

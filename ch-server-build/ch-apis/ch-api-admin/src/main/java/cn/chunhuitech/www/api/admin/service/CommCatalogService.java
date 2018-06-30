@@ -2,6 +2,8 @@ package cn.chunhuitech.www.api.admin.service;
 
 import cn.chunhuitech.www.api.admin.model.CommCatalogBo;
 import cn.chunhuitech.www.api.common.model.Result;
+import cn.chunhuitech.www.api.common.model.TokenInfoWrap;
+import cn.chunhuitech.www.api.common.model.WXResult;
 import cn.chunhuitech.www.core.admin.model.cus.CommCatalogPara;
 
 /**
@@ -9,4 +11,5 @@ import cn.chunhuitech.www.core.admin.model.cus.CommCatalogPara;
  */
 public interface CommCatalogService {
     Result<CommCatalogBo> fetchCatalog(CommCatalogPara commCatalogPara);
+    WXResult.Base getCatalog(CommCatalogPara commCatalogPara, TokenInfoWrap userToken);
 }

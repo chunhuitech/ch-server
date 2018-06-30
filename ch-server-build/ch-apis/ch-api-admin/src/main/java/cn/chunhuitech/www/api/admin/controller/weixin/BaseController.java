@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
  * Created by hechengjin on 18-5-31.
  */
 public class BaseController {
-    public TokenInfoWrap getRequestUser(HttpServletRequest request) {
-        return (TokenInfoWrap) request.getAttribute(ConstantApi.PARAM_USER);
+    public TokenInfoWrap getRequestToken(HttpServletRequest request) {
+        return (TokenInfoWrap) request.getAttribute(ConstantApi.PARAM_USER_TOKEN);
     }
 }

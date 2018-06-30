@@ -59,10 +59,10 @@ public class WeiXinLoginInterceptor extends HandlerInterceptorAdapter {
             }
         }
         String token = getTokenByRequest(request);
-        if (token != null) {
+        if (token != null && !token.equals("null")) {
             TokenInfoWrap tokenInfoWrap = JWT.unsign(token, TokenInfoWrap.class);
             if (tokenInfoWrap != null) {
-                request.setAttribute(ConstantApi.PARAM_USER, tokenInfoWrap);
+                request.setAttribute(ConstantApi.PARAM_USER_TOKEN, tokenInfoWrap);
                 return true;
             }
             // 返回错误的Token
