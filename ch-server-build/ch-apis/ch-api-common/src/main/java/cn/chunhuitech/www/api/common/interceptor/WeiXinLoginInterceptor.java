@@ -59,10 +59,10 @@ public class WeiXinLoginInterceptor extends HandlerInterceptorAdapter {
             }
         }
         String token = getTokenByRequest(request);
-        if (token != null && !token.equals("null")) {
+        if (!token.equals("[object Null]") && !token.equals("null") &&!StringUtils.isEmpty(token)) {
             TokenInfoWrap tokenInfoWrap = JWT.unsign(token, TokenInfoWrap.class);
             if (tokenInfoWrap != null) {
-                request.setAttribute(ConstantApi.PARAM_USER_TOKEN, tokenInfoWrap);
+                request.setAttribute(ConstantApi.HEAD_PARAM_USER_TOKEN, tokenInfoWrap);
                 return true;
             }
             // 返回错误的Token
@@ -77,8 +77,9 @@ public class WeiXinLoginInterceptor extends HandlerInterceptorAdapter {
     }
 
     private String getTokenByRequest(HttpServletRequest request) {
-        return !StringUtils.isEmpty(request.getParameter(ConstantApi.PARAM_SECURITY_TOKEN)) ?
-                request.getParameter(ConstantApi.PARAM_SECURITY_TOKEN) : getParameterByCookie(request, ConstantApi.PARAM_SECURITY_TOKEN);
+        return request.getHeader(ConstantApi.HEAD_PARAM_SECURITY_TOKEN);
+//        return !StringUtils.isEmpty(request.getParameter(ConstantApi.HEAD_PARAM_SECURITY_TOKEN)) ?
+//                request.getParameter(ConstantApi.HEAD_PARAM_SECURITY_TOKEN) : getParameterByCookie(request, ConstantApi.HEAD_PARAM_SECURITY_TOKEN);
     }
 
     /** 从cookie中读取信息 */
@@ -96,11 +97,11 @@ public class WeiXinLoginInterceptor extends HandlerInterceptorAdapter {
     }
 
     private boolean checkSign(HttpServletRequest request) throws Exception {
-        String productId = request.getParameter(ConstantApi.PARAM_SECURITY_PRODUCTID);
-        String productVersion = request.getParameter(ConstantApi.PARAM_SECURITY_PRODUCVERSION);
-        String uuid = request.getParameter(ConstantApi.PARAM_SECURITY_UUID);
-        String timestamp = request.getParameter(ConstantApi.PARAM_SECURITY_TIME);
-        String sign = request.getParameter(ConstantApi.PARAM_SECURITY_SIGN);
+        String productId = request.getHeader(ConstantApi.HEAD_PARAM_SECURITY_PRODUCTID);
+        String productVersion = request.getHeader(ConstantApi.HEAD_PARAM_SECURITY_PRODUCVERSION);
+        String uuid = request.getHeader(ConstantApi.HEAD_PARAM_SECURITY_UUID);
+        String timestamp = request.getHeader(ConstantApi.HEAD_PARAM_SECURITY_TIME);
+        String sign = request.getHeader(ConstantApi.HEAD_PARAM_SECURITY_SIGN);
         if (productId == null || productVersion == null || uuid == null || timestamp == null ) {
             throw new ParamInvalidException();
         }
@@ -111,19 +112,19 @@ public class WeiXinLoginInterceptor extends HandlerInterceptorAdapter {
 
         //verify sign
         StringBuilder signSrc = new StringBuilder();
-        signSrc.append(ConstantApi.PARAM_SECURITY_PRODUCTID);
+        signSrc.append(ConstantApi.HEAD_PARAM_SECURITY_PRODUCTID);
         signSrc.append("_");
         signSrc.append(productId);
         signSrc.append("*");
-        signSrc.append(ConstantApi.PARAM_SECURITY_PRODUCVERSION);
+        signSrc.append(ConstantApi.HEAD_PARAM_SECURITY_PRODUCVERSION);
         signSrc.append("_");
         signSrc.append(productVersion);
         signSrc.append("*");
-        signSrc.append(ConstantApi.PARAM_SECURITY_TIME);
+        signSrc.append(ConstantApi.HEAD_PARAM_SECURITY_TIME);
         signSrc.append("_");
         signSrc.append(timestamp);
         signSrc.append("*");
-        signSrc.append(ConstantApi.PARAM_SECURITY_UUID);
+        signSrc.append(ConstantApi.HEAD_PARAM_SECURITY_UUID);
         signSrc.append("_");
         signSrc.append(uuid);
 

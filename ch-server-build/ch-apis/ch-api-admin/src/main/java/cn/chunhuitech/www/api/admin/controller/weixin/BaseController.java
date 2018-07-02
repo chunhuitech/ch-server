@@ -12,6 +12,6 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class BaseController {
     public TokenInfoWrap getRequestToken(HttpServletRequest request) {
-        return (TokenInfoWrap) request.getAttribute(ConstantApi.PARAM_USER_TOKEN);
+        return (TokenInfoWrap) request.getAttribute(ConstantApi.HEAD_PARAM_USER_TOKEN);
     }
 }
