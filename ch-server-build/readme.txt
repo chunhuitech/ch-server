@@ -11,3 +11,7 @@ mvn clean install
 
 发布
 java -jar ch-api-admin.jar --spring.profiles.active=dev
+
+
+//访问swagger
+http://localhost:8880/api/admin/swagger-ui.html#/

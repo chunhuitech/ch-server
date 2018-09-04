@@ -1,28 +1,46 @@
 package cn.chunhuitech.www.core.admin.model.pojo;
 
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
 public class ProductActivity {
     private Long id;
-
+    @ApiModelProperty(value = "用户id")
     private Long userId;
 
+    @ApiModelProperty(value = "客户端标志", required = true)
     private String clientFlag;
 
+    @ApiModelProperty(value = "产品名称")
     private String procName;
 
+    @ApiModelProperty(value = "产品版本")
     private String procVersion;
 
+    @ApiModelProperty(value = "产品id")
     private Long procId;
 
+    @ApiModelProperty(value = "操作系统")
     private String os;
 
+    @ApiModelProperty(value = "事件名称")
     private String eventName;
 
+    @ApiModelProperty(value = "内网ip")
     private String ip;
 
+    @ApiModelProperty(value = "外网ip")
     private String netIp;
 
+    @ApiModelProperty(value = "地区")
     private String area;
 
+    @ApiModelProperty(value = "事件发生次数")
     private Integer eventCount;
 
     private Long modifyTime;
@@ -32,132 +50,4 @@ public class ProductActivity {
     private String remarks;
 
     private Byte status;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public String getClientFlag() {
-        return clientFlag;
-    }
-
-    public void setClientFlag(String clientFlag) {
-        this.clientFlag = clientFlag == null ? null : clientFlag.trim();
-    }
-
-    public String getProcName() {
-        return procName;
-    }
-
-    public void setProcName(String procName) {
-        this.procName = procName == null ? null : procName.trim();
-    }
-
-    public String getProcVersion() {
-        return procVersion;
-    }
-
-    public void setProcVersion(String procVersion) {
-        this.procVersion = procVersion == null ? null : procVersion.trim();
-    }
-
-    public Long getProcId() {
-        return procId;
-    }
-
-    public void setProcId(Long procId) {
-        this.procId = procId;
-    }
-
-    public String getOs() {
-        return os;
-    }
-
-    public void setOs(String os) {
-        this.os = os == null ? null : os.trim();
-    }
-
-    public String getEventName() {
-        return eventName;
-    }
-
-    public void setEventName(String eventName) {
-        this.eventName = eventName == null ? null : eventName.trim();
-    }
-
-    public String getIp() {
-        return ip;
-    }
-
-    public void setIp(String ip) {
-        this.ip = ip == null ? null : ip.trim();
-    }
-
-    public String getNetIp() {
-        return netIp;
-    }
-
-    public void setNetIp(String netIp) {
-        this.netIp = netIp == null ? null : netIp.trim();
-    }
-
-    public String getArea() {
-        return area;
-    }
-
-    public void setArea(String area) {
-        this.area = area == null ? null : area.trim();
-    }
-
-    public Integer getEventCount() {
-        return eventCount;
-    }
-
-    public void setEventCount(Integer eventCount) {
-        this.eventCount = eventCount;
-    }
-
-    public Long getModifyTime() {
-        return modifyTime;
-    }
-
-    public void setModifyTime(Long modifyTime) {
-        this.modifyTime = modifyTime;
-    }
-
-    public Long getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Long createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getRemarks() {
-        return remarks;
-    }
-
-    public void setRemarks(String remarks) {
-        this.remarks = remarks == null ? null : remarks.trim();
-    }
-
-    public Byte getStatus() {
-        return status;
-    }
-
-    public void setStatus(Byte status) {
-        this.status = status;
-    }
 }

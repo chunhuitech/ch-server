@@ -59,7 +59,7 @@ public class WeiXinLoginInterceptor extends HandlerInterceptorAdapter {
             }
         }
         String token = getTokenByRequest(request);
-        if (!token.equals("[object Null]") && !token.equals("null") &&!StringUtils.isEmpty(token)) {
+        if (!StringUtils.isEmpty(token) && !token.equals("[object Null]") && !token.equals("null")) {
             TokenInfoWrap tokenInfoWrap = JWT.unsign(token, TokenInfoWrap.class);
             if (tokenInfoWrap != null) {
                 request.setAttribute(ConstantApi.HEAD_PARAM_USER_TOKEN, tokenInfoWrap);

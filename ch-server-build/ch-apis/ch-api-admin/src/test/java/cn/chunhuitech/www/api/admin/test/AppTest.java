@@ -88,4 +88,18 @@ public class AppTest {
         System.out.println(citiesCommaSeparated);
 
     }
+
+    @Test
+    public void testNumGet() {
+        Integer s=20180215;
+//        int g = s%10;
+//        int sw = s/10%10;
+//        int b = s/100%10;
+//        int q = s/1000%10;
+//        System.out.println("个位数是:"+g+";十位数是:"+sw+";百位数是："+b+";千位数是："+q);
+        int day = s%100;
+        int month = (s/100)%100;
+        int year = (s/10000)%10000;
+        System.out.println("天:"+day + "  月:" +month + "  年:" + year);
+    }
 }

@@ -45,6 +45,5 @@ public class UserController extends BaseController{
         }
 
         return adminUserService.wxLogin(weiXinLoginParam);
-
     }
 }
