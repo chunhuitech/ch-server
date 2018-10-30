@@ -130,7 +130,8 @@ public class AdminUserServiceImpl implements AdminUserService {
         return new WXResult.Success<>(weiXinLoginResponse);
     }
 
-    private String genToken( AdminUser adminUser){
+    @Override
+    public String genToken(AdminUser adminUser) {
         TokenInfoWrap tokenInfoWrap = new TokenInfoWrap();
         tokenInfoWrap.setId(adminUser.getId());
         tokenInfoWrap.setUsername(adminUser.getUsername());

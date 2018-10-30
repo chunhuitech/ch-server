@@ -1,9 +1,16 @@
 package cn.chunhuitech.www.api.admin.test;
 
+import cn.chunhuitech.www.api.admin.Application;
 import cn.chunhuitech.www.api.admin.constant.Constant;
+import cn.chunhuitech.www.api.admin.service.AdminUserService;
+import cn.chunhuitech.www.core.admin.model.pojo.AdminUser;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.joda.time.DateTime;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,10 +21,14 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by hechengjin on 17-10-26.
  */
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = Application.class)
 public class AppTest {
 
     protected static final String DATE_FORMAT = "EEE, dd MMM yyyy HH:mm:ss zzz";
-
+    @Autowired
+    private AdminUserService adminUserService;
     @Test
     public void testMd5()  {
         String md5Value = DigestUtils.md5Hex("abCD1234#()");
@@ -101,5 +112,26 @@ public class AppTest {
         int month = (s/100)%100;
         int year = (s/10000)%10000;
         System.out.println("天:"+day + "  月:" +month + "  年:" + year);
+    }
+
+    private  void setVale(Boolean vale) {
+        vale = true;
+    }
+    @Test
+    public void testBool() {
+        Boolean tet = false;
+        //传递的都是栈中内容的副本
+        setVale(tet);
+        System.out.println(tet);
+    }
+
+
+    @Test
+    public void genTokenTest() {
+        AdminUser adminUser = new AdminUser();
+        adminUser.setUsername("test123");
+        adminUser.setId(2);
+        String token = adminUserService.genToken(adminUser);
+        System.out.println("***"+token + "***" );
     }
 }

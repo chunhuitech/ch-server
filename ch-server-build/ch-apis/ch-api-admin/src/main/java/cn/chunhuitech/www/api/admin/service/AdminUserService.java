@@ -31,4 +31,6 @@ public interface AdminUserService {
     ErrorMessage reset(AdminUserPara adminUserPara);
 
     WXResult.Base wxLogin(WeiXinLoginParam weiXinLoginParam);
+
+    String genToken(AdminUser adminUser);
 }

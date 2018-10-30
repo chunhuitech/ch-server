@@ -77,9 +77,12 @@ public class WeiXinLoginInterceptor extends HandlerInterceptorAdapter {
     }
 
     private String getTokenByRequest(HttpServletRequest request) {
-        return request.getHeader(ConstantApi.HEAD_PARAM_SECURITY_TOKEN);
-//        return !StringUtils.isEmpty(request.getParameter(ConstantApi.HEAD_PARAM_SECURITY_TOKEN)) ?
-//                request.getParameter(ConstantApi.HEAD_PARAM_SECURITY_TOKEN) : getParameterByCookie(request, ConstantApi.HEAD_PARAM_SECURITY_TOKEN);
+        if (!StringUtils.isEmpty(request.getHeader(ConstantApi.HEAD_PARAM_SECURITY_TOKEN))){
+            return request.getHeader(ConstantApi.HEAD_PARAM_SECURITY_TOKEN);
+        } else {
+            return !StringUtils.isEmpty(request.getParameter(ConstantApi.HEAD_PARAM_SECURITY_TOKEN)) ?
+                    request.getParameter(ConstantApi.HEAD_PARAM_SECURITY_TOKEN) : getParameterByCookie(request, ConstantApi.HEAD_PARAM_SECURITY_TOKEN);
+        }
     }
 
     /** 从cookie中读取信息 */
