@@ -108,11 +108,20 @@ public class CommRecordServiceImpl implements CommRecordService {
     }
 
     @Override
-    public WXResult.Base getPageList(CommRecordPara commRecordPara, TokenInfoWrap userToken) {
+    public WXResult.Base getPageListAndroid(CommRecordPara commRecordPara) {
+        return getPageList(commRecordPara);
+    }
+
+    @Override
+    public WXResult.Base getPageListMiniProg(CommRecordPara commRecordPara, TokenInfoWrap userToken) {
         //验证登录用户
         if(!adminUserDao.verifyUser(userToken.getId(), userToken.getUsername())){
             return WXErrorCode.LOGIN_PARAM_TOKEN_ERROR;
         }
+        return getPageList(commRecordPara);
+    }
+
+    private WXResult.Base getPageList(CommRecordPara commRecordPara) {
         try {
             ValidUtils.validNotNullEx(commRecordPara, "classId,page,limit");
         } catch (Exception ex) {
@@ -126,7 +135,6 @@ public class CommRecordServiceImpl implements CommRecordService {
         modelResult.setDataList(modelList);
         return new WXResult.Success<>(modelResult);
     }
-
 
     private void addPageBlock(CommRecord commRecord, CommRecordPageModel commRecordPageModel){
         if(commRecordPageModel.getBlockList() != null){

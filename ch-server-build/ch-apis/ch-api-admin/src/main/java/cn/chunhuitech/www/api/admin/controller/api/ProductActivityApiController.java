@@ -5,6 +5,7 @@ import cn.chunhuitech.www.api.common.constant.ConstantApi;
 import cn.chunhuitech.www.api.common.model.ErrorMessage;
 import cn.chunhuitech.www.core.admin.model.pojo.ProductActivity;
 import cn.chunhuitech.www.core.common.annotation.Skip;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,7 @@ public class ProductActivityApiController {
     private ProductActivityService productActivityService;
 
     @Skip
+    @ApiOperation(value = "pc 保留", notes = "支持已发版本")
     @RequestMapping(value = "/report", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
     public ErrorMessage report(@RequestBody ProductActivity productActivity) throws Exception{
         return productActivityService.report(productActivity);

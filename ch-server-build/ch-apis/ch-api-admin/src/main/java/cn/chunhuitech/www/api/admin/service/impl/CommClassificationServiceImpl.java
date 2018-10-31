@@ -64,11 +64,20 @@ public class CommClassificationServiceImpl implements CommClassificationService 
     }
 
     @Override
-    public WXResult.Base getChildren(CommClassificationPara commClassificationPara, TokenInfoWrap userToken) {
+    public WXResult.Base getChildrenAndroid(CommClassificationPara commClassificationPara) {
+        return getChildren(commClassificationPara);
+    }
+
+    @Override
+    public WXResult.Base getChildrenMiniProg(CommClassificationPara commClassificationPara, TokenInfoWrap userToken) {
         //验证登录用户
         if(!adminUserDao.verifyUser(userToken.getId(), userToken.getUsername())){
             return WXErrorCode.LOGIN_PARAM_TOKEN_ERROR;
         }
+        return getChildren(commClassificationPara);
+    }
+
+    private WXResult.Base getChildren(CommClassificationPara commClassificationPara) {
         try {
             ValidUtils.validNotNullEx(commClassificationPara, "parentId");
         } catch (Exception ex) {

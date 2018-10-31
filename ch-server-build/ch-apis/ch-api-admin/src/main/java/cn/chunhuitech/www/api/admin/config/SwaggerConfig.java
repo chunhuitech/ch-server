@@ -35,7 +35,7 @@ public class SwaggerConfig {
                 .useDefaultResponseMessages(false)
                 .globalOperationParameters(globalOperationParameters())// 全局参数
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("cn.chunhuitech.www.api.admin.controller.weixin"))//RequestHandlerSelectors.any()
+                .apis(RequestHandlerSelectors.basePackage("cn.chunhuitech.www.api.admin.controller"))//RequestHandlerSelectors.any()
                 .paths(PathSelectors.any())// 监控所有路径 //PathSelectors.regex("/.*")
                 .build();
     }

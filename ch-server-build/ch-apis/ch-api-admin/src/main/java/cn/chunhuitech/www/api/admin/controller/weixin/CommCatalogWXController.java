@@ -37,7 +37,7 @@ public class CommCatalogWXController extends BaseController{
     public WXResult.Base getcatalog(HttpServletRequest request, Integer classId) throws Exception{
         CommCatalogPara commCatalogPara = new CommCatalogPara();
         commCatalogPara.setClassId(classId);
-        return commCatalogService.getCatalog(commCatalogPara, getRequestToken(request));
+        return commCatalogService.getCatalogMiniProg(commCatalogPara, getRequestToken(request));
     }
 
 }

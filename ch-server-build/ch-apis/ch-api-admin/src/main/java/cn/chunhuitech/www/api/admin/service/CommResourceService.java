@@ -11,5 +11,6 @@ import cn.chunhuitech.www.core.admin.model.cus.CommClassificationPara;
  */
 public interface CommResourceService {
     Result<CommResourceBo> fetchResource(CommClassificationPara commClassificationPara);
-    WXResult.Base getResource(CommClassificationPara commClassificationPara, TokenInfoWrap userToken);
+    WXResult.Base getResourceAndroid(CommClassificationPara commClassificationPara);
+    WXResult.Base getResourceMiniProg(CommClassificationPara commClassificationPara, TokenInfoWrap userToken);
 }

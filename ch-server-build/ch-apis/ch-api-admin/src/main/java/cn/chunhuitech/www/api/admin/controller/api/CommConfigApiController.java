@@ -8,6 +8,7 @@ import cn.chunhuitech.www.api.common.model.ErrorMessage;
 import cn.chunhuitech.www.api.common.model.Result;
 import cn.chunhuitech.www.core.admin.model.pojo.ProductActivity;
 import cn.chunhuitech.www.core.common.annotation.Skip;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,7 @@ public class CommConfigApiController {
     private CommConfigService commConfigService;
 
     @Skip
+    @ApiOperation(value = "pc 保留", notes = "支持已发版本")
     @RequestMapping(value = "/recorddataver", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
     public Result<CommConfigBo> getRecordDataVersion() throws Exception{
         return commConfigService.getRecordDataVersion();

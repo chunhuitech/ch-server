@@ -25,6 +25,7 @@ public class CommResourceWXController extends BaseController {
 
     @Autowired
     private CommResourceService commResourceService;
+
     @ApiOperation(value = "书本资源", notes = "根据指定的书本id,获取书本资源")
     @ApiImplicitParams({@ApiImplicitParam(name = "id", value = "书本id", paramType = "query", required = true)
     })
@@ -32,7 +33,7 @@ public class CommResourceWXController extends BaseController {
     public WXResult.Base getresource(HttpServletRequest request, Integer id) throws Exception{
         CommClassificationPara commClassificationPara = new CommClassificationPara();
         commClassificationPara.setId(id);
-        return commResourceService.getResource(commClassificationPara, getRequestToken(request));
+        return commResourceService.getResourceMiniProg(commClassificationPara, getRequestToken(request));
     }
 
 }

@@ -9,6 +9,7 @@ import cn.chunhuitech.www.api.common.model.Result;
 import cn.chunhuitech.www.core.admin.model.pojo.ProductActivity;
 import cn.chunhuitech.www.core.admin.model.pojo.ProductInfo;
 import cn.chunhuitech.www.core.common.annotation.Skip;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,7 @@ public class ProducInfoApiController {
     private ProductInfoService productInfoService;
 
     @Skip
+    @ApiOperation(value = "pc 保留", notes = "支持已发版本")
     @RequestMapping(value = "/versioncheck", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
     public Result<ProductInfoBo> versionCheck(@RequestBody ProductInfo productInfo) throws Exception{
         return productInfoService.versionCheck(productInfo);

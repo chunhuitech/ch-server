@@ -38,7 +38,7 @@ public class CommRecordPageWXController extends BaseController{
         commRecordPara.setClassId(classId);
         commRecordPara.setPage(page);
         commRecordPara.setLimit(limit);
-        return commRecordService.getPageList(commRecordPara, getRequestToken(request));
+        return commRecordService.getPageListMiniProg(commRecordPara, getRequestToken(request));
     }
 
 }

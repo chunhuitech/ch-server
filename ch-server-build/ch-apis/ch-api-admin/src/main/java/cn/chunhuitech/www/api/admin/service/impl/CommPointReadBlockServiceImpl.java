@@ -34,11 +34,20 @@ public class CommPointReadBlockServiceImpl implements CommPointReadBlockService 
     private AdminUserDao adminUserDao;
 
     @Override
-    public WXResult.Base getPointReadBlock(CommPointReadBlockPara commPointReadBlockPara, TokenInfoWrap userToken) {
+    public WXResult.Base getPointReadBlockMiniProg(CommPointReadBlockPara commPointReadBlockPara, TokenInfoWrap userToken) {
         //验证登录用户
         if(!adminUserDao.verifyUser(userToken.getId(), userToken.getUsername())){
             return WXErrorCode.LOGIN_PARAM_TOKEN_ERROR;
         }
+        return getPointReadBlock(commPointReadBlockPara);
+    }
+
+    @Override
+    public WXResult.Base getPointReadBlockAndroid(CommPointReadBlockPara commPointReadBlockPara) {
+        return getPointReadBlock(commPointReadBlockPara);
+    }
+
+    private WXResult.Base getPointReadBlock(CommPointReadBlockPara commPointReadBlockPara) {
         try {
             ValidUtils.validNotNullEx(commPointReadBlockPara, "pageId");
         } catch (Exception ex) {
@@ -49,5 +58,4 @@ public class CommPointReadBlockServiceImpl implements CommPointReadBlockService 
         modelResult.setDataList(modelList);
         return new WXResult.Success<>(modelResult);
     }
-
 }

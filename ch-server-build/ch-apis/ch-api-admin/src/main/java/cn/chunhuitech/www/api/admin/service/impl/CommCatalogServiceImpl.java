@@ -42,11 +42,20 @@ public class CommCatalogServiceImpl implements CommCatalogService {
     }
 
     @Override
-    public WXResult.Base getCatalog(CommCatalogPara commCatalogPara, TokenInfoWrap userToken) {
+    public WXResult.Base getCatalogAndorid(CommCatalogPara commCatalogPara) {
+       return getCatalog(commCatalogPara);
+    }
+
+    @Override
+    public WXResult.Base getCatalogMiniProg(CommCatalogPara commCatalogPara, TokenInfoWrap userToken) {
         //验证登录用户
         if(!adminUserDao.verifyUser(userToken.getId(), userToken.getUsername())){
             return WXErrorCode.LOGIN_PARAM_TOKEN_ERROR;
         }
+        return getCatalog(commCatalogPara);
+    }
+
+    private WXResult.Base getCatalog(CommCatalogPara commCatalogPara) {
         try {
             ValidUtils.validNotNullEx(commCatalogPara, "classId");
         } catch (Exception ex) {
@@ -57,6 +66,5 @@ public class CommCatalogServiceImpl implements CommCatalogService {
         modelResult.setDataList(modelList);
         return new WXResult.Success<>(modelResult);
     }
-
 
 }

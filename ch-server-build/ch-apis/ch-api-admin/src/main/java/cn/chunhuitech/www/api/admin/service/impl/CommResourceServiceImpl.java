@@ -47,11 +47,20 @@ public class CommResourceServiceImpl implements CommResourceService {
     }
 
     @Override
-    public WXResult.Base getResource(CommClassificationPara commClassificationPara, TokenInfoWrap userToken) {
+    public WXResult.Base getResourceAndroid(CommClassificationPara commClassificationPara) {
+        return getResource(commClassificationPara);
+    }
+
+    @Override
+    public WXResult.Base getResourceMiniProg(CommClassificationPara commClassificationPara, TokenInfoWrap userToken) {
         //验证登录用户
         if(!adminUserDao.verifyUser(userToken.getId(), userToken.getUsername())){
             return WXErrorCode.LOGIN_PARAM_TOKEN_ERROR;
         }
+        return getResource(commClassificationPara);
+    }
+
+    private WXResult.Base getResource(CommClassificationPara commClassificationPara) {
         try {
             ValidUtils.validNotNullEx(commClassificationPara, "id");
         } catch (Exception ex) {
@@ -62,4 +71,5 @@ public class CommResourceServiceImpl implements CommResourceService {
         modelResult.setDataList(modelList);
         return new WXResult.Success<>(modelResult);
     }
+
 }

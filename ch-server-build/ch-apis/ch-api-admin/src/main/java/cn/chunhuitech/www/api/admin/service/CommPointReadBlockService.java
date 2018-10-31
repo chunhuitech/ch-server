@@ -8,5 +8,6 @@ import cn.chunhuitech.www.core.admin.model.cus.CommPointReadBlockPara;
  * Created by hechengjin on 17-9-29.
  */
 public interface CommPointReadBlockService {
-    WXResult.Base getPointReadBlock(CommPointReadBlockPara commPointReadBlockPara, TokenInfoWrap userToken);
+    WXResult.Base getPointReadBlockAndroid(CommPointReadBlockPara commPointReadBlockPara);
+    WXResult.Base getPointReadBlockMiniProg(CommPointReadBlockPara commPointReadBlockPara, TokenInfoWrap userToken);
 }

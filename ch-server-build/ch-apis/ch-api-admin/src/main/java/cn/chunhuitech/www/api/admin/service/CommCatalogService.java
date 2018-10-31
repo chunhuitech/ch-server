@@ -11,5 +11,6 @@ import cn.chunhuitech.www.core.admin.model.cus.CommCatalogPara;
  */
 public interface CommCatalogService {
     Result<CommCatalogBo> fetchCatalog(CommCatalogPara commCatalogPara);
-    WXResult.Base getCatalog(CommCatalogPara commCatalogPara, TokenInfoWrap userToken);
+    WXResult.Base getCatalogAndorid(CommCatalogPara commCatalogPara);
+    WXResult.Base getCatalogMiniProg(CommCatalogPara commCatalogPara, TokenInfoWrap userToken);
 }

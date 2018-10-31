@@ -26,5 +26,6 @@ public interface CommRecordService {
     ErrorMessage mod(CommRecord commRecord);
     ErrorMessage del(CommRecordPara commRecordPara);
 
-    WXResult.Base getPageList(CommRecordPara commRecordPara, TokenInfoWrap userToken);
+    WXResult.Base getPageListAndroid(CommRecordPara commRecordPara);
+    WXResult.Base getPageListMiniProg(CommRecordPara commRecordPara, TokenInfoWrap userToken);
 }

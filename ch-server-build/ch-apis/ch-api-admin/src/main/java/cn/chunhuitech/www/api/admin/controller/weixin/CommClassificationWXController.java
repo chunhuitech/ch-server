@@ -34,7 +34,7 @@ public class CommClassificationWXController extends BaseController {
     public WXResult.Base getchildren(HttpServletRequest request, Integer id) throws Exception{
         CommClassificationPara commClassificationPara = new CommClassificationPara();
         commClassificationPara.setParentId(id);
-        return commClassificationService.getChildren(commClassificationPara, getRequestToken(request));
+        return commClassificationService.getChildrenMiniProg(commClassificationPara, getRequestToken(request));
     }
 
 }
