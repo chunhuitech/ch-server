@@ -50,7 +50,7 @@ public class AESUtils
         initialize();
         try
         {
-            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding"); //PKCS7Padding
             Key sKeySpec = new SecretKeySpec(keyByte, "AES");
 
             cipher.init(Cipher.DECRYPT_MODE, sKeySpec, generateIV(ivByte));// 初始化
