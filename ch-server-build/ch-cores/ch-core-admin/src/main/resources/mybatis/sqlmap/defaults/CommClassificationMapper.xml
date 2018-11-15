@@ -6,6 +6,7 @@
     <result column="cn_name" jdbcType="VARCHAR" property="cnName" />
     <result column="en_name" jdbcType="VARCHAR" property="enName" />
     <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="leaf" jdbcType="TINYINT" property="leaf" />
     <result column="sort_num" jdbcType="INTEGER" property="sortNum" />
     <result column="status" jdbcType="TINYINT" property="status" />
     <result column="des" jdbcType="VARCHAR" property="des" />
@@ -71,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, cn_name, en_name, parent_id, sort_num, status, des, modify_time, create_time
+    id, cn_name, en_name, parent_id, leaf, sort_num, status, des, modify_time, create_time
   </sql>
   <select id="selectByExample" parameterType="cn.chunhuitech.www.core.admin.model.pojo.CommClassificationExample" resultMap="BaseResultMap">
     select
@@ -108,6 +109,9 @@
       <if test="parentId != null">
         parent_id,
       </if>
+      <if test="leaf != null">
+        leaf,
+      </if>
       <if test="sortNum != null">
         sort_num,
       </if>
@@ -133,6 +137,9 @@
       </if>
       <if test="parentId != null">
         #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="leaf != null">
+        #{leaf,jdbcType=TINYINT},
       </if>
       <if test="sortNum != null">
         #{sortNum,jdbcType=INTEGER},
@@ -172,6 +179,9 @@
       <if test="record.parentId != null">
         parent_id = #{record.parentId,jdbcType=INTEGER},
       </if>
+      <if test="record.leaf != null">
+        leaf = #{record.leaf,jdbcType=TINYINT},
+      </if>
       <if test="record.sortNum != null">
         sort_num = #{record.sortNum,jdbcType=INTEGER},
       </if>
@@ -198,6 +208,7 @@
       cn_name = #{record.cnName,jdbcType=VARCHAR},
       en_name = #{record.enName,jdbcType=VARCHAR},
       parent_id = #{record.parentId,jdbcType=INTEGER},
+      leaf = #{record.leaf,jdbcType=TINYINT},
       sort_num = #{record.sortNum,jdbcType=INTEGER},
       status = #{record.status,jdbcType=TINYINT},
       des = #{record.des,jdbcType=VARCHAR},
@@ -218,6 +229,9 @@
       </if>
       <if test="parentId != null">
         parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="leaf != null">
+        leaf = #{leaf,jdbcType=TINYINT},
       </if>
       <if test="sortNum != null">
         sort_num = #{sortNum,jdbcType=INTEGER},

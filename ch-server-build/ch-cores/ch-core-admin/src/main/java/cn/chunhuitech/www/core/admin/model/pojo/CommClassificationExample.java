@@ -364,6 +364,66 @@ public class CommClassificationExample {
             return (Criteria) this;
         }
 
+        public Criteria andLeafIsNull() {
+            addCriterion("leaf is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLeafIsNotNull() {
+            addCriterion("leaf is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLeafEqualTo(Byte value) {
+            addCriterion("leaf =", value, "leaf");
+            return (Criteria) this;
+        }
+
+        public Criteria andLeafNotEqualTo(Byte value) {
+            addCriterion("leaf <>", value, "leaf");
+            return (Criteria) this;
+        }
+
+        public Criteria andLeafGreaterThan(Byte value) {
+            addCriterion("leaf >", value, "leaf");
+            return (Criteria) this;
+        }
+
+        public Criteria andLeafGreaterThanOrEqualTo(Byte value) {
+            addCriterion("leaf >=", value, "leaf");
+            return (Criteria) this;
+        }
+
+        public Criteria andLeafLessThan(Byte value) {
+            addCriterion("leaf <", value, "leaf");
+            return (Criteria) this;
+        }
+
+        public Criteria andLeafLessThanOrEqualTo(Byte value) {
+            addCriterion("leaf <=", value, "leaf");
+            return (Criteria) this;
+        }
+
+        public Criteria andLeafIn(List<Byte> values) {
+            addCriterion("leaf in", values, "leaf");
+            return (Criteria) this;
+        }
+
+        public Criteria andLeafNotIn(List<Byte> values) {
+            addCriterion("leaf not in", values, "leaf");
+            return (Criteria) this;
+        }
+
+        public Criteria andLeafBetween(Byte value1, Byte value2) {
+            addCriterion("leaf between", value1, value2, "leaf");
+            return (Criteria) this;
+        }
+
+        public Criteria andLeafNotBetween(Byte value1, Byte value2) {
+            addCriterion("leaf not between", value1, value2, "leaf");
+            return (Criteria) this;
+        }
+
         public Criteria andSortNumIsNull() {
             addCriterion("sort_num is null");
             return (Criteria) this;

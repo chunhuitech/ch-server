@@ -9,6 +9,8 @@ public class CommClassification {
 
     private Integer parentId;
 
+    private Byte leaf;
+
     private Integer sortNum;
 
     private Byte status;
@@ -49,6 +51,14 @@ public class CommClassification {
 
     public void setParentId(Integer parentId) {
         this.parentId = parentId;
+    }
+
+    public Byte getLeaf() {
+        return leaf;
+    }
+
+    public void setLeaf(Byte leaf) {
+        this.leaf = leaf;
     }
 
     public Integer getSortNum() {

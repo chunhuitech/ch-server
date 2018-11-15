@@ -24,12 +24,14 @@ public interface CommClassificationMapper {
 
     @Insert({
         "insert into comm_classification (cn_name, en_name, ",
-        "parent_id, sort_num, ",
-        "status, des, modify_time, ",
+        "parent_id, leaf, ",
+        "sort_num, status, ",
+        "des, modify_time, ",
         "create_time)",
         "values (#{cnName,jdbcType=VARCHAR}, #{enName,jdbcType=VARCHAR}, ",
-        "#{parentId,jdbcType=INTEGER}, #{sortNum,jdbcType=INTEGER}, ",
-        "#{status,jdbcType=TINYINT}, #{des,jdbcType=VARCHAR}, #{modifyTime,jdbcType=BIGINT}, ",
+        "#{parentId,jdbcType=INTEGER}, #{leaf,jdbcType=TINYINT}, ",
+        "#{sortNum,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, ",
+        "#{des,jdbcType=VARCHAR}, #{modifyTime,jdbcType=BIGINT}, ",
         "#{createTime,jdbcType=BIGINT})"
     })
     @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
@@ -41,7 +43,7 @@ public interface CommClassificationMapper {
 
     @Select({
         "select",
-        "id, cn_name, en_name, parent_id, sort_num, status, des, modify_time, create_time",
+        "id, cn_name, en_name, parent_id, leaf, sort_num, status, des, modify_time, create_time",
         "from comm_classification",
         "where id = #{id,jdbcType=INTEGER}"
     })
@@ -59,6 +61,7 @@ public interface CommClassificationMapper {
         "set cn_name = #{cnName,jdbcType=VARCHAR},",
           "en_name = #{enName,jdbcType=VARCHAR},",
           "parent_id = #{parentId,jdbcType=INTEGER},",
+          "leaf = #{leaf,jdbcType=TINYINT},",
           "sort_num = #{sortNum,jdbcType=INTEGER},",
           "status = #{status,jdbcType=TINYINT},",
           "des = #{des,jdbcType=VARCHAR},",
