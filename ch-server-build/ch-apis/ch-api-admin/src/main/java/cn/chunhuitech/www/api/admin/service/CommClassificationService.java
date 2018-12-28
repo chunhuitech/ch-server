@@ -12,6 +12,7 @@ import cn.chunhuitech.www.core.admin.model.cus.CommClassificationPara;
 public interface CommClassificationService {
     Result<CommClassificationBo> fetchClass(CommClassificationPara commClassificationPara);
     Result<CommClassificationBo> fetchChildren(CommClassificationPara commClassificationPara);
+    Result<CommClassificationBo> fetchAll();
     WXResult.Base  getChildrenAndroid(CommClassificationPara commClassificationPara);
     WXResult.Base  getChildrenMiniProg(CommClassificationPara commClassificationPara, TokenInfoWrap userToken);
 

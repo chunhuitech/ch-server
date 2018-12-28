@@ -64,6 +64,14 @@ public class CommClassificationServiceImpl implements CommClassificationService 
     }
 
     @Override
+    public Result<CommClassificationBo> fetchAll() {
+        CommClassificationBo modelResult = new CommClassificationBo();
+        List<CommClassification> modelList = commClassificationDao.fetchAll();
+        modelResult.setDataList(modelList);
+        return new Result<>(modelResult);
+    }
+
+    @Override
     public WXResult.Base getChildrenAndroid(CommClassificationPara commClassificationPara) {
         return getChildren(commClassificationPara);
     }

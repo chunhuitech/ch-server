@@ -31,12 +31,12 @@ public class SwaggerConfig {
     @Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .host("www.chunhuitech.cn")
+//                .host("www.chunhuitech.cn")
                 .apiInfo(apiInfo())
                 .useDefaultResponseMessages(false)
                 .globalOperationParameters(globalOperationParameters())// 全局参数
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("cn.chunhuitech.www.api.admin.controller.api"))//RequestHandlerSelectors.any()
+                .apis(RequestHandlerSelectors.any())//RequestHandlerSelectors.basePackage("cn.chunhuitech.www.api.admin.controller.api")
                 .paths(PathSelectors.any())// 监控所有路径 //PathSelectors.regex("/.*")
                 .build();
     }

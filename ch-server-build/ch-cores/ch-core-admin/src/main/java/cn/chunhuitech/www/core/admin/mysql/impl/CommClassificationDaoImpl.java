@@ -48,4 +48,13 @@ public class CommClassificationDaoImpl implements CommClassificationDao {
         example.setOrderByClause(" sort_num asc ");
         return commClassificationMapper.selectByExample(example);
     }
+
+    @Override
+    public List<CommClassification> fetchAll() {
+        CommClassificationExample example = new CommClassificationExample();
+        CommClassificationExample.Criteria criteria = example.createCriteria();
+        criteria.andStatusEqualTo(ConstantCore.STATUS_OK);
+        example.setOrderByClause(" sort_num asc ");
+        return commClassificationMapper.selectByExample(example);
+    }
 }
