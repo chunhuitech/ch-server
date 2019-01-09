@@ -2,6 +2,7 @@ package cn.chunhuitech.www.api.admin.service.impl;
 
 import cn.chunhuitech.www.api.admin.model.CommClassificationBo;
 import cn.chunhuitech.www.api.admin.service.CommClassificationService;
+import cn.chunhuitech.www.api.common.constant.ConstantApi;
 import cn.chunhuitech.www.api.common.model.*;
 import cn.chunhuitech.www.api.common.util.ValidUtils;
 import cn.chunhuitech.www.core.admin.dao.AdminUserDao;
@@ -69,6 +70,78 @@ public class CommClassificationServiceImpl implements CommClassificationService 
         List<CommClassification> modelList = commClassificationDao.fetchAll();
         modelResult.setDataList(modelList);
         return new Result<>(modelResult);
+    }
+
+    @Override
+    public ErrorMessage add(CommClassification commClassification) {
+        try {
+            ValidUtils.validNotNullEx(commClassification, "cnName,enName,parentId,leaf,sortNum,des");
+        } catch (Exception ex) {
+            ErrorCode.ILLEGAL_ARGUMENT.setResult(ex.getMessage());
+            return ErrorCode.ILLEGAL_ARGUMENT;
+        }
+        commClassification.setStatus(ConstantApi.STATUS_OK);
+        commClassification.setCreateTime(System.currentTimeMillis());
+        commClassification.setModifyTime(System.currentTimeMillis());
+        int operRes = commClassificationDao.insert(commClassification);
+        if(operRes > 0){
+            return ErrorCode.SUCCESS;
+        }
+        else {
+            return ErrorCode.DB_ERROR;
+        }
+    }
+
+    @Override
+    public ErrorMessage mod(CommClassification commClassification) {
+        try {
+            ValidUtils.validNotNullEx(commClassification, "id,cnName,enName,parentId,leaf,sortNum,des");
+        } catch (Exception ex) {
+            ErrorCode.ILLEGAL_ARGUMENT.setResult(ex.getMessage());
+            return ErrorCode.ILLEGAL_ARGUMENT;
+        }
+        commClassification.setModifyTime(System.currentTimeMillis());
+        int operRes = commClassificationDao.update(commClassification);
+        if(operRes > 0){
+            return ErrorCode.SUCCESS;
+        }
+        else {
+            return ErrorCode.DB_ERROR;
+        }
+    }
+
+    @Override
+    public ErrorMessage del(CommClassificationPara commClassificationPara) {
+        try{
+            ValidUtils.validNotNullEx(commClassificationPara, "id");
+        } catch (Exception ex){
+            ErrorCode.ILLEGAL_ARGUMENT.setResult(ex.getMessage());
+            return ErrorCode.ILLEGAL_ARGUMENT;
+        }
+        int operRes = commClassificationDao.delete(commClassificationPara.getId());
+        if(operRes > 0){
+            return ErrorCode.SUCCESS;
+        }
+        else {
+            return ErrorCode.DB_ERROR;
+        }
+    }
+
+    @Override
+    public Result<CommClassification> getModel(CommClassificationPara commClassificationPara) {
+        Result<CommClassification> modelResult = new Result<>();
+        try{
+            ValidUtils.validNotNullEx(commClassificationPara, "id");
+        } catch (Exception ex){
+            modelResult.setCode(ErrorCode.ILLEGAL_ARGUMENT.getCode());
+            modelResult.setMsg(ex.getMessage());
+            return modelResult;
+        }
+        CommClassification commClassification = commClassificationDao.getById(commClassificationPara.getId());
+        modelResult.setCode(ErrorCode.SUCCESS.getCode());
+        modelResult.setMsg(ErrorCode.SUCCESS.getResult());
+        modelResult.setData(commClassification);
+        return modelResult;
     }
 
     @Override

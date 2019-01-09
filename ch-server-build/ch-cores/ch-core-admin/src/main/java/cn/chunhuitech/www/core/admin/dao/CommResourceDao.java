@@ -10,4 +10,8 @@ import java.util.List;
  */
 public interface CommResourceDao {
     List<CommResource> fetchResource(CommClassificationPara commClassificationPara);
+    int insert(CommResource commResource);
+    CommResource getById(Integer id);
+    int update(CommResource commResource);
+    int delete(int id);
 }

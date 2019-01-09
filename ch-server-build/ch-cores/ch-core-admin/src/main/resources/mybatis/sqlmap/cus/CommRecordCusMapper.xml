@@ -47,6 +47,13 @@
         limit #{pageStart}, #{pageSize}
     </select>
 
+    <select id="getListSql2" parameterType="map" resultType="cn.chunhuitech.www.core.admin.model.pojo.CommRecord">
+        select a.id as id, a.class_id as classId,a.sort_num as sortNum, a.title as title, a.label as label, a.relative_path as relativePath, a.file_size as fileSize, a.file_type as fileType, a.content_html as contentHtml, a.content_plain as contentPlain, a.modify_time as modifyTime, a.create_time as createTime, a.status as status  from comm_record a
+        where 1 = 1
+        <include refid="selectItem_fragment"/>
+        limit #{pageStart}, #{pageSize}
+    </select>
+
 
     <select id="getListCountSql" parameterType="map" resultType="java.lang.Long">
         SELECT count(*) from comm_record a, comm_classification b

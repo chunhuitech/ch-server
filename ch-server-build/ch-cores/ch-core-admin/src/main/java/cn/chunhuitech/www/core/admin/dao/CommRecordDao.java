@@ -20,6 +20,7 @@ public interface CommRecordDao {
 
 
     List<CommRecordSearchModel> getList(CommRecordPara commRecordPara);
+    List<CommRecord> getList2(CommRecordPara commRecordPara);
     long getListCount(CommRecordPara commRecordPara);
 
     int insert(CommRecord commRecord);

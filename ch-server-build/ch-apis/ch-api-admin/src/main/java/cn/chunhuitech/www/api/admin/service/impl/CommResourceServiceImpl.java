@@ -1,17 +1,14 @@
 package cn.chunhuitech.www.api.admin.service.impl;
 
-import cn.chunhuitech.www.api.admin.model.CommCatalogBo;
 import cn.chunhuitech.www.api.admin.model.CommResourceBo;
-import cn.chunhuitech.www.api.admin.service.CommCatalogService;
 import cn.chunhuitech.www.api.admin.service.CommResourceService;
+import cn.chunhuitech.www.api.common.constant.ConstantApi;
 import cn.chunhuitech.www.api.common.model.*;
 import cn.chunhuitech.www.api.common.util.ValidUtils;
 import cn.chunhuitech.www.core.admin.dao.AdminUserDao;
-import cn.chunhuitech.www.core.admin.dao.CommCatalogDao;
 import cn.chunhuitech.www.core.admin.dao.CommResourceDao;
-import cn.chunhuitech.www.core.admin.model.cus.CommCatalogPara;
 import cn.chunhuitech.www.core.admin.model.cus.CommClassificationPara;
-import cn.chunhuitech.www.core.admin.model.pojo.CommCatalog;
+import cn.chunhuitech.www.core.admin.model.cus.CommResourcePara;
 import cn.chunhuitech.www.core.admin.model.pojo.CommResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,6 +41,78 @@ public class CommResourceServiceImpl implements CommResourceService {
         List<CommResource> modelList = commResourceDao.fetchResource(commClassificationPara);
         modelResult.setDataList(modelList);
         return new Result<>(modelResult);
+    }
+
+    @Override
+    public ErrorMessage add(CommResource commResource) {
+        try {
+            ValidUtils.validNotNullEx(commResource, "classId,sortNum,title,label,relativePath,fileSize,fileType");
+        } catch (Exception ex) {
+            ErrorCode.ILLEGAL_ARGUMENT.setResult(ex.getMessage());
+            return ErrorCode.ILLEGAL_ARGUMENT;
+        }
+        commResource.setStatus(ConstantApi.STATUS_OK);
+        commResource.setCreateTime(System.currentTimeMillis());
+        commResource.setModifyTime(System.currentTimeMillis());
+        int operRes = commResourceDao.insert(commResource);
+        if(operRes > 0){
+            return ErrorCode.SUCCESS;
+        }
+        else {
+            return ErrorCode.DB_ERROR;
+        }
+    }
+
+    @Override
+    public ErrorMessage mod(CommResource commResource) {
+        try {
+            ValidUtils.validNotNullEx(commResource, "id");
+        } catch (Exception ex) {
+            ErrorCode.ILLEGAL_ARGUMENT.setResult(ex.getMessage());
+            return ErrorCode.ILLEGAL_ARGUMENT;
+        }
+        commResource.setModifyTime(System.currentTimeMillis());
+        int operRes = commResourceDao.update(commResource);
+        if(operRes > 0){
+            return ErrorCode.SUCCESS;
+        }
+        else {
+            return ErrorCode.DB_ERROR;
+        }
+    }
+
+    @Override
+    public ErrorMessage del(CommResourcePara commResourcePara) {
+        try{
+            ValidUtils.validNotNullEx(commResourcePara, "id");
+        } catch (Exception ex){
+            ErrorCode.ILLEGAL_ARGUMENT.setResult(ex.getMessage());
+            return ErrorCode.ILLEGAL_ARGUMENT;
+        }
+        int operRes = commResourceDao.delete(commResourcePara.getId());
+        if(operRes > 0){
+            return ErrorCode.SUCCESS;
+        }
+        else {
+            return ErrorCode.DB_ERROR;
+        }
+    }
+
+    @Override
+    public Result<CommResource> getModel(CommResourcePara commResourcePara) {
+        Result<CommResource> modelResult = new Result<>();
+        try{
+            ValidUtils.validNotNullEx(commResourcePara, "id");
+        } catch (Exception ex){
+            modelResult.setCode(ErrorCode.ILLEGAL_ARGUMENT.getCode());
+            modelResult.setMsg(ex.getMessage());
+            return modelResult;
+        }
+        CommResource commResource = commResourceDao.getById(commResourcePara.getId());
+        modelResult.setCode(ErrorCode.SUCCESS.getCode());
+        modelResult.setMsg(ErrorCode.SUCCESS.getResult());
+        modelResult.setData(commResource);
+        return modelResult;
     }
 
     @Override

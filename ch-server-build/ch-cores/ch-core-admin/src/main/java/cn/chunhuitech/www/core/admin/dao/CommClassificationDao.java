@@ -14,4 +14,9 @@ public interface CommClassificationDao {
     List<CommClassification> fetchChildren(CommClassificationPara commClassificationPara);
     List<CommClassification> fetchAll();
 
+    int insert(CommClassification commClassification);
+    CommClassification getById(Integer id);
+    int update(CommClassification commClassification);
+    int delete(int id);
+
 }

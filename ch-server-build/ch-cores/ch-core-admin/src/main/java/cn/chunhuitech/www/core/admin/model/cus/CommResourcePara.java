@@ -11,11 +11,11 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class CommPointReadBlockPara {
-    @ApiModelProperty(value = "点读块id")
+public class CommResourcePara {
+    @ApiModelProperty(value = "资源id")
     private Integer id;
 
-    private String pageIds;
-    private Integer pageId;
+    private Integer page;
+    private Integer limit;
 
 }

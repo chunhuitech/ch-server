@@ -54,6 +54,11 @@ public class CommPointReadBlockDaoImpl implements CommPointReadBlockDao {
     }
 
     @Override
+    public CommPointReadBlock getById(Integer id) {
+        return commPointReadBlockMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
     public List<CommPointReadBlock> fetchPointBlock(CommPointReadBlockPara commPointReadBlockPara) {
         CommPointReadBlockExample example = new CommPointReadBlockExample();
         CommPointReadBlockExample.Criteria criteria = example.createCriteria();

@@ -18,6 +18,6 @@ public interface CommPointReadBlockDao {
     int update(CommPointReadBlock commPointReadBlock);
     int delete(int id);
     int deleteByRecordId(Integer recordId);
-
+    CommPointReadBlock getById(Integer id);
     List<CommPointReadBlock> fetchPointBlock(CommPointReadBlockPara commPointReadBlockPara);
 }

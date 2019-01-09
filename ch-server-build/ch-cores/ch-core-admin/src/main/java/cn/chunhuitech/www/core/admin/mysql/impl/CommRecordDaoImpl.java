@@ -74,9 +74,18 @@ public class CommRecordDaoImpl implements CommRecordDao {
     public List<CommRecordSearchModel> getList(CommRecordPara commRecordPara) {
         Map<String, Object> param = new HashMap<>();
         param.put("classId", commRecordPara.getClassId());
-        param.put("pageStart", commRecordPara.getPage() -1);
+        param.put("pageStart", (commRecordPara.getPage() - 1) * commRecordPara.getLimit());
         param.put("pageSize", commRecordPara.getLimit());
         return commRecordCusMapper.getListSql(param);
+    }
+
+    @Override
+    public List<CommRecord> getList2(CommRecordPara commRecordPara) {
+        Map<String, Object> param = new HashMap<>();
+        param.put("classId", commRecordPara.getClassId());
+        param.put("pageStart", (commRecordPara.getPage() - 1) * commRecordPara.getLimit());
+        param.put("pageSize", commRecordPara.getLimit());
+        return commRecordCusMapper.getListSql2(param);
     }
 
     @Override

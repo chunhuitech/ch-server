@@ -3,11 +3,14 @@ package cn.chunhuitech.www.api.admin.controller.web;
 import cn.chunhuitech.www.api.admin.model.CommClassificationBo;
 import cn.chunhuitech.www.api.admin.service.CommClassificationService;
 import cn.chunhuitech.www.api.common.constant.ConstantApi;
+import cn.chunhuitech.www.api.common.model.ErrorMessage;
 import cn.chunhuitech.www.api.common.model.Result;
 import cn.chunhuitech.www.core.admin.model.cus.CommClassificationPara;
+import cn.chunhuitech.www.core.admin.model.cus.CommResourcePara;
+import cn.chunhuitech.www.core.admin.model.pojo.CommClassification;
+import cn.chunhuitech.www.core.admin.model.pojo.CommResource;
 import cn.chunhuitech.www.core.common.annotation.Skip;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,4 +44,27 @@ public class CommClassificationController {
         return commClassificationService.fetchAll();
     }
 
+    @Skip
+    @RequestMapping(value = "/add", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
+    public ErrorMessage add(@RequestBody CommClassification commClassification) throws Exception{
+        return commClassificationService.add(commClassification);
+    }
+
+    @Skip
+    @RequestMapping(value = "/mod", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
+    public ErrorMessage mod(@RequestBody CommClassification commClassification) throws Exception{
+        return commClassificationService.mod(commClassification);
+    }
+
+    @Skip
+    @RequestMapping(value = "/del", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
+    public ErrorMessage del(@RequestBody CommClassificationPara commClassificationPara) throws Exception{
+        return commClassificationService.del(commClassificationPara);
+    }
+
+    @Skip
+    @RequestMapping(value = "/get", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
+    public Result<CommClassification> getModel(@RequestBody CommClassificationPara commClassificationPara) {
+        return commClassificationService.getModel(commClassificationPara);
+    }
 }

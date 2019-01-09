@@ -57,4 +57,24 @@ public class CommClassificationDaoImpl implements CommClassificationDao {
         example.setOrderByClause(" sort_num asc ");
         return commClassificationMapper.selectByExample(example);
     }
+
+    @Override
+    public int insert(CommClassification commClassification) {
+        return commClassificationMapper.insert(commClassification);
+    }
+
+    @Override
+    public CommClassification getById(Integer id) {
+        return commClassificationMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public int update(CommClassification commClassification) {
+        return commClassificationMapper.updateByPrimaryKeySelective(commClassification);
+    }
+
+    @Override
+    public int delete(int id) {
+        return commClassificationMapper.deleteByPrimaryKey(id);
+    }
 }

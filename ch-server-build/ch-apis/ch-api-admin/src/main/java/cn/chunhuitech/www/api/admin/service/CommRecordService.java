@@ -3,6 +3,7 @@ package cn.chunhuitech.www.api.admin.service;
 import cn.chunhuitech.www.api.admin.model.CommRecordBo;
 import cn.chunhuitech.www.api.admin.model.CommRecordPagesBo;
 import cn.chunhuitech.www.api.admin.model.CommRecordSearchBo;
+import cn.chunhuitech.www.api.admin.model.CommRecordWebSearchBo;
 import cn.chunhuitech.www.api.common.model.ErrorMessage;
 import cn.chunhuitech.www.api.common.model.Result;
 import cn.chunhuitech.www.api.common.model.TokenInfoWrap;
@@ -22,6 +23,7 @@ public interface CommRecordService {
     ErrorMessage modPage(CommRecordPageModel commRecordPageModel);
 
     Result<CommRecordSearchBo> getList(CommRecordPara commRecordPara);
+    Result<CommRecordWebSearchBo> getList2(CommRecordPara commRecordPara);
     ErrorMessage add(CommRecord commRecord);
     ErrorMessage mod(CommRecord commRecord);
     ErrorMessage del(CommRecordPara commRecordPara);

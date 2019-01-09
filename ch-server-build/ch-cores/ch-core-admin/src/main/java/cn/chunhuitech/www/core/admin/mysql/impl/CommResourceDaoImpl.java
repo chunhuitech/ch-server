@@ -32,5 +32,23 @@ public class CommResourceDaoImpl implements CommResourceDao {
         return commResourceMapper.selectByExample(example);
     }
 
+    @Override
+    public int insert(CommResource commResource) {
+        return commResourceMapper.insert(commResource);
+    }
 
+    @Override
+    public CommResource getById(Integer id) {
+        return commResourceMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public int update(CommResource commResource) {
+        return commResourceMapper.updateByPrimaryKeySelective(commResource);
+    }
+
+    @Override
+    public int delete(int id) {
+        return commResourceMapper.deleteByPrimaryKey(id);
+    }
 }

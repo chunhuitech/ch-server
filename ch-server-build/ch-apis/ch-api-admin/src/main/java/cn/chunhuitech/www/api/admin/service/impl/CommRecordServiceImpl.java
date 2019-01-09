@@ -4,6 +4,7 @@ import cn.chunhuitech.www.api.admin.constant.Constant;
 import cn.chunhuitech.www.api.admin.model.CommRecordBo;
 import cn.chunhuitech.www.api.admin.model.CommRecordPagesBo;
 import cn.chunhuitech.www.api.admin.model.CommRecordSearchBo;
+import cn.chunhuitech.www.api.admin.model.CommRecordWebSearchBo;
 import cn.chunhuitech.www.api.admin.service.CommRecordService;
 import cn.chunhuitech.www.api.common.constant.ConstantApi;
 import cn.chunhuitech.www.api.common.model.*;
@@ -100,6 +101,29 @@ public class CommRecordServiceImpl implements CommRecordService {
         long count = commRecordDao.getListCount(commRecordPara);
         modelResult.setTotal(count);
         List<CommRecordSearchModel> modelList = commRecordDao.getList(commRecordPara);
+        modelResult.setDataList(modelList);
+        retResult.setCode(ErrorCode.SUCCESS.getCode());
+        retResult.setMsg(ErrorCode.SUCCESS.getResult());
+        retResult.setData(modelResult);
+        return retResult;
+    }
+
+    @Override
+    public Result<CommRecordWebSearchBo> getList2(CommRecordPara commRecordPara) {
+        Result<CommRecordWebSearchBo> retResult = new Result<>();
+        try {
+            ValidUtils.validNotNullEx(commRecordPara, "classId,page,limit");
+        } catch (Exception ex) {
+            retResult.setCode(ErrorCode.ILLEGAL_ARGUMENT.getCode());
+            retResult.setMsg(ex.getMessage());
+            logger.error(ex.getMessage());
+            return retResult;
+        }
+
+        CommRecordWebSearchBo modelResult = new CommRecordWebSearchBo();
+        long count = commRecordDao.getListCount(commRecordPara);
+        modelResult.setTotal(count);
+        List<CommRecord> modelList = commRecordDao.getList2(commRecordPara);
         modelResult.setDataList(modelList);
         retResult.setCode(ErrorCode.SUCCESS.getCode());
         retResult.setMsg(ErrorCode.SUCCESS.getResult());
@@ -225,6 +249,9 @@ public class CommRecordServiceImpl implements CommRecordService {
             ErrorCode.ILLEGAL_ARGUMENT.setResult(ex.getMessage());
             return ErrorCode.ILLEGAL_ARGUMENT;
         }
+        commRecord.setStatus(ConstantApi.STATUS_OK);
+        commRecord.setCreateTime(System.currentTimeMillis());
+        commRecord.setModifyTime(System.currentTimeMillis());
         int operRes = commRecordDao.insert(commRecord);
         if(operRes > 0){
             return ErrorCode.SUCCESS;
@@ -242,6 +269,7 @@ public class CommRecordServiceImpl implements CommRecordService {
             ErrorCode.ILLEGAL_ARGUMENT.setResult(ex.getMessage());
             return ErrorCode.ILLEGAL_ARGUMENT;
         }
+        commRecord.setModifyTime(System.currentTimeMillis());
         int operRes = commRecordDao.update(commRecord);
         if(operRes > 0){
             return ErrorCode.SUCCESS;
