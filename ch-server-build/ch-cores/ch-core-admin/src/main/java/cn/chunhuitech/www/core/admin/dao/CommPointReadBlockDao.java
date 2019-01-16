@@ -20,4 +20,5 @@ public interface CommPointReadBlockDao {
     int deleteByRecordId(Integer recordId);
     CommPointReadBlock getById(Integer id);
     List<CommPointReadBlock> fetchPointBlock(CommPointReadBlockPara commPointReadBlockPara);
+    List<CommPointReadBlock> fetchPointBlockByResourceId(Integer resourceId);
 }

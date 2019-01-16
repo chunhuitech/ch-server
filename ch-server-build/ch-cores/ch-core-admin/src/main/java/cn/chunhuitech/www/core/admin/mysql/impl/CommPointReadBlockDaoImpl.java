@@ -68,4 +68,15 @@ public class CommPointReadBlockDaoImpl implements CommPointReadBlockDao {
         criteria.andStatusEqualTo(ConstantCore.STATUS_OK);
         return commPointReadBlockMapper.selectByExample(example);
     }
+
+    @Override
+    public List<CommPointReadBlock> fetchPointBlockByResourceId(Integer resourceId) {
+        CommPointReadBlockExample example = new CommPointReadBlockExample();
+        CommPointReadBlockExample.Criteria criteria = example.createCriteria();
+        if (resourceId != null){
+            criteria.andResourceIdEqualTo(resourceId);
+        }
+        criteria.andStatusEqualTo(ConstantCore.STATUS_OK);
+        return commPointReadBlockMapper.selectByExample(example);
+    }
 }

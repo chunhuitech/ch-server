@@ -7,7 +7,9 @@ import cn.chunhuitech.www.api.common.model.*;
 import cn.chunhuitech.www.api.common.util.ValidUtils;
 import cn.chunhuitech.www.core.admin.dao.AdminUserDao;
 import cn.chunhuitech.www.core.admin.dao.CommClassificationDao;
+import cn.chunhuitech.www.core.admin.dao.CommRecordDao;
 import cn.chunhuitech.www.core.admin.model.cus.CommClassificationPara;
+import cn.chunhuitech.www.core.admin.model.cus.CommRecordPara;
 import cn.chunhuitech.www.core.admin.model.pojo.CommClassification;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +27,9 @@ public class CommClassificationServiceImpl implements CommClassificationService 
 
     @Autowired
     private CommClassificationDao commClassificationDao;
+
+    @Autowired
+    private CommRecordDao commRecordDao;
 
     @Autowired
     private AdminUserDao adminUserDao;
@@ -117,6 +122,14 @@ public class CommClassificationServiceImpl implements CommClassificationService 
         } catch (Exception ex){
             ErrorCode.ILLEGAL_ARGUMENT.setResult(ex.getMessage());
             return ErrorCode.ILLEGAL_ARGUMENT;
+        }
+        CommRecordPara commRecordPara = new CommRecordPara();
+        commRecordPara.setPage(1);
+        commRecordPara.setClassId(commClassificationPara.getId());
+        commRecordPara.setLimit(2);
+        long count = commRecordDao.getListCount(commRecordPara);
+        if (count > 0){
+            return ErrorCode.RECORD_HAS_SUBDATA;
         }
         int operRes = commClassificationDao.delete(commClassificationPara.getId());
         if(operRes > 0){

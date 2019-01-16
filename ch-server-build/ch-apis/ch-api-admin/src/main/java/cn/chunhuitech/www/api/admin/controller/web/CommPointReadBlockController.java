@@ -1,5 +1,6 @@
 package cn.chunhuitech.www.api.admin.controller.web;
 
+import cn.chunhuitech.www.api.admin.model.CommPointReadBlockBo;
 import cn.chunhuitech.www.api.admin.service.CommPointReadBlockService;
 import cn.chunhuitech.www.api.common.constant.ConstantApi;
 import cn.chunhuitech.www.api.common.model.ErrorMessage;
@@ -43,6 +44,12 @@ public class CommPointReadBlockController {
     }
 
     @Skip
+    @RequestMapping(value = "/fetch", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
+    public Result<CommPointReadBlockBo> fetchReadPointBlock(@RequestBody CommPointReadBlockPara commPointReadBlockPara) throws Exception{
+        return commPointReadBlockService.fetchPointReadBlock(commPointReadBlockPara);
+    }
+
+    @Skip
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
     public ErrorMessage add(@RequestBody CommPointReadBlock commPointReadBlock) throws Exception{
         return commPointReadBlockService.add(commPointReadBlock);
@@ -61,7 +68,7 @@ public class CommPointReadBlockController {
     }
 
     @Skip
-    @RequestMapping(value = "/get", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
+    @RequestMapping(value = "/getModel", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
     public Result<CommPointReadBlock> getModel(@RequestBody CommPointReadBlockPara commPointReadBlockPara) {
         return commPointReadBlockService.getModel(commPointReadBlockPara);
     }

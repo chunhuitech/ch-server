@@ -48,7 +48,8 @@ public class CommPointReadBlockServiceImpl implements CommPointReadBlockService 
         return getPointReadBlock(commPointReadBlockPara);
     }
 
-    private WXResult.Base getPointReadBlock(CommPointReadBlockPara commPointReadBlockPara) {
+    @Override
+    public WXResult.Base getPointReadBlock(CommPointReadBlockPara commPointReadBlockPara) {
         try {
             ValidUtils.validNotNullEx(commPointReadBlockPara, "pageId");
         } catch (Exception ex) {
@@ -58,6 +59,19 @@ public class CommPointReadBlockServiceImpl implements CommPointReadBlockService 
         List<CommPointReadBlock> modelList = commPointReadBlockDao.fetchPointBlock(commPointReadBlockPara);
         modelResult.setDataList(modelList);
         return new WXResult.Success<>(modelResult);
+    }
+
+    @Override
+    public Result<CommPointReadBlockBo> fetchPointReadBlock(CommPointReadBlockPara commPointReadBlockPara) {
+        try {
+            ValidUtils.validNotNullEx(commPointReadBlockPara, "pageId");
+        } catch (Exception ex) {
+            return new Result<>(ErrorCode.ILLEGAL_ARGUMENT.getCode(), ex.getMessage(), null);
+        }
+        CommPointReadBlockBo modelResult = new CommPointReadBlockBo();
+        List<CommPointReadBlock> modelList = commPointReadBlockDao.fetchPointBlock(commPointReadBlockPara);
+        modelResult.setDataList(modelList);
+        return new Result<>(modelResult);
     }
 
     @Override

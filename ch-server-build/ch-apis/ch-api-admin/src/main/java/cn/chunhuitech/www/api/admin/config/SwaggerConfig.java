@@ -31,7 +31,7 @@ public class SwaggerConfig {
     @Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
-//                .host("www.chunhuitech.cn")
+                .host("www.chunhuitech.cn")
                 .apiInfo(apiInfo())
                 .useDefaultResponseMessages(false)
                 .globalOperationParameters(globalOperationParameters())// 全局参数

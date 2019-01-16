@@ -6,9 +6,11 @@ import cn.chunhuitech.www.api.common.constant.ConstantApi;
 import cn.chunhuitech.www.api.common.model.*;
 import cn.chunhuitech.www.api.common.util.ValidUtils;
 import cn.chunhuitech.www.core.admin.dao.AdminUserDao;
+import cn.chunhuitech.www.core.admin.dao.CommPointReadBlockDao;
 import cn.chunhuitech.www.core.admin.dao.CommResourceDao;
 import cn.chunhuitech.www.core.admin.model.cus.CommClassificationPara;
 import cn.chunhuitech.www.core.admin.model.cus.CommResourcePara;
+import cn.chunhuitech.www.core.admin.model.pojo.CommPointReadBlock;
 import cn.chunhuitech.www.core.admin.model.pojo.CommResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +31,10 @@ public class CommResourceServiceImpl implements CommResourceService {
 
     @Autowired
     private AdminUserDao adminUserDao;
+
+    @Autowired
+    private CommPointReadBlockDao commPointReadBlockDao;
+
 
     @Override
     public Result<CommResourceBo> fetchResource(CommClassificationPara commClassificationPara) {
@@ -88,6 +94,10 @@ public class CommResourceServiceImpl implements CommResourceService {
         } catch (Exception ex){
             ErrorCode.ILLEGAL_ARGUMENT.setResult(ex.getMessage());
             return ErrorCode.ILLEGAL_ARGUMENT;
+        }
+        List<CommPointReadBlock>  blockList = commPointReadBlockDao.fetchPointBlockByResourceId(commResourcePara.getId());
+        if (blockList.size() > 0){
+            return ErrorCode.RECORD_HAS_SUBDATA;
         }
         int operRes = commResourceDao.delete(commResourcePara.getId());
         if(operRes > 0){

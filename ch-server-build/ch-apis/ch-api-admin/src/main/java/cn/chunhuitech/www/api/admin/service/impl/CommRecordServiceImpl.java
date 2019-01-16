@@ -12,10 +12,7 @@ import cn.chunhuitech.www.api.common.util.ValidUtils;
 import cn.chunhuitech.www.core.admin.dao.AdminUserDao;
 import cn.chunhuitech.www.core.admin.dao.CommPointReadBlockDao;
 import cn.chunhuitech.www.core.admin.dao.CommRecordDao;
-import cn.chunhuitech.www.core.admin.model.cus.CommRecordPageBlockModel;
-import cn.chunhuitech.www.core.admin.model.cus.CommRecordPageModel;
-import cn.chunhuitech.www.core.admin.model.cus.CommRecordPara;
-import cn.chunhuitech.www.core.admin.model.cus.CommRecordSearchModel;
+import cn.chunhuitech.www.core.admin.model.cus.*;
 import cn.chunhuitech.www.core.admin.model.pojo.CommPointReadBlock;
 import cn.chunhuitech.www.core.admin.model.pojo.CommRecord;
 import org.slf4j.Logger;
@@ -287,7 +284,13 @@ public class CommRecordServiceImpl implements CommRecordService {
             ErrorCode.ILLEGAL_ARGUMENT.setResult(ex.getMessage());
             return ErrorCode.ILLEGAL_ARGUMENT;
         }
-        commPointReadBlockDao.deleteByRecordId(commRecordPara.getId());
+        CommPointReadBlockPara commPointReadBlockPara = new CommPointReadBlockPara();
+        commPointReadBlockPara.setPageId(commRecordPara.getId());
+        List<CommPointReadBlock>  blockList = commPointReadBlockDao.fetchPointBlock(commPointReadBlockPara);
+        if (blockList.size() > 0){
+            return ErrorCode.RECORD_HAS_SUBDATA;
+        }
+//        commPointReadBlockDao.deleteByRecordId(commRecordPara.getId());
         int operRes = commRecordDao.delete(commRecordPara.getId());
         if(operRes > 0){
             return ErrorCode.SUCCESS;

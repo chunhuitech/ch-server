@@ -60,4 +60,6 @@ public final class ErrorCode {
 
     public static final ErrorMessage EXCEPTION_TOKEN_NOT_FIND = addErrorMsg(900017, "token not find error.", HttpStatus.SC_BAD_REQUEST);
 
+    public static final ErrorMessage RECORD_HAS_SUBDATA = addErrorMsg(900018, "Data under classification.", HttpStatus.SC_OK);
+
 }
