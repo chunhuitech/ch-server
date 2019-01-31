@@ -1,11 +1,7 @@
 package cn.chunhuitech.www.api.admin.controller.api;
 
-import cn.chunhuitech.www.api.admin.model.AdminUserLoginBo;
 import cn.chunhuitech.www.api.admin.model.AdminUserLoginParaBo;
-import cn.chunhuitech.www.api.admin.model.CommRecordBo;
 import cn.chunhuitech.www.api.common.constant.ConstantApi;
-import cn.chunhuitech.www.api.common.model.Result;
-import cn.chunhuitech.www.core.admin.model.cus.CommRecordPara;
 import cn.chunhuitech.www.core.common.annotation.Skip;
 import com.alibaba.fastjson.JSON;
 import org.apache.commons.fileupload.FileItem;
@@ -15,7 +11,6 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartRequest;
 
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReadParam;

@@ -3,18 +3,20 @@ package cn.chunhuitech.www.api.admin.controller.web;
 import cn.chunhuitech.www.api.admin.model.CommRecordSearchBo;
 import cn.chunhuitech.www.api.admin.model.CommRecordWebSearchBo;
 import cn.chunhuitech.www.api.admin.service.CommRecordService;
+import cn.chunhuitech.www.api.admin.service.FilesService;
 import cn.chunhuitech.www.api.common.constant.ConstantApi;
 import cn.chunhuitech.www.api.common.model.ErrorMessage;
 import cn.chunhuitech.www.api.common.model.Result;
+import cn.chunhuitech.www.api.common.model.WXResult;
 import cn.chunhuitech.www.core.admin.model.cus.CommRecordPageModel;
 import cn.chunhuitech.www.core.admin.model.cus.CommRecordPara;
 import cn.chunhuitech.www.core.admin.model.pojo.CommRecord;
 import cn.chunhuitech.www.core.common.annotation.Skip;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by hechengjin on 17-9-29.
@@ -26,6 +28,9 @@ public class CommRecordPageController {
 
     @Autowired
     private CommRecordService commRecordService;
+
+    @Autowired
+    private FilesService filesService;
 
 
     @Skip
@@ -69,6 +74,12 @@ public class CommRecordPageController {
     @RequestMapping(value = "/del", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
     public ErrorMessage del(@RequestBody CommRecordPara commRecordPara) throws Exception{
         return commRecordService.del(commRecordPara);
+    }
+
+    @Skip
+    @RequestMapping(value = "/upImage", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
+    public WXResult.Base uploadPatch(@RequestParam("imageFile") MultipartFile imageFile, HttpServletRequest request){
+        return filesService.upLoadImage(imageFile, request);
     }
 
 }
