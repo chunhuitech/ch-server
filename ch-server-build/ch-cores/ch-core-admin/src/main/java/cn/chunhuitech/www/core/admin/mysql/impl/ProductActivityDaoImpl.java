@@ -49,7 +49,7 @@ public class ProductActivityDaoImpl implements ProductActivityDao {
         if (productActivity.getUserId() != null && productActivity.getUserId() != 0){
             criteria.andUserIdEqualTo(productActivity.getUserId());
         }
-        criteria.andClientFlagEqualTo(productActivity.getClientFlag());
+        criteria.andClientFlagEqualTo(productActivity.getClientFlag()).andProcIdEqualTo(productActivity.getProcId());
 
         List<ProductActivity> paList = productActivityMapper.selectByExample(example);
         if (paList == null || paList.size() <= 0) {
