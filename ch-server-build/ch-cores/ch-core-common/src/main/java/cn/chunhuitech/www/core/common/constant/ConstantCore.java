@@ -8,4 +8,14 @@ public interface ConstantCore {
     byte STATUS_OK = 0;
     byte STATUS_DELETE = 1;
     byte STATUS_INVALID = 127;
+
+    //是否显示 0不显示 1 显示
+    byte STATUS_SHOW_NO = 0;
+    byte STATUS_SHOW_YES = 1;
+    byte STATUS_SHOW_ALL = 127;
+
+    //分类对应的数据类型 1 PC资源(flash) 2 点读资源
+    int STATUS_CLASS_DATA_TYPE_PC = 1;
+    int STATUS_CLASS_DATA_TYPE_DIANDU = 2;
+    int STATUS_CLASS_DATA_TYPE_ALL = 127;
 }

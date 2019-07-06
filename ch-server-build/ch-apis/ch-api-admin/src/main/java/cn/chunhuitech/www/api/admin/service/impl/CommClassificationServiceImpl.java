@@ -11,6 +11,7 @@ import cn.chunhuitech.www.core.admin.dao.CommRecordDao;
 import cn.chunhuitech.www.core.admin.model.cus.CommClassificationPara;
 import cn.chunhuitech.www.core.admin.model.cus.CommRecordPara;
 import cn.chunhuitech.www.core.admin.model.pojo.CommClassification;
+import cn.chunhuitech.www.core.common.constant.ConstantCore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class CommClassificationServiceImpl implements CommClassificationService 
     private AdminUserDao adminUserDao;
 
     @Override
-    public Result<CommClassificationBo> fetchClass(CommClassificationPara commClassificationPara) {
+    public Result<CommClassificationBo> fetchClass(CommClassificationPara commClassificationPara, Byte showFlag, Integer classDataType) {
         try {
             ValidUtils.validNotNullEx(commClassificationPara, "syncTime");
         } catch (Exception ex) {
@@ -46,7 +47,7 @@ public class CommClassificationServiceImpl implements CommClassificationService 
             return new Result<>(ErrorCode.SUCCESS.getCode(), ErrorCode.SUCCESS.getResult(), null);
         }
         CommClassificationBo modelResult = new CommClassificationBo();
-        List<CommClassification> modelList = commClassificationDao.fetchClass(commClassificationPara);
+        List<CommClassification> modelList = commClassificationDao.fetchClass(commClassificationPara, showFlag, classDataType);
         modelResult.setDataList(modelList);
         long maxTime = 0;
         for (CommClassification commClassification : modelList) {
@@ -57,22 +58,22 @@ public class CommClassificationServiceImpl implements CommClassificationService 
     }
 
     @Override
-    public Result<CommClassificationBo> fetchChildren(CommClassificationPara commClassificationPara) {
+    public Result<CommClassificationBo> fetchChildren(CommClassificationPara commClassificationPara, Byte showFlag, Integer classDataType) {
         try {
             ValidUtils.validNotNullEx(commClassificationPara, "parentId");
         } catch (Exception ex) {
             return new Result<>(ErrorCode.ILLEGAL_ARGUMENT.getCode(), ex.getMessage(), null);
         }
         CommClassificationBo modelResult = new CommClassificationBo();
-        List<CommClassification> modelList = commClassificationDao.fetchChildren(commClassificationPara);
+        List<CommClassification> modelList = commClassificationDao.fetchChildren(commClassificationPara, showFlag, classDataType);
         modelResult.setDataList(modelList);
         return new Result<>(modelResult);
     }
 
     @Override
-    public Result<CommClassificationBo> fetchAll() {
+    public Result<CommClassificationBo> fetchAll(Byte showFlag, Integer classDataType) {
         CommClassificationBo modelResult = new CommClassificationBo();
-        List<CommClassification> modelList = commClassificationDao.fetchAll();
+        List<CommClassification> modelList = commClassificationDao.fetchAll(showFlag, classDataType);
         modelResult.setDataList(modelList);
         return new Result<>(modelResult);
     }
@@ -159,7 +160,7 @@ public class CommClassificationServiceImpl implements CommClassificationService 
 
     @Override
     public WXResult.Base getChildrenAndroid(CommClassificationPara commClassificationPara) {
-        return getChildren(commClassificationPara);
+        return getChildren(commClassificationPara, ConstantCore.STATUS_SHOW_YES, ConstantCore.STATUS_CLASS_DATA_TYPE_DIANDU);
     }
 
     @Override
@@ -168,17 +169,17 @@ public class CommClassificationServiceImpl implements CommClassificationService 
         if(!adminUserDao.verifyUser(userToken.getId(), userToken.getUsername())){
             return WXErrorCode.LOGIN_PARAM_TOKEN_ERROR;
         }
-        return getChildren(commClassificationPara);
+        return getChildren(commClassificationPara, ConstantCore.STATUS_SHOW_YES, ConstantCore.STATUS_CLASS_DATA_TYPE_DIANDU);
     }
 
-    private WXResult.Base getChildren(CommClassificationPara commClassificationPara) {
+    private WXResult.Base getChildren(CommClassificationPara commClassificationPara, Byte showFlag, Integer classDataType) {
         try {
             ValidUtils.validNotNullEx(commClassificationPara, "parentId");
         } catch (Exception ex) {
             return new WXResult.Error(WXErrorCode.ARGUMENT_INVALID.getCode(), ex.getMessage());
         }
         CommClassificationBo modelResult = new CommClassificationBo();
-        List<CommClassification> modelList = commClassificationDao.fetchChildren(commClassificationPara);
+        List<CommClassification> modelList = commClassificationDao.fetchChildren(commClassificationPara, showFlag, classDataType);
         modelResult.setDataList(modelList);
         return new WXResult.Success<>(modelResult);
     }

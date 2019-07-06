@@ -9,10 +9,10 @@ import java.util.List;
  * Created by hechengjin on 17-10-24.
  */
 public interface CommClassificationDao {
-    List<CommClassification> fetchClass(CommClassificationPara commClassificationPara);
+    List<CommClassification> fetchClass(CommClassificationPara commClassificationPara, Byte showFlag, Integer classDataType);
     Long getLastModifyTime();
-    List<CommClassification> fetchChildren(CommClassificationPara commClassificationPara);
-    List<CommClassification> fetchAll();
+    List<CommClassification> fetchChildren(CommClassificationPara commClassificationPara, Byte showFlag, Integer classDataType);
+    List<CommClassification> fetchAll(Byte showFlag, Integer classDataType);
 
     int insert(CommClassification commClassification);
     CommClassification getById(Integer id);

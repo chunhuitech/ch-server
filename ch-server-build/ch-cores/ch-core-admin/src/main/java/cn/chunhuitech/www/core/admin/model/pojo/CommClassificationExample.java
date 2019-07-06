@@ -364,6 +364,66 @@ public class CommClassificationExample {
             return (Criteria) this;
         }
 
+        public Criteria andShowFlagIsNull() {
+            addCriterion("show_flag is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowFlagIsNotNull() {
+            addCriterion("show_flag is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowFlagEqualTo(Byte value) {
+            addCriterion("show_flag =", value, "showFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowFlagNotEqualTo(Byte value) {
+            addCriterion("show_flag <>", value, "showFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowFlagGreaterThan(Byte value) {
+            addCriterion("show_flag >", value, "showFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowFlagGreaterThanOrEqualTo(Byte value) {
+            addCriterion("show_flag >=", value, "showFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowFlagLessThan(Byte value) {
+            addCriterion("show_flag <", value, "showFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowFlagLessThanOrEqualTo(Byte value) {
+            addCriterion("show_flag <=", value, "showFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowFlagIn(List<Byte> values) {
+            addCriterion("show_flag in", values, "showFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowFlagNotIn(List<Byte> values) {
+            addCriterion("show_flag not in", values, "showFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowFlagBetween(Byte value1, Byte value2) {
+            addCriterion("show_flag between", value1, value2, "showFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andShowFlagNotBetween(Byte value1, Byte value2) {
+            addCriterion("show_flag not between", value1, value2, "showFlag");
+            return (Criteria) this;
+        }
+
         public Criteria andLeafIsNull() {
             addCriterion("leaf is null");
             return (Criteria) this;
@@ -421,6 +481,66 @@ public class CommClassificationExample {
 
         public Criteria andLeafNotBetween(Byte value1, Byte value2) {
             addCriterion("leaf not between", value1, value2, "leaf");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassDataTypeIsNull() {
+            addCriterion("class_data_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassDataTypeIsNotNull() {
+            addCriterion("class_data_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassDataTypeEqualTo(Integer value) {
+            addCriterion("class_data_type =", value, "classDataType");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassDataTypeNotEqualTo(Integer value) {
+            addCriterion("class_data_type <>", value, "classDataType");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassDataTypeGreaterThan(Integer value) {
+            addCriterion("class_data_type >", value, "classDataType");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassDataTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("class_data_type >=", value, "classDataType");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassDataTypeLessThan(Integer value) {
+            addCriterion("class_data_type <", value, "classDataType");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassDataTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("class_data_type <=", value, "classDataType");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassDataTypeIn(List<Integer> values) {
+            addCriterion("class_data_type in", values, "classDataType");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassDataTypeNotIn(List<Integer> values) {
+            addCriterion("class_data_type not in", values, "classDataType");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassDataTypeBetween(Integer value1, Integer value2) {
+            addCriterion("class_data_type between", value1, value2, "classDataType");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassDataTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("class_data_type not between", value1, value2, "classDataType");
             return (Criteria) this;
         }
 

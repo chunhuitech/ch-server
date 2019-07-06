@@ -12,9 +12,9 @@ import cn.chunhuitech.www.core.admin.model.pojo.CommClassification;
  * Created by hechengjin on 17-9-29.
  */
 public interface CommClassificationService {
-    Result<CommClassificationBo> fetchClass(CommClassificationPara commClassificationPara);
-    Result<CommClassificationBo> fetchChildren(CommClassificationPara commClassificationPara);
-    Result<CommClassificationBo> fetchAll();
+    Result<CommClassificationBo> fetchClass(CommClassificationPara commClassificationPara, Byte showFlag, Integer classDataType);
+    Result<CommClassificationBo> fetchChildren(CommClassificationPara commClassificationPara, Byte showFlag, Integer classDataType);
+    Result<CommClassificationBo> fetchAll(Byte showFlag, Integer classDataType);
     ErrorMessage add(CommClassification commClassification);
     ErrorMessage mod(CommClassification commClassification);
     ErrorMessage del(CommClassificationPara commClassificationPara);

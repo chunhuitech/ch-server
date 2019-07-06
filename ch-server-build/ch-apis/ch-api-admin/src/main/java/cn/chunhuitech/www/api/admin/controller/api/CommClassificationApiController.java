@@ -8,6 +8,7 @@ import cn.chunhuitech.www.api.common.model.WXResult;
 import cn.chunhuitech.www.core.admin.model.cus.CommCatalogPara;
 import cn.chunhuitech.www.core.admin.model.cus.CommClassificationPara;
 import cn.chunhuitech.www.core.common.annotation.Skip;
+import cn.chunhuitech.www.core.common.constant.ConstantCore;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -35,14 +36,14 @@ public class CommClassificationApiController {
     @ApiOperation(value = "pc 保留", notes = "支持已发版本")
     @RequestMapping(value = "/fetch", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
     public Result<CommClassificationBo> fetchclass(@RequestBody CommClassificationPara commClassificationPara) throws Exception{
-        return commClassificationService.fetchClass(commClassificationPara);
+        return commClassificationService.fetchClass(commClassificationPara, ConstantCore.STATUS_SHOW_YES, ConstantCore.STATUS_CLASS_DATA_TYPE_PC);
     }
 
     @Skip
     @ApiOperation(value = "pc 保留", notes = "支持已发版本")
     @RequestMapping(value = "/children", method = RequestMethod.POST, produces = ConstantApi.MEDIA_TYPE_APPLICATION_JSON)
     public Result<CommClassificationBo> fetchchildren(@RequestBody CommClassificationPara commClassificationPara) throws Exception{
-        return commClassificationService.fetchChildren(commClassificationPara);
+        return commClassificationService.fetchChildren(commClassificationPara, ConstantCore.STATUS_SHOW_YES, ConstantCore.STATUS_CLASS_DATA_TYPE_PC);
     }
 
     @Skip

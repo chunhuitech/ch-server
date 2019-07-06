@@ -25,10 +25,16 @@ public class CommClassificationDaoImpl implements CommClassificationDao {
     private CommClassificationCusMapper commClassificationCusMapper;
 
     @Override
-    public List<CommClassification> fetchClass(CommClassificationPara commClassificationPara) {
+    public List<CommClassification> fetchClass(CommClassificationPara commClassificationPara, Byte showFlag, Integer classDataType) {
         CommClassificationExample example = new CommClassificationExample();
         CommClassificationExample.Criteria criteria = example.createCriteria();
-//        criteria.andStatusEqualTo(ConstantCore.STATUS_OK);
+        //criteria.andStatusEqualTo(ConstantCore.STATUS_OK);
+        if (showFlag != ConstantCore.STATUS_SHOW_ALL) {
+            criteria.andShowFlagEqualTo(showFlag);
+        }
+        if (showFlag != ConstantCore.STATUS_CLASS_DATA_TYPE_ALL) {
+            criteria.andClassDataTypeEqualTo(classDataType);
+        }
         criteria.andModifyTimeGreaterThan(commClassificationPara.getSyncTime());
         example.setOrderByClause(" sort_num asc ");
         return commClassificationMapper.selectByExample(example);
@@ -40,20 +46,32 @@ public class CommClassificationDaoImpl implements CommClassificationDao {
     }
 
     @Override
-    public List<CommClassification> fetchChildren(CommClassificationPara commClassificationPara) {
+    public List<CommClassification> fetchChildren(CommClassificationPara commClassificationPara, Byte showFlag, Integer classDataType) {
         CommClassificationExample example = new CommClassificationExample();
         CommClassificationExample.Criteria criteria = example.createCriteria();
         criteria.andStatusEqualTo(ConstantCore.STATUS_OK);
+        if (showFlag != ConstantCore.STATUS_SHOW_ALL) {
+            criteria.andShowFlagEqualTo(showFlag);
+        }
+        if (showFlag != ConstantCore.STATUS_CLASS_DATA_TYPE_ALL) {
+            criteria.andClassDataTypeEqualTo(classDataType);
+        }
         criteria.andParentIdEqualTo(commClassificationPara.getParentId());
         example.setOrderByClause(" sort_num asc ");
         return commClassificationMapper.selectByExample(example);
     }
 
     @Override
-    public List<CommClassification> fetchAll() {
+    public List<CommClassification> fetchAll(Byte showFlag, Integer classDataType) {
         CommClassificationExample example = new CommClassificationExample();
         CommClassificationExample.Criteria criteria = example.createCriteria();
         criteria.andStatusEqualTo(ConstantCore.STATUS_OK);
+        if (showFlag != ConstantCore.STATUS_SHOW_ALL) {
+            criteria.andShowFlagEqualTo(showFlag);
+        }
+        if (showFlag != ConstantCore.STATUS_CLASS_DATA_TYPE_ALL) {
+            criteria.andClassDataTypeEqualTo(classDataType);
+        }
         example.setOrderByClause(" sort_num asc ");
         return commClassificationMapper.selectByExample(example);
     }

@@ -9,7 +9,11 @@ public class CommClassification {
 
     private Integer parentId;
 
+    private Byte showFlag;
+
     private Byte leaf;
+
+    private Integer classDataType;
 
     private Integer sortNum;
 
@@ -53,12 +57,28 @@ public class CommClassification {
         this.parentId = parentId;
     }
 
+    public Byte getShowFlag() {
+        return showFlag;
+    }
+
+    public void setShowFlag(Byte showFlag) {
+        this.showFlag = showFlag;
+    }
+
     public Byte getLeaf() {
         return leaf;
     }
 
     public void setLeaf(Byte leaf) {
         this.leaf = leaf;
+    }
+
+    public Integer getClassDataType() {
+        return classDataType;
+    }
+
+    public void setClassDataType(Integer classDataType) {
+        this.classDataType = classDataType;
     }
 
     public Integer getSortNum() {
