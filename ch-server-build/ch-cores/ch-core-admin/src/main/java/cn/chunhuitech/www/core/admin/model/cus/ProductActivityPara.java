@@ -13,6 +13,7 @@ public class ProductActivityPara {
     private String area;
     private Long startTime;
     private Long endTime;
+    private String remarks;
 
 
     @NotNull
@@ -50,6 +51,14 @@ public class ProductActivityPara {
 
     public void setEventName(String eventName) {
         this.eventName = eventName;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String area) {
+        this.remarks = area;
     }
 
     public String getArea() {

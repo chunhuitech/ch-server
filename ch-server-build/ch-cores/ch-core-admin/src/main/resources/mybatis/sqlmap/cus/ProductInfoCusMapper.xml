@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.chunhuitech.www.core.admin.mysql.mapper.cus.ProductInfoCusMapper">
+
+    <sql id="selectItem_fragment">
+        from product_info
+        where 1=1
+
+        <if test="name != null and name != ''">
+            and name like concat(concat('%',#{name}),'%')
+        </if>
+
+        <if test="status != null">
+            status = #{status,jdbcType=BIGINT},
+        </if>
+
+    </sql>
+
+    <select id="getListSql" parameterType="java.util.Map" resultType="cn.chunhuitech.www.core.admin.model.pojo.ProductInfo">
+        SELECT id as id,
+        name,
+        technology_platform as technologyPlatform,
+        version,
+        version_num as versionNum,
+        down_address as downAddress,
+        modify_time as modifyTime,
+        create_time as createTime,
+        remarks,
+        status
+        <include refid="selectItem_fragment"/>
+        order by modify_time desc
+        limit #{pageStart}, #{pageSize}
+    </select>
+
+    <select id="getListCountSql" parameterType="map" resultType="java.lang.Long">
+        SELECT count(1)
+        <include refid="selectItem_fragment"/>
+    </select>
+
+    <update id="updateByUpSql" parameterType="cn.chunhuitech.www.core.admin.model.pojo.ProductInfo">
+        update product_info
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+
+            <if test="technologyPlatform != null">
+                technology_platform = #{technologyPlatform,jdbcType=VARCHAR},
+            </if>
+
+            <if test="version != null">
+                version = #{version,jdbcType=VARCHAR},
+            </if>
+            <if test="versionNum != null">
+                version_num = #{versionNum,jdbcType=BIGINT},
+            </if>
+            <if test="downAddress != null">
+                down_address = #{downAddress,jdbcType=VARCHAR},
+            </if>
+
+            <if test="modifyTime != null">
+                modify_time = #{modifyTime,jdbcType=BIGINT},
+            </if>
+            <if test="remarks != null">
+                remarks = #{remarks,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=BIGINT},
+            </if>
+
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

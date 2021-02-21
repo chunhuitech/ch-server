@@ -1,6 +1,7 @@
 package cn.chunhuitech.www.api.admin.service.impl;
 
 import cn.chunhuitech.www.api.admin.model.ProductActivitySearchBo;
+import cn.chunhuitech.www.api.admin.model.ProductInfoSearchBo;
 import cn.chunhuitech.www.api.admin.service.ProductActivityService;
 import cn.chunhuitech.www.api.common.constant.ConstantApi;
 import cn.chunhuitech.www.api.common.model.ErrorCode;
@@ -10,9 +11,13 @@ import cn.chunhuitech.www.api.common.model.WXResult;
 import cn.chunhuitech.www.api.common.util.ValidUtils;
 import cn.chunhuitech.www.core.admin.dao.AdminUserDao;
 import cn.chunhuitech.www.core.admin.dao.ProductActivityDao;
+import cn.chunhuitech.www.core.admin.dao.ProductInfoDao;
 import cn.chunhuitech.www.core.admin.model.cus.ProductActivityPara;
+import cn.chunhuitech.www.core.admin.model.cus.ProductInfoPara;
 import cn.chunhuitech.www.core.admin.model.pojo.AdminUser;
 import cn.chunhuitech.www.core.admin.model.pojo.ProductActivity;
+import cn.chunhuitech.www.core.admin.model.pojo.ProductInfo;
+import org.apache.commons.fileupload.FileItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +36,8 @@ public class ProductActivityServiceImpl implements ProductActivityService {
 
     @Autowired
     private ProductActivityDao productActivityDao;
+    @Autowired
+    private ProductInfoDao productInfoDao;
     @Autowired
     private AdminUserDao adminUserDao;
 
@@ -88,5 +95,48 @@ public class ProductActivityServiceImpl implements ProductActivityService {
         retResult.setMsg(ErrorCode.SUCCESS.getResult());
         retResult.setData(modelResult);
         return retResult;
+    }
+
+    @Override
+    public Result<ProductInfoSearchBo> getProductInfoList() {
+        Result<ProductInfoSearchBo> retResult = new Result<>();
+
+        ProductInfoSearchBo modelResult = new ProductInfoSearchBo();
+        ProductInfoPara productInfoPara = new ProductInfoPara();
+        productInfoPara.setPage(1);
+        productInfoPara.setLimit(100);
+        long count = productInfoDao.getListCount(productInfoPara);
+        modelResult.setTotal(count);
+        List<ProductInfo> modelList = productInfoDao.getList(productInfoPara);
+        for (ProductInfo item : modelList) {
+            item.setName(item.getName() + "(" +item.getTechnologyPlatform() + "," + item.getVersion() + ")");
+        }
+        modelResult.setDataList(modelList);
+        retResult.setCode(ErrorCode.SUCCESS.getCode());
+        retResult.setMsg(ErrorCode.SUCCESS.getResult());
+        retResult.setData(modelResult);
+        return retResult;
+    }
+
+    @Override
+    public ErrorMessage mod(ProductActivityPara productActivityPara) {
+        try {
+            ValidUtils.validNotNullEx(productActivityPara, "id,remarks");
+        } catch (Exception ex) {
+            ErrorCode.ILLEGAL_ARGUMENT.setResult(ex.getMessage());
+            return ErrorCode.ILLEGAL_ARGUMENT;
+        }
+        ProductActivity productActivity = new ProductActivity();
+        productActivity.setId(productActivityPara.getId().longValue());
+        productActivity.setRemarks(productActivityPara.getRemarks());
+        productActivity.setModifyTime(System.currentTimeMillis());
+        int operRes = productActivityDao.updateByUp(productActivity);
+        if(operRes > 0){
+            return ErrorCode.SUCCESS;
+        }
+        else
+        {
+            return ErrorCode.DB_ERROR;
+        }
     }
 }
