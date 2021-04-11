@@ -61,10 +61,11 @@ public class ProductActivityServiceImpl implements ProductActivityService {
             productActivity.setEventCount(1);
             productActivityDao.insert(productActivity);
         } else {
-            productActivity.setId(product.getId());
-            productActivity.setModifyTime(curTime);
-            productActivity.setEventCount(product.getEventCount() + 1);
-            productActivityDao.updateByUp(productActivity);
+            //productActivity.setId(product.getId());
+            product.setModifyTime(curTime);
+            product.setEventCount(product.getEventCount() + 1);
+            //productActivity.setRemarks(product.getRemarks());
+            productActivityDao.updateByUp(product);
         }
         return ErrorCode.SUCCESS;
     }
