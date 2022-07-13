@@ -14,8 +14,9 @@ public interface ConstantCore {
     byte STATUS_SHOW_YES = 1;
     byte STATUS_SHOW_ALL = 127;
 
-    //分类对应的数据类型 1 PC资源(flash) 2 点读资源
+    //分类对应的数据类型 1 PC资源(flash) 2 点读资源  3 首页门户查询
     int STATUS_CLASS_DATA_TYPE_PC = 1;
     int STATUS_CLASS_DATA_TYPE_DIANDU = 2;
+    int STATUS_CLASS_DATA_TYPE_PORTAL = 3;
     int STATUS_CLASS_DATA_TYPE_ALL = 127;
 }

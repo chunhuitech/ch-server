@@ -53,7 +53,7 @@ public class CommClassificationDaoImpl implements CommClassificationDao {
         if (showFlag != ConstantCore.STATUS_SHOW_ALL) {
             criteria.andShowFlagEqualTo(showFlag);
         }
-        if (showFlag != ConstantCore.STATUS_CLASS_DATA_TYPE_ALL) {
+        if (classDataType != ConstantCore.STATUS_CLASS_DATA_TYPE_ALL) {
             criteria.andClassDataTypeEqualTo(classDataType);
         }
         criteria.andParentIdEqualTo(commClassificationPara.getParentId());
